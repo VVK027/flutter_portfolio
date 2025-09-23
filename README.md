@@ -39,21 +39,21 @@ A high-performance, responsive Flutter portfolio using sliver-first layouts, bac
 - Flutter, Dart, Material 3
 - Riverpod for state management
 - go_router for URL-driven navigation
-- Freezed + json_serializable for immutable typed models
+- json_serializable for immutable typed models
 - ScrollablePositionedList for anchored section scrolling
 
 ## Architecture
 A pragmatic clean architecture that keeps modules small, testable, and composable.
 - Presentation: Pages, widgets, slivers, and section shells in a single scroll pipeline.
 - Application: Riverpod providers for data loading, filters, and derived lists.
-- Domain: Freezed models representing portfolio entities for safe, typed access.
+- Domain: models representing portfolio entities for safe, typed access.
 - Data: Repository abstraction with an asset-backed implementation parsing JSON on a background isolate.
 
 ## Project structure
 
 
 ## Data model schema
-The app consumes a typed JSON asset mapped to Freezed models.
+The app consumes a typed JSON asset mapped to a domain models.
 
 
 ## Getting started

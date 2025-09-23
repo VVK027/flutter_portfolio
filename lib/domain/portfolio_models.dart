@@ -1,61 +1,91 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'portfolio_models.freezed.dart';
+import 'package:json_annotation/json_annotation.dart';
+
 part 'portfolio_models.g.dart';
 
-@freezed
-class Portfolio with _$Portfolio {
-  const factory Portfolio({
-    required String name,
-    required String title,
-    required String location,
-    required List<String> summary,
-    required Skills skills,
-    required List<Experience> experience,
-    required List<Project> projects,
-    required List<String> awards,
-    required List<String> education,
-    required List<String> certifications,
-    required Contact contact,
-  }) = _Portfolio;
+@JsonSerializable()
+class Portfolio {
+  final String name;
+  final String title;
+  final String location;
+  final List<String> summary;
+  final Skills? skills;
+  final List<Experience> experience;
+  final List<Project> projects;
+  final List<String> awards;
+  final List<String> education;
+  final List<String> certifications;
+  final Contact contact;
 
-  factory Portfolio.fromJson(Map<String, dynamic> json) => _$PortfolioFromJson(json);
+  Portfolio(
+    this.name,
+    this.title,
+    this.location,
+    this.summary,
+    this.skills,
+    this.experience,
+    this.projects,
+    this.awards,
+    this.education,
+    this.certifications,
+    this.contact,
+  );
+
+  factory Portfolio.fromJson(Map<String, dynamic> json) =>
+      _$PortfolioFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PortfolioToJson(this);
 }
 
-@freezed
-class Skills with _$Skills {
-  const factory Skills({
-    required List<String> core,
-    required List<String> additional,
-  }) = _Skills;
+@JsonSerializable()
+class Skills {
+  final List<String> core;
+  final List<String> additional;
+
+  Skills(this.core, this.additional);
+
   factory Skills.fromJson(Map<String, dynamic> json) => _$SkillsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SkillsToJson(this);
 }
 
-@freezed
-class Experience with _$Experience {
-  const factory Experience({
-    required String role,
-    required String company,
-    required String period,
-    required String location,
-    required List<String> bullets,
-  }) = _Experience;
-  factory Experience.fromJson(Map<String, dynamic> json) => _$ExperienceFromJson(json);
+@JsonSerializable()
+class Experience {
+  final String role;
+  final String company;
+  final String period;
+  final String location;
+  final List<String> bullets;
+
+  Experience(this.role, this.company, this.period, this.location, this.bullets);
+
+  factory Experience.fromJson(Map<String, dynamic> json) =>
+      _$ExperienceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ExperienceToJson(this);
 }
 
-@freezed
-class Project with _$Project {
-  const factory Project({
-    required String name,
-    required String desc,
-    required List<String> tags,
-  }) = _Project;
-  factory Project.fromJson(Map<String, dynamic> json) => _$ProjectFromJson(json);
+@JsonSerializable()
+class Project {
+  final String name;
+  final String desc;
+  final List<String> tags;
+
+  Project(this.name, this.desc, this.tags);
+
+  factory Project.fromJson(Map<String, dynamic> json) =>
+      _$ProjectFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProjectToJson(this);
 }
 
-@freezed
-class Contact with _$Contact {
-  const factory Contact({
-    required String note,
-  }) = _Contact;
-  factory Contact.fromJson(Map<String, dynamic> json) => _$ContactFromJson(json);
+@JsonSerializable()
+class Contact {
+  final String note;
+
+  Contact(this.note);
+
+  factory Contact.fromJson(Map<String, dynamic> json) =>
+      _$ContactFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ContactToJson(this);
 }

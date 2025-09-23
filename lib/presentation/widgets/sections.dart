@@ -4,7 +4,6 @@ import 'package:vivek_portfolio/domain/portfolio_models.dart';
 import 'package:vivek_portfolio/presentation/portfolio/providers/projects_filter_provider.dart';
 import 'package:vivek_portfolio/presentation/widgets/projects_sliver.dart';
 
-
 class SectionShell extends StatelessWidget {
   final String title;
   final Widget child;
@@ -57,7 +56,7 @@ Widget buildSection(String id, Portfolio p, WidgetRef ref) {
                 child: Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: [for (final e in p.skills.core) Chip(label: Text(e))],
+                  children: [for (final e in p.skills?.core ?? []) Chip(label: Text(e))],
                 ),
               ),
             ),
@@ -68,7 +67,7 @@ Widget buildSection(String id, Portfolio p, WidgetRef ref) {
                 child: Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: [for (final e in p.skills.additional) Chip(label: Text(e))],
+                  children: [for (final e in p.skills?.additional ?? []) Chip(label: Text(e))],
                 ),
               ),
             ),

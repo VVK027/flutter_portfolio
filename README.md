@@ -1,7 +1,7 @@
 # Vivek Kumar — Portfolio (Flutter)
 
 [![Flutter](https://img.shields.io/badge/Flutter-stable-blue?logo=flutter&logoColor=white)](https://flutter.dev)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 [![CI](https://img.shields.io/github/actions/workflow/status/<OWNER>/<REPO>/ci.yml?branch=main&label=CI)](https://github.com/<OWNER>/<REPO>/actions)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2F<OWNER>.github.io%2F<REPO>&label=GitHub%20Pages)](https://<OWNER>.github.io/<REPO>)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -100,8 +100,6 @@ The app consumes a typed JSON asset mapped to Freezed models.
 
 ## CI/CD (GitHub Actions)
 Create .github/workflows/ci.yml:
-
-
 
 ## Deploy to GitHub Pages
 - Build: flutter build web --release

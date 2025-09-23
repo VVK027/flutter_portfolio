@@ -59,3 +59,17 @@ jobs:
 
       - name: ✅ Build web (release)
         run: flutter build web --release
+
+      - name: 🚀 Deploy to VK027/VK027 repo
+        id: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.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}}
+          publish_dir: ./build/web
+          external_repository: VK027/VK027
+          publish_branch: main
+
+      - name: 🌍 Show Deployed URL
+        run: |
+          echo "### ✅ Deployed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **Live URL:** https://${{github.VK027}}.github.io/" >> $GITHUB_STEP_SUMMARY

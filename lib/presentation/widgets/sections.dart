@@ -8,28 +8,35 @@ class SectionShell extends StatelessWidget {
   final String title;
   final Widget child;
   const SectionShell({super.key, required this.title, required this.child});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
-      decoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: Color(0xFF20232D))),
-      ),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1100),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 12),
-            child,
-          ],
+    return LayoutBuilder(builder: (context, constraints) {
+      double pad = constraints.maxWidth > 900 ? 38 : (constraints.maxWidth > 600 ? 16 : 4);
+      return Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: pad, vertical: 24),
+        decoration: const BoxDecoration(border: Border(top: BorderSide(color: Color(0xFF20232D)))),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1100),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+              const SizedBox(height: 12),
+              child,
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
+
+// Helper for summary paragraphs
+List<Widget> buildSummary(List<String>? summary) => (summary ?? [])
+    .map((s) => Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(s)))
+    .toList();
 
 Widget buildSection(String id, Portfolio p, WidgetRef ref) {
   switch (id) {
@@ -37,75 +44,78 @@ Widget buildSection(String id, Portfolio p, WidgetRef ref) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          for (final s in p.summary)
-            Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(s)),
-          Text('Location: ${p.location}')
+          ...buildSummary(p.summary),
+          Text('Location: ${p.location}', style: const TextStyle(fontWeight: FontWeight.w500)),
         ],
       );
     case 'Skills':
       return LayoutBuilder(builder: (context, c) {
-        final narrow = c.maxWidth < 900;
-        final child = Wrap(
-          spacing: 16,
+        final narrow = c.maxWidth < 700;
+        // On mobile, vertical stack. On tablet/web, side-by-side panels.
+        return Wrap(
+          spacing: narrow ? 0 : 20,
           runSpacing: 16,
+          alignment: WrapAlignment.start,
           children: [
             SizedBox(
-              width: narrow ? double.infinity : 520,
+              width: narrow ? double.infinity : c.maxWidth/2-12,
               child: _Panel(
                 title: 'Core',
                 child: Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: [for (final e in p.skills?.core ?? []) Chip(label: Text(e))],
+                  children: (p.skills?.core ?? []).map((e) => Chip(label: Text(e))).toList(),
                 ),
               ),
             ),
             SizedBox(
-              width: narrow ? double.infinity : 520,
+              width: narrow ? double.infinity : c.maxWidth/2-12,
               child: _Panel(
                 title: 'Additional',
                 child: Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: [for (final e in p.skills?.additional ?? []) Chip(label: Text(e))],
+                  children: (p.skills?.additional ?? []).map((e) => Chip(label: Text(e))).toList(),
                 ),
               ),
             ),
           ],
         );
-        return child;
       });
     case 'Experience':
       return Column(
-        children: [
-          for (final m in p.experience)
-            _RoleCard(
-              title: '${m.role} — ${m.company}',
-              meta: '${m.period} · ${m.location}',
-              bullets: m.bullets,
-            ),
-        ],
+        children: p.experience
+            .map((m) => _RoleCard(
+          title: '${m.role} — ${m.company}',
+          meta: '${m.period} · ${m.location}',
+          bullets: m.bullets,
+        )).toList(),
       );
     case 'Projects':
-      final tags = <String>{'All'}..addAll(p.projects.expand((e) => e.tags));
+      final tags = {'All'}..addAll(p.projects.expand((e) => e.tags));
+      final filter = ref.watch(projectsFilterProvider);
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Wrap(spacing: 8, children: [
-            for (final t in tags)
-              FilterChip(
-                label: Text(t),
-                selected: ref.watch(projectsFilterProvider) == t,
-                onSelected: (_) => ref.read(projectsFilterProvider.notifier).state = t,
-              ),
-          ]),
+          Wrap(
+            spacing: 8,
+            children: tags.map((t) =>
+                FilterChip(
+                  label: Text(t),
+                  selected: filter == t,
+                  onSelected: (_) => ref.read(projectsFilterProvider.notifier).state = t,
+                )
+            ).toList(),
+          ),
           const SizedBox(height: 12),
-          // Embed a sliver grid under a fixed-height box using CustomScrollView
           SizedBox(
             height: 700,
-            child: CustomScrollView(slivers: [
-              ProjectsSliver(all: p.projects),
-            ]),
+            child: CustomScrollView(
+              slivers: [
+                ProjectsSliver(all: p.projects),
+              ],
+            ),
           ),
         ],
       );
@@ -140,7 +150,7 @@ class _Panel extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF0F121A),
         border: Border.all(color: const Color(0xFF1E2330)),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +167,7 @@ class _Panel extends StatelessWidget {
 class _RoleCard extends StatelessWidget {
   final String title;
   final String meta;
-  final List<String> bullets;
+  final List bullets;
   const _RoleCard({required this.title, required this.meta, required this.bullets});
   @override
   Widget build(BuildContext context) {
@@ -167,33 +177,38 @@ class _RoleCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF0F121A),
         border: Border.all(color: const Color(0xFF1E2330)),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 4),
-        Text(meta, style: const TextStyle(color: Colors.grey)),
-        const SizedBox(height: 8),
-        _Bullets(items: bullets),
-      ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+          const SizedBox(height: 4),
+          Text(meta, style: const TextStyle(color: Colors.grey)),
+          const SizedBox(height: 8),
+          _Bullets(items: bullets),
+        ],
+      ),
     );
   }
 }
 
 class _Bullets extends StatelessWidget {
-  final List<String> items;
+  final List items;
   const _Bullets({required this.items});
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (final e in items)
-          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('• '),
-            Expanded(child: Text(e)),
-          ]),
-      ],
+      children: items.map((e) =>
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('• '),
+              Expanded(child: Text(e)),
+            ],
+          )
+      ).toList(),
     );
   }
 }

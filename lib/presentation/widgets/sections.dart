@@ -1,0 +1,200 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vivek_portfolio/domain/portfolio_models.dart';
+import 'package:vivek_portfolio/presentation/portfolio/providers/projects_filter_provider.dart';
+import 'package:vivek_portfolio/presentation/widgets/projects_sliver.dart';
+
+
+class SectionShell extends StatelessWidget {
+  final String title;
+  final Widget child;
+  const SectionShell({super.key, required this.title, required this.child});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
+      decoration: const BoxDecoration(
+        border: Border(top: BorderSide(color: Color(0xFF20232D))),
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1100),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
+            const SizedBox(height: 12),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget buildSection(String id, Portfolio p, WidgetRef ref) {
+  switch (id) {
+    case 'About':
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final s in p.summary)
+            Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(s)),
+          Text('Location: ${p.location}')
+        ],
+      );
+    case 'Skills':
+      return LayoutBuilder(builder: (context, c) {
+        final narrow = c.maxWidth < 900;
+        final child = Wrap(
+          spacing: 16,
+          runSpacing: 16,
+          children: [
+            SizedBox(
+              width: narrow ? double.infinity : 520,
+              child: _Panel(
+                title: 'Core',
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [for (final e in p.skills.core) Chip(label: Text(e))],
+                ),
+              ),
+            ),
+            SizedBox(
+              width: narrow ? double.infinity : 520,
+              child: _Panel(
+                title: 'Additional',
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [for (final e in p.skills.additional) Chip(label: Text(e))],
+                ),
+              ),
+            ),
+          ],
+        );
+        return child;
+      });
+    case 'Experience':
+      return Column(
+        children: [
+          for (final m in p.experience)
+            _RoleCard(
+              title: '${m.role} — ${m.company}',
+              meta: '${m.period} · ${m.location}',
+              bullets: m.bullets,
+            ),
+        ],
+      );
+    case 'Projects':
+      final tags = <String>{'All'}..addAll(p.projects.expand((e) => e.tags));
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(spacing: 8, children: [
+            for (final t in tags)
+              FilterChip(
+                label: Text(t),
+                selected: ref.watch(projectsFilterProvider) == t,
+                onSelected: (_) => ref.read(projectsFilterProvider.notifier).state = t,
+              ),
+          ]),
+          const SizedBox(height: 12),
+          // Embed a sliver grid under a fixed-height box using CustomScrollView
+          SizedBox(
+            height: 700,
+            child: CustomScrollView(slivers: [
+              ProjectsSliver(all: p.projects),
+            ]),
+          ),
+        ],
+      );
+    case 'Awards':
+      return _Bullets(items: p.awards);
+    case 'Education':
+      return _Bullets(items: p.education);
+    case 'Certifications':
+      return _Bullets(items: p.certifications);
+    case 'Contact':
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(p.contact.note),
+          const SizedBox(height: 8),
+          const Text('Add preferred contact channels in assets/data.json.'),
+        ],
+      );
+    default:
+      return const SizedBox.shrink();
+  }
+}
+
+class _Panel extends StatelessWidget {
+  final String title;
+  final Widget child;
+  const _Panel({required this.title, required this.child});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0F121A),
+        border: Border.all(color: const Color(0xFF1E2330)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+          const SizedBox(height: 10),
+          child,
+        ],
+      ),
+    );
+  }
+}
+
+class _RoleCard extends StatelessWidget {
+  final String title;
+  final String meta;
+  final List<String> bullets;
+  const _RoleCard({required this.title, required this.meta, required this.bullets});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0F121A),
+        border: Border.all(color: const Color(0xFF1E2330)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+        const SizedBox(height: 4),
+        Text(meta, style: const TextStyle(color: Colors.grey)),
+        const SizedBox(height: 8),
+        _Bullets(items: bullets),
+      ]),
+    );
+  }
+}
+
+class _Bullets extends StatelessWidget {
+  final List<String> items;
+  const _Bullets({required this.items});
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final e in items)
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('• '),
+            Expanded(child: Text(e)),
+          ]),
+      ],
+    );
+  }
+}

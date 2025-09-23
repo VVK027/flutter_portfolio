@@ -1,0 +1,220 @@
+{
+  "name": "Vivek Kumar",
+  "location": "Hyderabad, India",
+  "title": "Lead Mobile Developer · Flutter · Android · iOS",
+  "summary": [
+    "Mobile engineering lead with 8+ years building production apps across Android and iOS, specializing in Flutter migrations and scalable cross‑platform architecture.",
+    "Experienced in leading teams, defining architecture, instituting code reviews, and strengthening CI/CD and QA to improve release quality and speed.",
+    "Domain depth in IoT and healthcare, including BLE/Wi‑Fi provisioning, QR onboarding, OTA firmware, subscriptions, secure data flows, and multi‑region launches."
+  ],
+  "skills": {
+    "core": [
+      "Flutter",
+      "Android",
+      "iOS",
+      "Dart",
+      "Kotlin",
+      "Java",
+      "Swift",
+      "Riverpod",
+      "Jenkins",
+      "JIRA/Confluence",
+      "GitHub",
+      "GitLab",
+      "Bitbucket",
+      "SVN"
+    ],
+    "additional": [
+      "React Native",
+      "Ionic",
+      "NativeScript",
+      "Angular",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "SQLite",
+      "MySQL",
+      "GraphQL (where used)"
+    ]
+  },
+  "experience": [
+    {
+      "company": "Centific Global Technologies India Pvt. Ltd.",
+      "role": "Lead Mobile Developer",
+      "period": "Oct 2024 – Present",
+      "location": "Hyderabad (Payroll: Centific)",
+      "bullets": [
+        "Led mobile team delivery with architecture definition, mentorship, and best practices.",
+        "Planned migrations to Flutter/React Native; strengthened CI/CD and QA to reduce release failures.",
+        "Aligned stakeholders, conducted reviews, and ensured maintainable codebases."
+      ]
+    },
+    {
+      "company": "Carrier Technologies India Ltd. (Kidde)",
+      "role": "Senior Flutter Developer",
+      "period": "Oct 2023 – Sep 2024",
+      "location": "Hyderabad (Payroll: Drepp Technologies)",
+      "bullets": [
+        "Migrated native apps to Flutter with new UI/UX and robust unit/widget testing.",
+        "Built BLE/Wi‑Fi commissioning with QR, property/room/device management, notifications, IAQ.",
+        "Implemented OTA firmware updates, subscriptions with IAP, Alexa/Google Home integrations."
+      ]
+    },
+    {
+      "company": "Docty Healthcare Pvt. Ltd.",
+      "role": "Lead — Mobile Developer",
+      "period": "Apr 2022 – Aug 2023",
+      "location": "Hyderabad",
+      "bullets": [
+        "Led 3 developers and delivered multi‑tenant healthcare apps across India, Colombia, Ecuador, and South Africa.",
+        "Unified GloryFit wearable integration via Flutter plugin for health vitals over Bluetooth.",
+        "Owned code reviews, profiling, debugging, and release quality with QA."
+      ]
+    },
+    {
+      "company": "Docty Healthcare Pvt. Ltd.",
+      "role": "Mobile Developer",
+      "period": "May 2021 – Mar 2022",
+      "location": "Hyderabad",
+      "bullets": [
+        "Migrated and upgraded Flutter versions; optimized performance and stabilized plugins.",
+        "Integrated 12‑lead ECG, BP, glucose, HR, SpO2, temperature, spirometer, and uric acid devices.",
+        "Implemented chat (Socket.io), video streaming, push, Freshchat; shipped Flutter web."
+      ]
+    },
+    {
+      "company": "CallHealth Services Pvt. Ltd.",
+      "role": "Technical Project Lead",
+      "period": "Jul 2019 – Feb 2021",
+      "location": "Hyderabad",
+      "bullets": [
+        "Led a team of 5 across 3 internal projects plus a vendor collaboration from planning to delivery.",
+        "Instituted estimation, tracking, and escalation practices; delivered multilingual/multi‑currency features."
+      ]
+    },
+    {
+      "company": "CallHealth Services Pvt. Ltd.",
+      "role": "Software Engineer",
+      "period": "Jul 2017 – Jun 2019",
+      "location": "Hyderabad",
+      "bullets": [
+        "Built native Android apps for field ops and order booking with a multi‑business cart.",
+        "Implemented live/geo tracking, SLA, PODS, payments (Paytm, Ezetap, Pine Lab), and performance optimizations."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Mastermind Driver App",
+      "tags": [
+        "Flutter",
+        "IOT",
+        "Logistics"
+      ],
+      "desc": "TMS migration from RN to Flutter with tablet workflows and responsive UI."
+    },
+    {
+      "name": "The Kidde App",
+      "tags": [
+        "Flutter",
+        "IOT",
+        "Home"
+      ],
+      "desc": "Home safety & IAQ with BLE/Wi‑Fi commissioning, QR onboarding, OTA, notifications, subscriptions."
+    },
+    {
+      "name": "Clinic Mobile App",
+      "tags": [
+        "Flutter",
+        "Health"
+      ],
+      "desc": "Clinic/pharmacy management for staff, physicians, labs, appointments, schedules, notifications."
+    },
+    {
+      "name": "Flutter Band Fit (Plugin)",
+      "tags": [
+        "Flutter",
+        "IOT",
+        "Health"
+      ],
+      "desc": "GloryFit/UTE SDK for vitals sync, reminders, watch faces, DND over Bluetooth."
+    },
+    {
+      "name": "Docty Digital Health & Corporate Wellness",
+      "tags": [
+        "Flutter",
+        "Health",
+        "Payments"
+      ],
+      "desc": "Video consults, EHR/PHR, Google Fit/Apple Health, chat, biometrics, multi‑region payments."
+    },
+    {
+      "name": "CHHelps",
+      "tags": [
+        "React-Native",
+        "Payments"
+      ],
+      "desc": "RN app with dynamic templates, workflows, and Ezetap POS integration."
+    },
+    {
+      "name": "CallHealth Partners",
+      "tags": [
+        "Android",
+        "Logistics"
+      ],
+      "desc": "Order creation/execution with multi‑business cart, QR, GPS, WebRTC AV plugin."
+    },
+    {
+      "name": "CHInfoaids",
+      "tags": [
+        "Android",
+        "Health"
+      ],
+      "desc": "Video consult & chat with Firebase/WebRTC and device integrations."
+    },
+    {
+      "name": "CHOfficerApp",
+      "tags": [
+        "Ionic",
+        "Logistics"
+      ],
+      "desc": "Internal field‑officer app with payments, barcode, sockets, REST, pagination."
+    },
+    {
+      "name": "Yellows & Greens",
+      "tags": [
+        "Flutter",
+        "Commerce"
+      ],
+      "desc": "Community e‑commerce for fresh produce with ordering, tracking, notifications, wallet."
+    },
+    {
+      "name": "Y&G Partner",
+      "tags": [
+        "Android",
+        "Commerce"
+      ],
+      "desc": "Admin/delivery app for community stock with pricing, attributes, earnings, push."
+    }
+  ],
+  "awards": [
+    "Pinnacle Performer Award — 2021, Docty Healthcare Pvt. Ltd.",
+    "Consolation Prize — Savishkar Utsav 2012 (Photophobic Robot)"
+  ],
+  "education": [
+    "M.Tech (ES & VLSI Design), JNTU Hyderabad (2016) — 72.19%",
+    "B.Tech (ECE), JNTU Hyderabad (2013) — 70.21%",
+    "Intermediate (M.P.C), Vikas Junior College (2009) — 61.40%",
+    "S.S.C, Mountain Top High School (2007) — 64.50%"
+  ],
+  "certifications": [
+    "The Complete Flutter Development with Dart — Udemy (2020)",
+    "QuickStart to build mobile apps with NativeScript — Udemy (2020)",
+    "Advanced Course in Embedded Systems — Vector India Pvt. Ltd. (2015)"
+  ],
+  "contact": {
+    "note": "Open to Lead/Senior Mobile roles focusing on Flutter architecture, IoT integrations, and high‑impact delivery.",
+    "email": "vickyvivek2727@gmail.com",
+    "links": []
+  }
+}

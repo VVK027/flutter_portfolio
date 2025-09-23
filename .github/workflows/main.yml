@@ -64,7 +64,7 @@ jobs:
         id: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{secrets.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}}
+          personal_token: ${{secrets.DEPLOY_TOKEN}}
           publish_dir: ./build/web
           external_repository: VK027/VK027
           publish_branch: main

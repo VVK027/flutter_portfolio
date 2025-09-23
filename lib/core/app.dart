@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import 'routing/app_router.dart';
 import 'theme/app_theme.dart';
 

@@ -98,9 +98,6 @@ The app consumes a typed JSON asset mapped to Freezed models.
 - Split large widgets into small leaf components and prefer const constructors.
 - Centralize layout decisions with breakpoints for predictable adaptive behavior.
 
-## CI/CD (GitHub Actions)
-Create .github/workflows/ci.yml:
-
 ## Deploy to GitHub Pages
 - Build: flutter build web --release
 - Options

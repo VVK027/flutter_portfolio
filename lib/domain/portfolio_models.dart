@@ -69,8 +69,18 @@ class Project {
   final String name;
   final String desc;
   final List<String> tags;
+  final String? playStoreUrl;
+  final String? appStoreUrl;
+  final String? previewImage;
 
-  Project(this.name, this.desc, this.tags);
+  Project(
+    this.name,
+    this.desc,
+    this.tags,
+    this.playStoreUrl,
+    this.appStoreUrl,
+    this.previewImage,
+  );
 
   factory Project.fromJson(Map<String, dynamic> json) =>
       _$ProjectFromJson(json);
@@ -81,8 +91,12 @@ class Project {
 @JsonSerializable()
 class Contact {
   final String note;
+  final String? email;
+  final String? phone;
+  final String? location;
+  final List<String>? links;
 
-  Contact(this.note);
+  Contact(this.note, this.email, this.phone, this.location, this.links);
 
   factory Contact.fromJson(Map<String, dynamic> json) =>
       _$ContactFromJson(json);

@@ -5,10 +5,12 @@ class Metrics extends ThemeExtension<Metrics> {
   final double sectionHPad;
   const Metrics({this.sectionHPad = 20});
   @override
-  Metrics copyWith({double? sectionHPad}) => Metrics(sectionHPad: sectionHPad ?? this.sectionHPad);
+  Metrics copyWith({double? sectionHPad}) =>
+      Metrics(sectionHPad: sectionHPad ?? this.sectionHPad);
   @override
-  Metrics lerp(ThemeExtension<Metrics>? other, double t) =>
-      Metrics(sectionHPad: lerpDouble(sectionHPad, (other as Metrics).sectionHPad, t)!);
+  Metrics lerp(ThemeExtension<Metrics>? other, double t) => Metrics(
+    sectionHPad: lerpDouble(sectionHPad, (other as Metrics).sectionHPad, t)!,
+  );
 }
 
 // ThemeData buildTheme() {
@@ -56,4 +58,3 @@ final ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   extensions: const [Metrics(sectionHPad: 20)],
 );
-

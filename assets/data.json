@@ -1,74 +1,85 @@
 {
   "name": "Vivek Kumar",
   "location": "Hyderabad, India",
-  "title": "Lead Mobile Developer · Flutter · Android · iOS",
+  "title": "Lead Mobile Developer · Flutter · React Native · Android · iOS",
   "summary": [
-    "Mobile engineering lead with 8+ years building production apps across Android and iOS, specializing in Flutter migrations and scalable cross‑platform architecture.",
-    "Experienced in leading teams, defining architecture, instituting code reviews, and strengthening CI/CD and QA to improve release quality and speed.",
-    "Domain depth in IoT and healthcare, including BLE/Wi‑Fi provisioning, QR onboarding, OTA firmware, subscriptions, secure data flows, and multi‑region launches."
+    "Lead Mobile Developer with 8+ years of experience building scalable, high-performance mobile applications across Flutter, React Native, Android, and iOS.",
+    "Proven track record in leading teams, driving architecture decisions, and delivering end-to-end products in Agile environments.",
+    "Strong expertise in native-to-Flutter modernization, performance optimization, CI/CD automation, and maintainable code quality practices.",
+    "Hands-on depth in IoT, healthcare, logistics, and e-commerce domains including BLE/Wi-Fi integrations and real-time systems."
   ],
   "skills": {
     "core": [
       "Flutter",
-      "Android",
-      "iOS",
+      "React Native",
+      "Android (Java, Kotlin)",
+      "iOS (Swift)",
       "Dart",
-      "Kotlin",
-      "Java",
-      "Swift",
+      "JavaScript",
+      "TypeScript",
       "Riverpod",
+      "BLoC",
+      "Firebase",
+      "REST APIs",
+      "GraphQL",
+      "BLE/Wi-Fi",
+      "CI/CD",
       "Jenkins",
-      "JIRA/Confluence",
+      "Bitrise",
+      "GitHub Actions"
+    ],
+    "additional": [
+      "Ionic",
+      "NativeScript",
+      "Angular",
+      "RxJS",
+      "WebSockets",
+      "Google Maps API",
+      "Agora SDK",
+      "SQLite",
+      "MySQL",
+      "Hive",
+      "Isar",
+      "JIRA",
+      "Confluence",
       "GitHub",
       "GitLab",
       "Bitbucket",
       "SVN"
-    ],
-    "additional": [
-      "React Native",
-      "Ionic",
-      "NativeScript",
-      "Angular",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "SQLite",
-      "MySQL",
-      "GraphQL (where used)"
     ]
   },
   "experience": [
     {
-      "company": "Centific Global Technologies India Pvt. Ltd.",
+      "company": "Centific Global Technologies Pvt. Ltd.",
       "role": "Lead Mobile Developer",
-      "period": "Oct 2024 – Present",
-      "location": "Hyderabad (Payroll: Centific)",
+      "period": "Oct 2024 – Sep 2025",
+      "location": "Hyderabad",
       "bullets": [
-        "Led mobile team delivery with architecture definition, mentorship, and best practices.",
-        "Planned migrations to Flutter/React Native; strengthened CI/CD and QA to reduce release failures.",
-        "Aligned stakeholders, conducted reviews, and ensured maintainable codebases."
+        "Led a team of 6 mobile developers and drove end-to-end delivery of cross-platform apps in Flutter and React Native.",
+        "Owned architecture, technical design, and code quality standards for scalable and maintainable systems.",
+        "Led migration initiatives from legacy/native apps to Flutter and improved release stability through CI/CD and QA gates."
       ]
     },
     {
-      "company": "Carrier Technologies India Ltd. (Kidde)",
+      "company": "Carrier Technologies (via Drepp Technologies Pvt. Ltd.)",
       "role": "Senior Flutter Developer",
       "period": "Oct 2023 – Sep 2024",
-      "location": "Hyderabad (Payroll: Drepp Technologies)",
+      "location": "Hyderabad",
       "bullets": [
-        "Migrated native apps to Flutter with new UI/UX and robust unit/widget testing.",
-        "Built BLE/Wi‑Fi commissioning with QR, property/room/device management, notifications, IAQ.",
-        "Implemented OTA firmware updates, subscriptions with IAP, Alexa/Google Home integrations."
+        "Delivered IoT-focused mobile applications for smoke alarms, CO alarms, water leak detectors, and IAQ systems.",
+        "Led migration from native Android/iOS to Flutter to improve consistency, scalability, and delivery speed.",
+        "Built BLE and Wi-Fi onboarding, OTA firmware updates, subscriptions, and Alexa/Google Home integrations."
       ]
     },
     {
       "company": "Docty Healthcare Pvt. Ltd.",
-      "role": "Lead — Mobile Developer",
+      "role": "Lead Mobile Developer",
       "period": "Apr 2022 – Aug 2023",
       "location": "Hyderabad",
       "bullets": [
-        "Led 3 developers and delivered multi‑tenant healthcare apps across India, Colombia, Ecuador, and South Africa.",
-        "Unified GloryFit wearable integration via Flutter plugin for health vitals over Bluetooth.",
-        "Owned code reviews, profiling, debugging, and release quality with QA."
+        "Led a team of 3 developers and delivered healthcare applications across India, Colombia, Ecuador, and South Africa.",
+        "Implemented multi-tenant architecture and custom Flutter plugin integrations for wearable devices over Bluetooth.",
+        "Reduced application load time by 40% and improved stability through profiling, refactoring, and QA collaboration."
       ]
     },
     {
@@ -77,9 +88,9 @@
       "period": "May 2021 – Mar 2022",
       "location": "Hyderabad",
       "bullets": [
-        "Migrated and upgraded Flutter versions; optimized performance and stabilized plugins.",
-        "Integrated 12‑lead ECG, BP, glucose, HR, SpO2, temperature, spirometer, and uric acid devices.",
-        "Implemented chat (Socket.io), video streaming, push, Freshchat; shipped Flutter web."
+        "Upgraded Flutter applications, resolved plugin compatibility issues, and shipped Flutter Web capabilities.",
+        "Integrated healthcare devices including ECG, BP, glucose, spirometers, and other vitals hardware.",
+        "Implemented real-time chat, video streaming, and push notification features."
       ]
     },
     {
@@ -88,8 +99,8 @@
       "period": "Jul 2019 – Feb 2021",
       "location": "Hyderabad",
       "bullets": [
-        "Led a team of 5 across 3 internal projects plus a vendor collaboration from planning to delivery.",
-        "Instituted estimation, tracking, and escalation practices; delivered multilingual/multi‑currency features."
+        "Led a team of 5 developers and managed planning, delivery timelines, and risk mitigation.",
+        "Delivered multilingual and multi-currency applications for global markets including Brazil and Azerbaijan."
       ]
     },
     {
@@ -98,8 +109,9 @@
       "period": "Jul 2017 – Jun 2019",
       "location": "Hyderabad",
       "bullets": [
-        "Built native Android apps for field ops and order booking with a multi‑business cart.",
-        "Implemented live/geo tracking, SLA, PODS, payments (Paytm, Ezetap, Pine Lab), and performance optimizations."
+        "Developed native Android applications for healthcare operations and field workflows.",
+        "Implemented order tracking, geo-location, barcode scanning, Firebase push, and payment integrations.",
+        "Built scalable solutions for diagnostics, pharmacy, and consultation use cases."
       ]
     }
   ],
@@ -108,53 +120,71 @@
       "name": "Mastermind Driver App",
       "tags": [
         "Flutter",
-        "IOT",
-        "Logistics"
+        "Logistics",
+        "Web"
       ],
-      "desc": "TMS migration from RN to Flutter with tablet workflows and responsive UI."
+      "desc": "Led migration of a TMS driver app from React Native to Flutter and delivered responsive workflows across mobile, tablet, and web.",
+      "previewImage": "https://ibb.co/Xx07GFqb",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.masterysystems.drivermobile",
+      "appStoreUrl": "https://apps.apple.com/us/app/mastermind-drive-2-0/id6673890540"
     },
     {
       "name": "The Kidde App",
       "tags": [
         "Flutter",
         "IOT",
-        "Home"
+        "Home Safety"
       ],
-      "desc": "Home safety & IAQ with BLE/Wi‑Fi commissioning, QR onboarding, OTA, notifications, subscriptions."
+      "desc": "Built home safety and IAQ platform with BLE/Wi-Fi commissioning, OTA firmware updates, voice integrations, and subscription support.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.kidde.android.monitor1",
+      "appStoreUrl": "https://apps.apple.com/us/app/kidde/id942334464"
     },
     {
       "name": "Clinic Mobile App",
       "tags": [
         "Flutter",
-        "Health"
+        "Healthcare"
       ],
-      "desc": "Clinic/pharmacy management for staff, physicians, labs, appointments, schedules, notifications."
+      "desc": "Developed a clinic and pharmacy operations app supporting staff, physician, appointment, consultation, and branch management.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "",
+      "appStoreUrl": ""
     },
     {
       "name": "Flutter Band Fit (Plugin)",
       "tags": [
         "Flutter",
-        "IOT",
-        "Health"
+        "Plugin",
+        "Bluetooth"
       ],
-      "desc": "GloryFit/UTE SDK for vitals sync, reminders, watch faces, DND over Bluetooth."
+      "desc": "Created a cross-platform Flutter plugin with GloryFit/UTE SDK for health vitals sync, reminders, watch faces, and device management.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://github.com/VK027/flutter_band_fit",
+      "appStoreUrl": ""
     },
     {
-      "name": "Docty Digital Health & Corporate Wellness",
+      "name": "Docty Digital Health for All",
       "tags": [
         "Flutter",
-        "Health",
+        "Healthcare",
         "Payments"
       ],
-      "desc": "Video consults, EHR/PHR, Google Fit/Apple Health, chat, biometrics, multi‑region payments."
+      "desc": "Delivered a multi-region healthcare platform with video consults, EHR/PHR, real-time chat, biometrics, and payment gateway integrations.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=ai.doctyindia.patient",
+      "appStoreUrl": "https://apps.apple.com/us/app/docty-digital-health-for-all/id1577088463"
     },
     {
       "name": "CHHelps",
       "tags": [
-        "React-Native",
+        "React Native",
         "Payments"
       ],
-      "desc": "RN app with dynamic templates, workflows, and Ezetap POS integration."
+      "desc": "Led end-to-end RN app delivery with dynamic workflows and Ezetap POS payment integration through native bridge.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.callhealth.chassociates",
+      "appStoreUrl": ""
     },
     {
       "name": "CallHealth Partners",
@@ -162,23 +192,32 @@
         "Android",
         "Logistics"
       ],
-      "desc": "Order creation/execution with multi‑business cart, QR, GPS, WebRTC AV plugin."
+      "desc": "Built enhanced order execution platform with multi-business cart, self-allocation, QR, GPS tracking, and WebRTC AV support.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=callhealth.officer",
+      "appStoreUrl": ""
     },
     {
       "name": "CHInfoaids",
       "tags": [
         "Android",
-        "Health"
+        "Healthcare"
       ],
-      "desc": "Video consult & chat with Firebase/WebRTC and device integrations."
+      "desc": "Implemented real-time video consultation and chat app with Firebase, WebRTC, and medical device integrations.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.callhealth.chinfoaids",
+      "appStoreUrl": ""
     },
     {
-      "name": "CHOfficerApp",
+      "name": "CHOfficer App",
       "tags": [
         "Ionic",
-        "Logistics"
+        "Operations"
       ],
-      "desc": "Internal field‑officer app with payments, barcode, sockets, REST, pagination."
+      "desc": "Developed internal field-force app integrating payments, barcode scanning, socket communication, and REST workflows.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "",
+      "appStoreUrl": ""
     },
     {
       "name": "Yellows & Greens",
@@ -186,7 +225,10 @@
         "Flutter",
         "Commerce"
       ],
-      "desc": "Community e‑commerce for fresh produce with ordering, tracking, notifications, wallet."
+      "desc": "Built cross-platform grocery app with home delivery/store pickup, tracking, wallet, and complaint management.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.yng.app",
+      "appStoreUrl": ""
     },
     {
       "name": "Y&G Partner",
@@ -194,27 +236,35 @@
         "Android",
         "Commerce"
       ],
-      "desc": "Admin/delivery app for community stock with pricing, attributes, earnings, push."
+      "desc": "Created admin and delivery app for stock, pricing, earnings tracking, and push-enabled order handling.",
+      "previewImage": "assets/profile.jpeg",
+      "playStoreUrl": "",
+      "appStoreUrl": ""
     }
   ],
   "awards": [
-    "Pinnacle Performer Award — 2021, Docty Healthcare Pvt. Ltd.",
-    "Consolation Prize — Savishkar Utsav 2012 (Photophobic Robot)"
+    "Reduced application load time by 40% through performance optimization and caching improvements.",
+    "Led successful migration initiatives from native platforms to Flutter to improve scalability and reduce maintenance overhead.",
+    "Achieved around 95% automation coverage with QA and DevOps collaboration.",
+    "Built and integrated IoT and wearable ecosystems using BLE and Wi-Fi."
   ],
   "education": [
-    "M.Tech (ES & VLSI Design), JNTU Hyderabad (2016) — 72.19%",
-    "B.Tech (ECE), JNTU Hyderabad (2013) — 70.21%",
-    "Intermediate (M.P.C), Vikas Junior College (2009) — 61.40%",
-    "S.S.C, Mountain Top High School (2007) — 64.50%"
+    "M.Tech (Embedded Systems & VLSI Design) – JNTU Hyderabad, 2016",
+    "B.Tech (Electronics & Communication Engineering) – JNTU Hyderabad, 2013"
   ],
   "certifications": [
-    "The Complete Flutter Development with Dart — Udemy (2020)",
-    "QuickStart to build mobile apps with NativeScript — Udemy (2020)",
-    "Advanced Course in Embedded Systems — Vector India Pvt. Ltd. (2015)"
+    "The Complete Flutter Development with Dart – Udemy",
+    "NativeScript Mobile App Development – Udemy",
+    "Advanced Embedded Systems – Vector India"
   ],
   "contact": {
-    "note": "Open to Lead/Senior Mobile roles focusing on Flutter architecture, IoT integrations, and high‑impact delivery.",
+    "note": "Open to Lead/Senior Mobile roles focused on Flutter architecture, IoT integrations, and high-impact product delivery.",
     "email": "vickyvivek2727@gmail.com",
-    "links": []
+    "phone": "+91 69133 39566",
+    "location": "Hyderabad, India",
+    "links": [
+      "https://linkedin.com/in/connectvivek27",
+      "https://github.com/VK027"
+    ]
   }
 }

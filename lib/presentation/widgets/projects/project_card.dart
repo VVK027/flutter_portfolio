@@ -40,7 +40,7 @@ class ProjectCard extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: Container(
           clipBehavior: Clip.antiAlias,
-          padding: const EdgeInsets.all(16),
+         // padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: colors.card,
             border: Border.all(color: colors.cardBorder),
@@ -55,12 +55,13 @@ class ProjectCard extends StatelessWidget {
                     ? projectPreviewImage(
                         viewData.previewImage,
                         fallbackTitle: project.name,
+                        fit: BoxFit.contain,
                       )
                     : projectPreviewPlaceholder(context, project.name),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

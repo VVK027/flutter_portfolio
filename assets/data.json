@@ -108,12 +108,14 @@
         "Logistics",
         "Android",
         "iOS",
+        "Tablet",
         "Web",
         "REST API",
         "Clean Architecture",
         "Riverpod",
         "Firebase",
-        "Crashlytics"
+        "Crashlytics",
+        "Cross-platform"
       ],
       "features": [
         "Route Management",
@@ -153,8 +155,11 @@
         "Swift",
         "Rest/GraphQL",
         "Clean Architecture",
+        "GoRouter",
         "Riverpod",
-        "Firebase"
+        "Firebase",
+        "Crashlytics",
+        "Cross-platform"
       ],
       "features": [
         "Home Safety",
@@ -186,6 +191,45 @@
       ]
     },
     {
+      "name": "Flutter Dev Portfolio",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Web",
+        "Android",
+        "iOS",
+        "Mobile",
+        "Responsive",
+        "Riverpod",
+        "GoRouter",
+        "Clean Architecture",
+        "JSON-driven UI",
+        "Cross-platform"
+      ],
+      "features": [
+        "Responsive Layout",
+        "Dark & Light Theme",
+        "Section Navigation",
+        "Project Carousel",
+        "Skills & Experience",
+        "Client Reviews",
+        "Contact Section",
+        "GitHub Integration"
+      ],
+      "desc": "Built a responsive Flutter web and mobile portfolio with JSON-driven content, Riverpod state management, and adaptive section layouts.",
+      "fullDescription": [
+        "Designed and developed a personal developer portfolio as a cross-platform Flutter app deployable to web, Android, and iOS from a single codebase.",
+        "Structured the UI with scroll-synced section navigation, responsive carousels, and theme-aware components that adapt across mobile, tablet, and desktop breakpoints.",
+        "Loaded portfolio content from JSON assets so projects, experience, skills, and reviews can be updated without code changes.",
+        "Applied Clean Architecture with Riverpod providers, domain use cases, and reusable presentation widgets for maintainable, testable code."
+      ],
+      "previewImage": "assets/projects/flutter_portfolio_preview.jpg",
+      "playStoreUrl": [],
+      "appStoreUrl": [],
+      "githubUrl": "https://github.com/VK027/flutter_portfolio"
+    },
+
+    {
       "name": "Docty Clinics",
       "tags": [
         "Flutter",
@@ -196,7 +240,9 @@
         "Bloc",
         "Cubit",
         "REST API",
-        "Firebase"
+        "Firebase",
+        "Crashlytics",
+        "Cross-platform"
       ],
       "features": [
         "Appointment Booking",
@@ -228,7 +274,9 @@
         "Swift",
         "Android",
         "iOS",
-        "Platform Channel"
+        "Mobile",
+        "Platform Channel",
+        "Cross-platform"
       ],
       "features": [
         "Smart Band Integration",
@@ -256,6 +304,14 @@
       "name": "Docty Digital Health for All",
       "tags": [
         "Flutter",
+        "Dart",
+        "Android",
+        "iOS",
+        "Bloc",
+        "Cubit",
+        "Mobile",
+        "Web",
+        "Cross-platform",
         "Healthcare",
         "Payments"
       ],
@@ -289,7 +345,12 @@
       "name": "CHHelps",
       "tags": [
         "React Native",
-        "Payments"
+        "JavaScript",
+        "TypeScript",
+        "Android",
+        "iOS",
+        "Mobile",
+        "Cross-platform"
       ],
       "features": [
         "Dynamic Workflows",
@@ -314,8 +375,13 @@
     {
       "name": "CallHealth Partners",
       "tags": [
+        "Mobile",
+        "Healthcare",
         "Android",
-        "Logistics"
+        "Java",
+        "Kotlin",
+        "Logistics",
+        "Payments"
       ],
       "features": [
         "Multi-business Cart",
@@ -341,8 +407,10 @@
     {
       "name": "CHInfoaids",
       "tags": [
+        "Healthcare",
         "Android",
-        "Healthcare"
+        "Java",
+        "Mobile"
       ],
       "features": [
         "WebRTC Video",
@@ -377,7 +445,8 @@
         "JSON",
         "REST API",
         "Firebase",
-        "Operations"
+        "Operations",
+        "Cross-platform"
       ],
       "features": [
         "Doctor Management",
@@ -406,7 +475,14 @@
       "name": "Yellows & Greens",
       "tags": [
         "Flutter",
-        "Commerce"
+        "Dart",
+        "Mobile",
+        "Android",
+        "iOS",
+        "Web",
+        "Cross-platform",
+        "Provider",
+        "eCommerce"
       ],
       "features": [
         "Home Delivery",
@@ -432,6 +508,8 @@
       "name": "Y&G Partner",
       "tags": [
         "Android",
+        "Java",
+        "Mobile",
         "Commerce"
       ],
       "features": [

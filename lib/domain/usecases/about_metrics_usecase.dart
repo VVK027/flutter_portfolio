@@ -12,13 +12,13 @@ class AboutMetricsUseCase {
         .toSet()
         .length;
     final yearsExperience = _deriveYearsExperience(portfolio.experience);
-    final androidAppsPublished = _derivePublishedApps(
+    final androidAppsPublished = _countProjectsWithTag(
       portfolio.projects,
-      hostPart: 'play.google.com',
+      tag: 'Android',
     );
-    final iosAppsPublished = _derivePublishedApps(
+    final iosAppsPublished = _countProjectsWithTag(
       portfolio.projects,
-      hostPart: 'apps.apple.com',
+      tag: 'iOS',
     );
 
     return AboutMetrics(
@@ -79,19 +79,14 @@ class AboutMetricsUseCase {
     return diff > 0 ? diff : 1;
   }
 
-  int _derivePublishedApps(List<Project> projects, {required String hostPart}) {
+  int _countProjectsWithTag(List<Project> projects, {required String tag}) {
+    final normalizedTag = tag.toLowerCase();
     return projects
-        .where((project) {
-          final matchesPlay = project.playStoreUrl.any((url) {
-            final host = Uri.tryParse(url)?.host.toLowerCase() ?? '';
-            return host.contains(hostPart);
-          });
-          final matchesApp = project.appStoreUrl.any((url) {
-            final host = Uri.tryParse(url)?.host.toLowerCase() ?? '';
-            return host.contains(hostPart);
-          });
-          return matchesPlay || matchesApp;
-        })
+        .where(
+          (project) => project.tags.any(
+            (projectTag) => projectTag.toLowerCase() == normalizedTag,
+          ),
+        )
         .length;
   }
 }

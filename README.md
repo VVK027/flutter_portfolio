@@ -2,6 +2,10 @@
 
 A responsive Flutter portfolio for Vivek Kumar — built with clean architecture, Riverpod, and go_router.
 
+<p align="center">
+  <img src="assets/projects/flutter_portfolio_preview.jpg" alt="Flutter Dev Portfolio — responsive web and mobile layouts in light and dark themes" width="100%" />
+</p>
+
 ## Table of contents
 
 - [Features](#features)

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/core/theme/app_fonts.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 import 'package:vivekdevfolio/presentation/extensions/review_extensions.dart';
 import 'package:vivekdevfolio/presentation/widgets/section_carousel.dart';
@@ -23,71 +22,22 @@ class ReviewsSection extends StatelessWidget {
         final cardHeight = width < 600 ? 260.0 : 240.0;
         final gap = width < 600 ? 0.0 : 16.0;
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const _ReviewsSectionHeader(),
-            const SizedBox(height: 16),
-            SectionCarousel(
-              pageCount: pages,
-              pageHeight: cardHeight,
-              autoPlay: pages > 1,
-              autoPlayInterval: const Duration(seconds: 2),
-              pageBuilder: (context, pageIndex) {
-                final slice = carouselPageSlice(reviews, pageIndex, perPage);
-                return CarouselRowPage<Review>(
-                  items: slice,
-                  itemsPerPage: perPage,
-                  gap: gap,
-                  itemBuilder: (_, review) => _ReviewCard(review: review),
-                );
-              },
-            ),
-          ],
+        return SectionCarousel(
+          pageCount: pages,
+          pageHeight: cardHeight,
+          autoPlay: pages > 1,
+          autoPlayInterval: const Duration(seconds: 2),
+          pageBuilder: (context, pageIndex) {
+            final slice = carouselPageSlice(reviews, pageIndex, perPage);
+            return CarouselRowPage<Review>(
+              items: slice,
+              itemsPerPage: perPage,
+              gap: gap,
+              itemBuilder: (_, review) => _ReviewCard(review: review),
+            );
+          },
         );
       },
-    );
-  }
-}
-
-class _ReviewsSectionHeader extends StatelessWidget {
-  const _ReviewsSectionHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.appColors;
-    final isMobile = MediaQuery.sizeOf(context).width < 600;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ShaderMask(
-          blendMode: BlendMode.srcIn,
-          shaderCallback: (bounds) => LinearGradient(
-            colors: [colors.accentGradientStart, colors.accentGradientEnd],
-          ).createShader(bounds),
-          child: Text(
-            'Reviews',
-            style: TextStyle(
-              fontFamily: AppFonts.family,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w600,
-              fontSize: isMobile ? 30 : 36,
-              height: 1.1,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          'Recommendations from people I have worked with.',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: colors.textMuted,
-            fontSize: isMobile ? 13 : 14,
-            height: 1.4,
-          ),
-        ),
-      ],
     );
   }
 }

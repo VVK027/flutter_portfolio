@@ -46,7 +46,7 @@ class ProjectPreviewFrame extends StatelessWidget {
 Widget projectPreviewImage(
   String imagePath, {
   required String fallbackTitle,
-  BoxFit fit = BoxFit.cover,
+  BoxFit fit = BoxFit.contain,
 }) {
   final trimmed = imagePath.trim();
   if (trimmed.isEmpty) {

@@ -232,7 +232,9 @@ class _PortfolioScaffold extends StatelessWidget {
                     final section = PortfolioSectionEnum.values[index];
                     return SectionShell(
                       title: section.title,
-                      hideTitle: section == PortfolioSectionEnum.reviews,
+                      subtitle: section == PortfolioSectionEnum.reviews
+                          ? 'Recommendations from people I have worked with.'
+                          : null,
                       child: buildSection(section),
                     );
                   },

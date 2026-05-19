@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:vivekdevfolio/presentation/widgets/section_header.dart';
 
 class SectionShell extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final Widget child;
-  final bool hideTitle;
+
   const SectionShell({
     super.key,
     required this.title,
+    this.subtitle,
     required this.child,
-    this.hideTitle = false,
   });
 
   @override
@@ -17,7 +19,6 @@ class SectionShell extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final pad = _sectionHorizontalPadding(constraints.maxWidth);
-        final isMobile = constraints.maxWidth < 600;
         final colors = context.appColors;
         return Container(
           width: double.infinity,
@@ -31,16 +32,8 @@ class SectionShell extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (!hideTitle) ...[
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontSize: isMobile ? 24 : null,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                  ],
+                  SectionHeader(title: title, subtitle: subtitle),
+                  const SizedBox(height: 12),
                   child,
                 ],
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/domain/entities/about_metrics.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/strengths_section.dart';
+//import 'package:vivekdevfolio/presentation/widgets/sections/strengths_section.dart';
 
 class AboutSection extends StatelessWidget {
   final List<String>? summary;
@@ -24,19 +24,19 @@ class AboutSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ..._buildSummary(summary, isMobile),
-        if (strengths.isNotEmpty) ...[
-          const SizedBox(height: 20),
-          Text(
-            'What I Bring to the Table',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-              color: context.appColors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 12),
-          StrengthsSection(strengths: strengths),
-        ],
-        const SizedBox(height: 14),
+        //if (strengths.isNotEmpty) ...[
+          // const SizedBox(height: 20),
+          // Text(
+          //   'What I Bring to the Table',
+          //   style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          //     fontWeight: FontWeight.w700,
+          //     color: context.appColors.textPrimary,
+          //   ),
+          // ),
+          // const SizedBox(height: 12),
+          // StrengthsSection(strengths: strengths),
+        //],
+        const SizedBox(height: 16),
         Wrap(
           spacing: 12,
           runSpacing: 12,

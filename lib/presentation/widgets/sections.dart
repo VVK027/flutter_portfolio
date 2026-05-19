@@ -1,39 +1,56 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:vivek_portfolio/application/portfolio/portfolio_sections.dart';
-import 'package:vivek_portfolio/domain/portfolio_models.dart';
-import 'package:vivek_portfolio/presentation/widgets/sections/about_section.dart';
-import 'package:vivek_portfolio/presentation/widgets/sections/contact_section.dart';
-import 'package:vivek_portfolio/presentation/widgets/sections/experience_section.dart';
-import 'package:vivek_portfolio/presentation/widgets/sections/projects_section.dart';
-import 'package:vivek_portfolio/presentation/widgets/sections/skills_section.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:vivekdevfolio/presentation/portfolio/providers/portfolio_providers.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/about_section.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/contact_section.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/experience_section.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/projects_section.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/reviews_section.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/skills_section.dart';
 
-export 'package:vivek_portfolio/presentation/widgets/sections/section_shell.dart';
+export 'package:vivekdevfolio/presentation/widgets/sections/section_shell.dart';
 
 Widget buildSection(
-  PortfolioSection section,
+  PortfolioSectionEnum section,
   Portfolio portfolio,
-  WidgetRef _,
+  WidgetRef ref,
 ) {
+  final aboutMetricsUseCase = ref.read(aboutMetricsUseCaseProvider);
+  final skillCategoriesUseCase = ref.read(skillCategoriesUseCaseProvider);
+  final contactInfoUseCase = ref.read(contactInfoUseCaseProvider);
   switch (section) {
-    case PortfolioSection.about:
-      return AboutSection(portfolio: portfolio);
-    case PortfolioSection.skills:
-      return SkillsSection(skills: portfolio.skills);
-    case PortfolioSection.experience:
+    case PortfolioSectionEnum.about:
+      return AboutSection(
+          summary: portfolio.summary,
+          metrics: aboutMetricsUseCase.build(portfolio),
+          strengths: portfolio.strengths ?? []
+      );
+    // case PortfolioSection.strengths:
+    //   return StrengthsSection(strengths: portfolio.strengths ?? []);
+    case PortfolioSectionEnum.skills:
+      return SkillsSection(
+        categories: skillCategoriesUseCase.build(),
+      );
+    case PortfolioSectionEnum.experience:
       return ExperienceSection(experience: portfolio.experience);
-    case PortfolioSection.projects:
+    case PortfolioSectionEnum.projects:
       return const ProjectsSection();
-    case PortfolioSection.awards:
+    case PortfolioSectionEnum.reviews:
+      return ReviewsSection(reviews: portfolio.reviews ?? []);
+    case PortfolioSectionEnum.awards:
       return SimpleBulletsSection(items: portfolio.awards);
-    case PortfolioSection.education:
+    case PortfolioSectionEnum.education:
       return SimpleBulletsSection(items: portfolio.education);
-    case PortfolioSection.certifications:
+    case PortfolioSectionEnum.certifications:
       return SimpleBulletsSection(items: portfolio.certifications);
-    case PortfolioSection.contact:
+    case PortfolioSectionEnum.contact:
       return ContactSection(
-        contact: portfolio.contact,
-        fallbackLocation: portfolio.location,
+        viewData: contactInfoUseCase.build(
+          portfolio.contact,
+          portfolio.location,
+        ),
       );
   }
 }

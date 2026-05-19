@@ -1,118 +1,101 @@
-# Vivek Kumar — Portfolio (Flutter)
+# vivekdevfolio
 
-[![Flutter](https://img.shields.io/badge/Flutter-stable-blue?logo=flutter&logoColor=white)](https://flutter.dev)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/<OWNER>/<REPO>/ci.yml?branch=main&label=CI)](https://github.com/<OWNER>/<REPO>/actions)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2F<OWNER>.github.io%2F<REPO>&label=GitHub%20Pages)](https://<OWNER>.github.io/<REPO>)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-
-A high-performance, responsive Flutter portfolio using sliver-first layouts, background JSON parsing with isolates, Riverpod state management, go_router navigation, and a pragmatic clean architecture.
+A responsive Flutter portfolio for Vivek Kumar — built with clean architecture, Riverpod, and go_router.
 
 ## Table of contents
-- Features
-- Tech stack
-- Architecture
-- Project structure
-- Data model schema
-- Getting started
-- Run and build
-- Configuration
-- Theming
-- Navigation
-- State management
-- Performance notes
-- CI/CD (GitHub Actions)
-- Deploy to GitHub Pages
-- Contributing
-- License
+
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Architecture](#architecture)
+- [Getting started](#getting-started)
+- [Build](#build)
+- [Deploy to GitHub Pages](#deploy-to-github-pages)
+- [Configuration](#configuration)
+- [License](#license)
 
 ## Features
-- Sliver-first scrolling with CustomScrollView/SliverGrid for smooth performance without nested shrinkWrap lists or grids.
-- Background JSON parsing via compute to prevent UI jank.
-- Clean architecture split into presentation, application, domain, and data layers.
-- Reactive state with Riverpod, cached asset loading, and minimized rebuilds using select.
-- URL-based navigation with go_router and section deep-linking/anchoring.
-- Adaptive layout with breakpoint-driven columns aligned to Material guidance.
-- Material 3 theme, plus ThemeExtension for reusable spacing and tokens.
+
+- **Responsive layout** — Adaptive toolbar, spacing, and section layout for mobile, tablet, and desktop breakpoints.
+- **Portfolio sections** — About, skills, experience, projects, reviews, awards, education, certifications, and contact, driven from `assets/data.json`.
+- **Section navigation** — Sticky nav with scroll-synced active section via `ScrollablePositionedList`.
+- **Deep links** — Shareable URLs for each section (`/section/:id`) with `go_router`.
+- **Light and dark theme** — Toggle persisted with Riverpod; Material 3 styling via custom `AppColors`.
+- **Projects gallery** — Tag filters, project cards with previews, and a detail bottom sheet.
+- **Section carousels** — Paged carousels with controls and optional auto-play for multi-card content.
+- **Contact and social** — Email, phone, location, and social links (GitHub, LinkedIn, WhatsApp, etc.) via `url_launcher`.
+- **JSON-driven content** — Edit copy, metrics, experience, and projects without changing UI code.
+- **CI pipeline** — Analyze, test, build web, and deploy on pushes to `main` (see [Deploy to GitHub Pages](#deploy-to-github-pages)).
 
 ## Tech stack
-- Flutter, Dart, Material 3
-- Riverpod for state management
-- go_router for URL-driven navigation
-- json_serializable for immutable typed models
-- ScrollablePositionedList for anchored section scrolling
+
+- Flutter & Dart
+- Riverpod — state management
+- go_router — URL navigation and section deep links
+- json_serializable — typed JSON models
+- ScrollablePositionedList — anchored section scrolling
 
 ## Architecture
-A pragmatic clean architecture that keeps modules small, testable, and composable.
-- Presentation: Pages, widgets, slivers, and section shells in a single scroll pipeline.
-- Application: Riverpod providers for data loading, filters, and derived lists.
-- Domain: models representing portfolio entities for safe, typed access.
-- Data: Repository abstraction with an asset-backed implementation parsing JSON on a background isolate.
 
-## Project structure
+```
+lib/
+├── domain/       # Entities, use cases, repository interfaces
+├── data/         # Data sources, DTOs, mappers, repository implementations
+├── presentation/ # Screens, widgets, Riverpod providers
+└── core/         # App shell, routing, theming
+```
 
-
-## Data model schema
-The app consumes a typed JSON asset mapped to a domain models.
-
+Data is loaded from `assets/data.json`, parsed on a background isolate, and mapped to domain entities.
 
 ## Getting started
-- Prerequisites
-  - Flutter (stable channel) and Dart SDK included.
-  - Chrome installed for the web target.
-- Install dependencies
-  - Run: flutter pub get
-- Code generation
-  - Run: dart run build_runner build --delete-conflicting-outputs
 
-## Run and build
-- Run dev server (web): flutter run -d chrome
-- Build web release: flutter build web --release
+**Prerequisites:** Flutter (stable) and Chrome for web.
 
-## Configuration
-- Assets
-  - Declare the data file in pubspec.yaml:
-    ```
-    flutter:
-      assets:
-        - assets/data.json
-    ```
-- Repository
-  - AssetPortfolioRepository defaults to assets/data.json; customize the path if needed.
+```bash
+flutter pub get
+dart run build_runner build
+flutter run -d chrome
+```
 
-## Theming
-- ThemeData uses Material 3 with a dark color scheme and consistent typography.
-- A ThemeExtension (e.g., Metrics) holds shared spacing and layout tokens to avoid magic numbers.
+## Build
 
-## Navigation
-- go_router provides declarative routes and deep links such as /section/Projects.
-- ScrollablePositionedList enables smooth in-page anchor scrolling by section index.
+```bash
+flutter build web --release
+```
 
-## State management
-- A FutureProvider loads and caches Portfolio from the repository.
-- A StateProvider holds the current projects tag filter; a derived Provider exposes filtered lists with minimal rebuilds.
+Output is in `build/web/`.
 
-## Performance notes
-- Prefer a single sliver pipeline (CustomScrollView/SliverGrid) over nested scrollables and shrinkWrap.
-- Parse JSON on a background isolate using compute to avoid main-thread stalls.
-- Split large widgets into small leaf components and prefer const constructors.
-- Centralize layout decisions with breakpoints for predictable adaptive behavior.
+For a **project site** served at `https://<user>.github.io/<repo>/`, set the base path when building:
+
+```bash
+flutter build web --release --base-href="/<repo>/"
+```
+
+For a **user or organization site** at `https://<user>.github.io/`, use `--base-href="/"` (the default).
 
 ## Deploy to GitHub Pages
-- Build: flutter build web --release
-- Options
-  - Serve the build/web folder with any static host.
-  - For GitHub Pages, enable Pages in repository settings and publish the build artifacts (for example, via a deploy workflow or a manual gh-pages branch).
-- Typical Pages deployment step (append to workflow):
 
+- **Build:** `flutter build web --release` (add `--base-href` if the app is not hosted at the domain root; see [Build](#build)).
+- **Options**
+  - Serve the `build/web` folder with any static host.
+  - For GitHub Pages, enable Pages in the repository **Settings → Pages** and publish the build artifacts (for example, via a deploy workflow or a manual `gh-pages` branch).
+- **Typical Pages deployment step** (append to a workflow after the web build):
 
-## Contributing
-- Fork the repository and create a feature branch.
-- Write tests when adding features or fixing bugs.
-- Run format, analyze, and tests before opening a PR.
-  - dart format .
-  - flutter analyze
-  - flutter test
+```yaml
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+```
+
+This repository also includes [`.github/workflows/main.yml`](.github/workflows/main.yml), which runs `flutter analyze`, tests, `flutter build web --release`, and deploys `build/web` via `peaceiris/actions-gh-pages`. Adjust `publish_dir`, branch, or `external_repository` in that workflow to match your Pages setup.
+
+**Live site:** After deployment, the app is available at your GitHub Pages URL (for example `https://<user>.github.io/<repo>/` for a project site).
+
+## Configuration
+
+Portfolio content lives in `assets/data.json`. Image and icon assets are under `assets/`.
 
 ## License
-This project is licensed under the MIT License. See LICENSE for details.
+
+MIT — see [LICENSE](LICENSE).

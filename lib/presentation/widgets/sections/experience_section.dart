@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vivek_portfolio/domain/portfolio_models.dart';
+import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 
 class ExperienceSection extends StatelessWidget {
   final List<Experience> experience;
@@ -11,7 +12,7 @@ class ExperienceSection extends StatelessWidget {
       children: experience
           .map(
             (m) => _RoleCard(
-              title: '${m.role} — ${m.company}',
+              title: '${m.company} - ${m.role}',
               meta: '${m.period} · ${m.location}',
               bullets: m.bullets,
             ),
@@ -35,6 +36,7 @@ class _RoleCard extends StatelessWidget {
   final String title;
   final String meta;
   final List<String> bullets;
+
   const _RoleCard({
     required this.title,
     required this.meta,
@@ -43,16 +45,14 @@ class _RoleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
+
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF161B29) : scheme.surface,
-        border: Border.all(
-          color: isDark ? const Color(0xFF30384D) : scheme.outlineVariant,
-        ),
+        color: colors.card,
+        border: Border.all(color: colors.cardBorder),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
       child: Column(
@@ -60,10 +60,17 @@ class _RoleCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: colors.textPrimary,
+            ),
           ),
           const SizedBox(height: 4),
-          Text(meta, style: const TextStyle(color: Colors.grey)),
+          Text(
+            meta,
+            style: TextStyle(color: colors.textMuted, fontSize: 12),
+          ),
           const SizedBox(height: 8),
           _Bullets(items: bullets),
         ],
@@ -78,6 +85,7 @@ class _Bullets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: items
@@ -85,8 +93,13 @@ class _Bullets extends StatelessWidget {
             (e) => Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('• '),
-                Expanded(child: Text(e)),
+                Text('• ', style: TextStyle(color: colors.textMuted)),
+                Expanded(
+                  child: Text(
+                    e,
+                    style: TextStyle(fontSize: 14, color: colors.textSecondary),
+                  ),
+                ),
               ],
             ),
           )

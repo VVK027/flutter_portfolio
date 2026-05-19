@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:vivek_portfolio/application/portfolio/portfolio_sections.dart';
-import 'package:vivek_portfolio/presentation/portfolio/screen/portfolio_page.dart';
+import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:vivekdevfolio/presentation/portfolio/screen/portfolio_page.dart';
 
 final appRouter = GoRouter(
   routes: [
@@ -11,7 +11,7 @@ final appRouter = GoRouter(
         GoRoute(
           path: 'section/:id',
           builder: (c, s) {
-            final section = PortfolioSection.fromId(s.pathParameters['id']);
+            final section = PortfolioSectionEnum.fromId(s.pathParameters['id']);
             return PortfolioPage(initialSection: section?.id);
           },
         ),

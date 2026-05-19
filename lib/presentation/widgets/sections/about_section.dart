@@ -1,115 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:vivek_portfolio/domain/portfolio_models.dart';
+import 'package:vivekdevfolio/domain/entities/about_metrics.dart';
+import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections/strengths_section.dart';
 
 class AboutSection extends StatelessWidget {
-  final Portfolio portfolio;
-  const AboutSection({super.key, required this.portfolio});
+  final List<String>? summary;
+  final AboutMetrics metrics;
+  final List<Strength> strengths;
+
+  const AboutSection({
+    super.key,
+    required this.summary,
+    required this.metrics,
+    required this.strengths,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final projectsCount = portfolio.projects.length;
-    final experienceCount = portfolio.experience.length;
-    final companiesCount = portfolio.experience
-        .map((e) => e.company)
-        .toSet()
-        .length;
-    final yearsExperience = _deriveYearsExperience(portfolio.experience);
-    final androidAppsPublished = _deriveAndroidPublishedApps(portfolio.projects);
-    final iosAppsPublished = _deriveIosPublishedApps(portfolio.projects);
-
+    final width = MediaQuery.sizeOf(context).width;
+    final isMobile = width < 600;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ..._buildSummary(portfolio.summary),
+        ..._buildSummary(summary, isMobile),
+        if (strengths.isNotEmpty) ...[
+          const SizedBox(height: 20),
+          Text(
+            'What I Bring to the Table',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: context.appColors.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 12),
+          StrengthsSection(strengths: strengths),
+        ],
         const SizedBox(height: 14),
         Wrap(
           spacing: 12,
           runSpacing: 12,
-          children: [
-            _AboutStatTile(
-              value: '$yearsExperience+',
-              label: 'YEARS EXP.',
-              accent: const Color(0xFFFF66C7),
-            ),
-            _AboutStatTile(
-              value: '$companiesCount+',
-              label: 'COMPANIES',
-              accent: const Color(0xFF7EC8FF),
-            ),
-            _AboutStatTile(
-              value: '$experienceCount+',
-              label: 'ROLES',
-              accent: const Color(0xFFB177FF),
-            ),
-            _AboutStatTile(
-              value: '$projectsCount+',
-              label: 'PROJECTS',
-              accent: const Color(0xFF00D6FF),
-            ),
-            _AboutStatTile(
-              value: '$androidAppsPublished+',
-              label: 'ANDROID APPS',
-              accent: const Color(0xFF00D6FF),
-            ),
-            _AboutStatTile(
-              value: '$iosAppsPublished+',
-              label: 'IOS APPS',
-              accent: const Color(0xFF00D6FF),
-            ),
-          ],
+          children: metrics.tiles
+              .map(
+                (tile) => _AboutStatTile(
+                  value: '${tile.value}+',
+                  label: tile.label,
+                  accent: _accentColorFor(tile.accentKey),
+                ),
+              )
+              .toList(),
         ),
       ],
     );
   }
 }
 
-List<Widget> _buildSummary(List<String>? summary) => (summary ?? [])
+List<Widget> _buildSummary(List<String>? summary, bool isMobile) => (summary ?? [])
     .map(
-      (s) => Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(s)),
+      (s) => Padding(
+        padding: EdgeInsets.only(bottom: isMobile ? 6 : 8),
+        child: Builder(
+          builder: (context) => Text(
+            s,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.appColors.textSecondary,
+              fontSize: isMobile ? 14 : null,
+              height: isMobile ? 1.45 : null,
+            ),
+          ),
+        ),
+      ),
     )
     .toList();
 
-int _deriveYearsExperience(List<Experience> experience) {
-  if (experience.isEmpty) return 0;
-  final yearExp = RegExp(r'(\d{4})');
-  int? minYear;
-  for (final item in experience) {
-    final years = yearExp
-        .allMatches(item.period)
-        .map((m) => int.tryParse(m.group(1) ?? ''))
-        .whereType<int>()
-        .toList();
-    if (years.isEmpty) continue;
-    final startYear = years.first;
-    minYear = minYear == null
-        ? startYear
-        : (startYear < minYear ? startYear : minYear);
+Color _accentColorFor(String key) {
+  switch (key) {
+    case 'magenta':
+      return const Color(0xFFFF66C7);
+    case 'blueLight':
+      return const Color(0xFF7EC8FF);
+    case 'violet':
+      return const Color(0xFFB177FF);
+    case 'cyan':
+      return const Color(0xFF00D6FF);
+    default:
+      return const Color(0xFF00D6FF);
   }
-  if (minYear == null) return 0;
-  final currentYear = DateTime.now().year;
-  final diff = currentYear - minYear;
-  return diff > 0 ? diff : 1;
 }
-
-int _deriveAndroidPublishedApps(List<Project> projects) => projects
-    .where(
-      (project) =>
-          (Uri.tryParse(
-                (project.playStoreUrl ?? '').trim(),
-              )?.host.toLowerCase() ??
-              '')
-              .contains('play.google.com'),
-    )
-    .length;
-
-int _deriveIosPublishedApps(List<Project> projects) => projects
-    .where(
-      (project) =>
-          (Uri.tryParse((project.appStoreUrl ?? '').trim())?.host.toLowerCase() ??
-              '')
-              .contains('apps.apple.com'),
-    )
-    .length;
 
 class _AboutStatTile extends StatelessWidget {
   final String value;
@@ -123,17 +100,18 @@ class _AboutStatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Container(
       constraints: const BoxConstraints(minWidth: 170),
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        gradient: const LinearGradient(
-          colors: [Color(0xFF171A28), Color(0xFF111423)],
+        gradient: LinearGradient(
+          colors: [colors.statGradientStart, colors.statGradientEnd],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        border: Border.all(color: const Color(0xFF2A2F41)),
+        border: Border.all(color: colors.cardBorder),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +119,7 @@ class _AboutStatTile extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              fontSize: 42,
+              fontSize: 32,
               height: 1,
               fontWeight: FontWeight.w800,
               color: accent,
@@ -150,10 +128,10 @@ class _AboutStatTile extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             label,
-            style: const TextStyle(
-              color: Colors.white70,
-              letterSpacing: 1.1,
-              fontWeight: FontWeight.w600,
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: colors.textMuted,
+              fontSize: 14,
+              letterSpacing: 1,
             ),
           ),
         ],

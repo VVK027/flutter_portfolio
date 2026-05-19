@@ -1,9 +1,17 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:vivek_portfolio/application/portfolio/portfolio_sections.dart';
-import 'package:vivek_portfolio/application/portfolio/providers/portfolio_providers.dart';
-import 'package:vivek_portfolio/presentation/widgets/sections.dart';
+import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:vivekdevfolio/presentation/portfolio/providers/portfolio_providers.dart';
+import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_profile_header.dart';
+import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_section_nav.dart';
+import 'package:vivekdevfolio/presentation/widgets/github_profile_view_counter.dart';
+import 'package:vivekdevfolio/presentation/widgets/sections.dart';
+import 'package:vivekdevfolio/presentation/widgets/theme_toggle_button.dart';
 
 class PortfolioPage extends ConsumerStatefulWidget {
   final String? initialSection;
@@ -16,7 +24,7 @@ class PortfolioPage extends ConsumerStatefulWidget {
 class _PortfolioPageState extends ConsumerState<PortfolioPage> {
   final itemController = ItemScrollController();
   final positions = ItemPositionsListener.create();
-  static const sections = PortfolioSection.values;
+  static const sections = PortfolioSectionEnum.values;
   int _activeSectionIndex = 0;
 
   @override
@@ -43,6 +51,32 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
     }
   }
 
+  bool _isDesktop(double width) => width > 900;
+
+  double _toolbarHeight(bool isDesktop) => isDesktop ? 92 : 74;
+
+  double _titleSpacing(bool isDesktop) => isDesktop ? 26 : 16;
+
+  double _contentPaddingForWidth(double width) {
+    if (width > 900) return 48;
+    if (width > 600) return 24;
+    return 8;
+  }
+
+  void _scrollToSectionIndex(int index) {
+    itemController.scrollTo(
+      index: index,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
+  void _scrollToSectionId(String id) {
+    final index = sections.indexWhere((section) => section.id == id);
+    if (index >= 0) {
+      _scrollToSectionIndex(index);
+    }
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -53,7 +87,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           itemController.scrollTo(
             index: idx,
-            duration: const Duration(milliseconds: 350),
+            duration: const Duration(milliseconds: 300),
           );
         });
       }
@@ -68,144 +102,151 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
       loading: () =>
           const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (e, _) => Scaffold(body: Center(child: Text('Error: $e'))),
-      data: (p) {
-        final screenWidth = MediaQuery.sizeOf(context).width;
-        final isDesktop = screenWidth > 900;
-        return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: isDesktop ? 76 : 64,
-            titleSpacing: isDesktop ? 20 : 12,
-            title: Row(
-              children: [
-                Container(
-                  width: isDesktop ? 44 : 38,
-                  height: isDesktop ? 44 : 38,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: const Color(0xFF2D3343),
-                      width: 1.2,
-                    ),
-                  ),
-                  child: ClipOval(
-                    child: Transform.scale(
-                      scale: 1.2,
-                      child: Image.asset(
-                        'assets/profile.jpeg',
-                        fit: BoxFit.cover,
-                        alignment: const Alignment(0, -0.2),
-                      ),
-                    ),
-                  ),
+      data: (portfolio) => _PortfolioScaffold(
+        portfolio: portfolio,
+        isDesktop: _isDesktop(MediaQuery.sizeOf(context).width),
+        toolbarHeight: _toolbarHeight(_isDesktop(MediaQuery.sizeOf(context).width)),
+        titleSpacing: _titleSpacing(_isDesktop(MediaQuery.sizeOf(context).width)),
+        contentPaddingForWidth: _contentPaddingForWidth,
+        activeSectionIndex: _activeSectionIndex,
+        itemController: itemController,
+        positions: positions,
+        onSectionIndexSelected: _scrollToSectionIndex,
+        onSectionIdSelected: _scrollToSectionId,
+        buildSection: (section) => buildSection(section, portfolio, ref),
+      ),
+    );
+  }
+}
+
+class _PortfolioScaffold extends StatelessWidget {
+  final Portfolio portfolio;
+  final bool isDesktop;
+  final double toolbarHeight;
+  final double titleSpacing;
+  final double Function(double width) contentPaddingForWidth;
+  final int activeSectionIndex;
+  final ItemScrollController itemController;
+  final ItemPositionsListener positions;
+  final ValueChanged<int> onSectionIndexSelected;
+  final ValueChanged<String> onSectionIdSelected;
+  final Widget Function(PortfolioSectionEnum section) buildSection;
+
+  const _PortfolioScaffold({
+    required this.portfolio,
+    required this.isDesktop,
+    required this.toolbarHeight,
+    required this.titleSpacing,
+    required this.contentPaddingForWidth,
+    required this.activeSectionIndex,
+    required this.itemController,
+    required this.positions,
+    required this.onSectionIndexSelected,
+    required this.onSectionIdSelected,
+    required this.buildSection,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.appColors;
+    return Scaffold(
+      backgroundColor: colors.scaffold,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        toolbarHeight: toolbarHeight,
+        titleSpacing: titleSpacing,
+        titleTextStyle: Theme.of(context).textTheme.titleLarge,
+        flexibleSpace: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    colors.appBarGradientStart,
+                    colors.appBarGradientEnd,
+                  ],
                 ),
-                SizedBox(width: isDesktop ? 12 : 10),
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        p.name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontSize: isDesktop ? 24 : 20,
-                        ),
-                      ),
-                      Text(
-                        p.title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey,
-                          fontSize: isDesktop ? 13 : 11.5,
-                        ),
-                      ),
-                    ],
-                  ),
+                border: Border(
+                  bottom: BorderSide(color: colors.appBarBorder, width: 0.8),
                 ),
-                if (isDesktop)
-                  Flexible(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            for (final entry in sections.asMap().entries)
-                              TextButton(
-                                onPressed: () => itemController.scrollTo(
-                                  index: entry.key,
-                                  duration: const Duration(milliseconds: 300),
-                                ),
-                                style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                  ),
-                                ),
-                                child: AnimatedDefaultTextStyle(
-                                  duration: const Duration(milliseconds: 160),
-                                  style: TextStyle(
-                                    color: entry.key == _activeSectionIndex
-                                        ? Colors.white
-                                        : Colors.white70,
-                                    fontSize: 14,
-                                    fontWeight: entry.key == _activeSectionIndex
-                                        ? FontWeight.w700
-                                        : FontWeight.w500,
-                                  ),
-                                  child: Text(entry.value.title),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  PopupMenuButton<String>(
-                    icon: const Icon(Icons.menu),
-                    onSelected: (id) => itemController.scrollTo(
-                      index: sections.indexWhere((section) => section.id == id),
-                      duration: const Duration(milliseconds: 300),
-                    ),
-                    itemBuilder: (_) => [
-                      for (final section in sections)
-                        PopupMenuItem(
-                          value: section.id,
-                          child: Text(section.title),
-                        ),
-                    ],
+                boxShadow: [
+                  BoxShadow(
+                    color: colors.shadow,
+                    blurRadius: 18,
+                    offset: const Offset(0, 8),
                   ),
-              ],
+                ],
+              ),
             ),
           ),
-          body: LayoutBuilder(
+        ),
+        title: Center(
+          child: Row(
+            children: [
+              PortfolioProfileHeader(
+                portfolio: portfolio,
+                isDesktop: isDesktop,
+              ),
+              if (isDesktop)
+                PortfolioDesktopNav(
+                  sections: PortfolioSectionEnum.values,
+                  activeSectionIndex: activeSectionIndex,
+                  onSectionSelected: onSectionIndexSelected,
+                ),
+              const SizedBox(width: 6),
+              const ThemeToggleButton(size: 32),
+              if (!isDesktop) ...[
+                const SizedBox(width: 4),
+                PortfolioMobileNavMenu(
+                  sections: PortfolioSectionEnum.values,
+                  onSectionSelected: onSectionIdSelected,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+      body: Stack(
+        children: [
+          LayoutBuilder(
             builder: (context, constraints) {
-              final pad = constraints.maxWidth > 900
-                  ? 48.0
-                  : (constraints.maxWidth > 600 ? 24.0 : 8.0);
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: pad),
+                padding: EdgeInsets.symmetric(
+                  horizontal: contentPaddingForWidth(constraints.maxWidth),
+                ),
                 child: ScrollablePositionedList.builder(
-                  itemCount: sections.length,
+                  physics: const ClampingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  itemCount: PortfolioSectionEnum.values.length,
                   itemScrollController: itemController,
                   itemPositionsListener: positions,
                   itemBuilder: (context, index) {
-                    final section = sections[index];
+                    final section = PortfolioSectionEnum.values[index];
                     return SectionShell(
                       title: section.title,
-                      child: buildSection(section, p, ref),
+                      hideTitle: section == PortfolioSectionEnum.reviews,
+                      child: buildSection(section),
                     );
                   },
                 ),
               );
             },
           ),
-        );
-      },
+          const Positioned(
+            left: 0,
+            top: 0,
+            child: GitHubProfileViewCounter(),
+          ),
+        ],
+      ),
     );
   }
 }

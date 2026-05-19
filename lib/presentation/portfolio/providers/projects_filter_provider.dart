@@ -1,13 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vivek_portfolio/domain/portfolio_models.dart';
-import 'portfolio_providers.dart';
+import 'package:vivekdevfolio/presentation/portfolio/providers/portfolio_providers.dart';
+import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 
-final projectsFilterProvider = StateProvider<String>((_) => 'All');
+const allProjectsFilter = 'All';
 
-final filteredProjectsProvider = Provider.autoDispose<List<Project>>((ref) {
+final projectsFilterProvider = StateProvider<String>((_) => allProjectsFilter);
+
+final projectTagsProvider = Provider<List<String>>((ref) {
   final portfolio = ref.watch(portfolioFutureProvider).valueOrNull;
-  final filter = ref.watch(projectsFilterProvider.select((s) => s));
-  if (portfolio == null) return const [];
-  if (filter == 'All') return portfolio.projects;
-  return portfolio.projects.where((p) => p.tags.contains(filter)).toList(growable: false);
+  final useCase = ref.read(projectsFilterUseCaseProvider);
+  return useCase.collectTags(portfolio, allTag: allProjectsFilter);
+});
+
+final filteredProjectsProvider = Provider<List<Project>>((ref) {
+  final portfolio = ref.watch(portfolioFutureProvider).valueOrNull;
+  final filter = ref.watch(projectsFilterProvider);
+  final useCase = ref.read(projectsFilterUseCaseProvider);
+  return useCase.filterProjects(
+    portfolio,
+    filter,
+    allTag: allProjectsFilter,
+  );
 });

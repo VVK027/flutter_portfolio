@@ -1,118 +1,189 @@
-# Vivek Kumar — Portfolio (Flutter)
+# Vivek Kumar — DevPortfolio (Flutter)
 
-[![Flutter](https://img.shields.io/badge/Flutter-stable-blue?logo=flutter&logoColor=white)](https://flutter.dev)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/<OWNER>/<REPO>/ci.yml?branch=main&label=CI)](https://github.com/<OWNER>/<REPO>/actions)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2F<OWNER>.github.io%2F<REPO>&label=GitHub%20Pages)](https://<OWNER>.github.io/<REPO>)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-
-A high-performance, responsive Flutter portfolio using sliver-first layouts, background JSON parsing with isolates, Riverpod state management, go_router navigation, and a pragmatic clean architecture.
+A responsive Flutter portfolio for Vivek Kumar — built with clean architecture, Riverpod, and go_router.
 
 ## Table of contents
-- Features
-- Tech stack
-- Architecture
-- Project structure
-- Data model schema
-- Getting started
-- Run and build
-- Configuration
-- Theming
-- Navigation
-- State management
-- Performance notes
-- CI/CD (GitHub Actions)
-- Deploy to GitHub Pages
-- Contributing
-- License
+
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Architecture](#architecture)
+- [Theming](#theming)
+- [Getting started](#getting-started)
+- [Development](#development)
+- [Build](#build)
+- [Deploy to GitHub Pages](#deploy-to-github-pages)
+- [Configuration](#configuration)
+- [Assets](#assets)
+- [License](#license)
 
 ## Features
-- Sliver-first scrolling with CustomScrollView/SliverGrid for smooth performance without nested shrinkWrap lists or grids.
-- Background JSON parsing via compute to prevent UI jank.
-- Clean architecture split into presentation, application, domain, and data layers.
-- Reactive state with Riverpod, cached asset loading, and minimized rebuilds using select.
-- URL-based navigation with go_router and section deep-linking/anchoring.
-- Adaptive layout with breakpoint-driven columns aligned to Material guidance.
-- Material 3 theme, plus ThemeExtension for reusable spacing and tokens.
+
+- **Responsive layout** — Adaptive toolbar, spacing, and section layout for mobile, tablet, and desktop breakpoints.
+- **Portfolio sections** — About, skills, experience, projects, reviews, awards, education, certifications, and contact, driven from `assets/data.json`.
+- **Section navigation** — Sticky nav with scroll-synced active section via `ScrollablePositionedList`.
+- **Deep links** — Shareable URLs for each section (`/section/:id`) with `go_router`.
+- **Light and dark theme** — Material 3 themes with a semantic color system; toggle in the app bar (defaults to dark).
+- **Projects gallery** — Tag filters, project cards with previews, and a detail bottom sheet.
+- **Section carousels** — Paged carousels with controls and optional auto-play for multi-card content.
+- **Contact and social** — Email, phone, location, and social links (GitHub, LinkedIn, WhatsApp, etc.) via `url_launcher`.
+- **JSON-driven content** — Edit copy, metrics, experience, and projects without changing UI code.
+- **CI pipeline** — Analyze, test, build web, and deploy on pushes to `main` (see [Deploy to GitHub Pages](#deploy-to-github-pages)).
 
 ## Tech stack
-- Flutter, Dart, Material 3
-- Riverpod for state management
-- go_router for URL-driven navigation
-- json_serializable for immutable typed models
-- ScrollablePositionedList for anchored section scrolling
+
+- Flutter & Dart
+- Riverpod — state management
+- go_router — URL navigation and section deep links
+- json_serializable — typed JSON models
+- ScrollablePositionedList — anchored section scrolling
+- Poppins — bundled custom font family
 
 ## Architecture
-A pragmatic clean architecture that keeps modules small, testable, and composable.
-- Presentation: Pages, widgets, slivers, and section shells in a single scroll pipeline.
-- Application: Riverpod providers for data loading, filters, and derived lists.
-- Domain: models representing portfolio entities for safe, typed access.
-- Data: Repository abstraction with an asset-backed implementation parsing JSON on a background isolate.
 
-## Project structure
+```
+lib/
+├── domain/       # Entities, use cases, repository interfaces
+├── data/         # Data sources, DTOs, mappers, repository implementations
+├── presentation/ # Screens, widgets, Riverpod providers
+└── core/         # App shell, routing, theming, providers
+```
 
-
-## Data model schema
-The app consumes a typed JSON asset mapped to a domain models.
-
-
-## Getting started
-- Prerequisites
-  - Flutter (stable channel) and Dart SDK included.
-  - Chrome installed for the web target.
-- Install dependencies
-  - Run: flutter pub get
-- Code generation
-  - Run: dart run build_runner build --delete-conflicting-outputs
-
-## Run and build
-- Run dev server (web): flutter run -d chrome
-- Build web release: flutter build web --release
-
-## Configuration
-- Assets
-  - Declare the data file in pubspec.yaml:
-    ```
-    flutter:
-      assets:
-        - assets/data.json
-    ```
-- Repository
-  - AssetPortfolioRepository defaults to assets/data.json; customize the path if needed.
+Data is loaded from `assets/data.json`, parsed on a background isolate, and mapped to domain entities.
 
 ## Theming
-- ThemeData uses Material 3 with a dark color scheme and consistent typography.
-- A ThemeExtension (e.g., Metrics) holds shared spacing and layout tokens to avoid magic numbers.
 
-## Navigation
-- go_router provides declarative routes and deep links such as /section/Projects.
-- ScrollablePositionedList enables smooth in-page anchor scrolling by section index.
+The app ships with **light** and **dark** Material 3 themes. Both share the same structure; colors and typography are tuned per brightness.
 
-## State management
-- A FutureProvider loads and caches Portfolio from the repository.
-- A StateProvider holds the current projects tag filter; a derived Provider exposes filtered lists with minimal rebuilds.
+### How it works
 
-## Performance notes
-- Prefer a single sliver pipeline (CustomScrollView/SliverGrid) over nested scrollables and shrinkWrap.
-- Parse JSON on a background isolate using compute to avoid main-thread stalls.
-- Split large widgets into small leaf components and prefer const constructors.
-- Centralize layout decisions with breakpoints for predictable adaptive behavior.
+| Piece | Role |
+| --- | --- |
+| `lib/core/theme/app_theme.dart` | Builds `lightTheme` and `darkTheme` (`ThemeData`, `ColorScheme`, component themes) |
+| `lib/core/theme/app_colors.dart` | Semantic palette as a `ThemeExtension<AppColors>` (`AppColors.light` / `AppColors.dark`) |
+| `lib/core/theme/app_fonts.dart` | Poppins family applied across the text theme |
+| `lib/core/provider/app_theme_provider.dart` | Riverpod `themeModeProvider` — defaults to `ThemeMode.dark` |
+| `lib/presentation/widgets/theme_toggle_button.dart` | Sun / moon control in the profile header |
+
+`PortfolioApp` wires themes into `MaterialApp.router`:
+
+```dart
+theme: lightTheme,
+darkTheme: darkTheme,
+themeMode: themeMode, // from themeModeProvider
+```
+
+The toggle switches between `ThemeMode.light` and `ThemeMode.dark` for the current session. Preference is **not** written to local storage yet.
+
+### Using colors in widgets
+
+Prefer semantic tokens over hard-coded `Color` values:
+
+```dart
+import 'package:vivekdevfolio/core/theme/app_colors.dart';
+
+final colors = context.appColors; // ThemeExtension helper
+// colors.accent, colors.card, colors.textPrimary, …
+```
+
+`AppColors` covers layout surfaces (scaffold, card, borders), navigation, carousels, chips, project previews, store-link buttons, ratings, and contact/stat gradients. Add or adjust tokens in `app_colors.dart` for both `light` and `dark` static instances.
+
+### Customizing themes
+
+1. **Palette** — Edit `AppColors.light` and `AppColors.dark` in `lib/core/theme/app_colors.dart`.
+2. **Typography** — Adjust sizes and weights in `_baseTextTheme` inside `lib/core/theme/app_theme.dart`.
+3. **Default mode** — Change the initial value in `themeModeProvider` (`app_theme_provider.dart`).
+4. **Fonts** — Replace files under `assets/fonts/` and update `pubspec.yaml` + `AppFonts.family`.
+
+Light mode uses a soft slate-on-white look with indigo accents; dark mode uses deep navy surfaces with purple/violet accents and higher-contrast text.
+
+## Getting started
+
+**Prerequisites:** Flutter (stable) and Chrome for web.
+
+```bash
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+flutter run -d chrome
+```
+
+## Development
+
+```bash
+# Static analysis
+flutter analyze
+
+# Tests (with coverage, matching CI)
+flutter test --coverage
+
+# Regenerate JSON models after changing portfolio_model.dart
+dart run build_runner build --delete-conflicting-outputs
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for branch naming, PR expectations, and contribution ideas.
+
+## Build
+
+```bash
+flutter build web --release
+```
+
+Output is in `build/web/`.
+
+For a **project site** served at `https://<user>.github.io/<repo>/`, set the base path when building:
+
+```bash
+flutter build web --release --base-href="/<repo>/"
+```
+
+For a **user or organization site** at `https://<user>.github.io/`, use `--base-href="/"` (the default).
 
 ## Deploy to GitHub Pages
-- Build: flutter build web --release
-- Options
-  - Serve the build/web folder with any static host.
-  - For GitHub Pages, enable Pages in repository settings and publish the build artifacts (for example, via a deploy workflow or a manual gh-pages branch).
-- Typical Pages deployment step (append to workflow):
 
+- **Build:** `flutter build web --release` (add `--base-href` if the app is not hosted at the domain root; see [Build](#build)).
+- **Options**
+  - Serve the `build/web` folder with any static host.
+  - For GitHub Pages, enable Pages in the repository **Settings → Pages** and publish the build artifacts (for example, via a deploy workflow or a manual `gh-pages` branch).
+- **Typical Pages deployment step** (append to a workflow after the web build):
 
-## Contributing
-- Fork the repository and create a feature branch.
-- Write tests when adding features or fixing bugs.
-- Run format, analyze, and tests before opening a PR.
-  - dart format .
-  - flutter analyze
-  - flutter test
+```yaml
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+```
+
+This repository includes [`.github/workflows/main.yml`](.github/workflows/main.yml), which runs `flutter analyze`, tests, `flutter build web --release`, and deploys `build/web` via `peaceiris/actions-gh-pages`. Adjust `publish_dir`, branch, or `external_repository` in that workflow to match your Pages setup.
+
+**Live site:** After deployment, the app is available at your GitHub Pages URL (for example `https://<user>.github.io/<repo>/` for a project site).
+
+## Configuration
+
+Portfolio content lives in **`assets/data.json`**. Key top-level fields include:
+
+| Field | Purpose |
+| --- | --- |
+| `name`, `title`, `location`, `summary` | Profile header and about copy |
+| `strengths` | Strength cards in the about area |
+| `experience`, `education`, `certifications`, `awards` | Timeline and credential sections |
+| `skills` | Grouped skill categories |
+| `projects` | Gallery entries (tags, links, preview image paths) |
+| `reviews` | Client/colleague testimonials |
+| `contact` | Email, phone, social URLs |
+
+After editing JSON, hot restart the app (or rebuild for release). No code changes are required unless you add new fields that need UI support.
+
+## Assets
+
+```
+assets/
+├── data.json           # All portfolio copy and structured data
+├── profile.jpeg        # Profile photo
+├── fonts/              # Poppins Regular & Italic
+├── icons/              # SVG social icons (GitHub, LinkedIn, WhatsApp, …)
+└── projects/           # Project preview images (*_preview.jpg)
+```
 
 ## License
-This project is licensed under the MIT License. See LICENSE for details.
+
+MIT — see [LICENSE](LICENSE).

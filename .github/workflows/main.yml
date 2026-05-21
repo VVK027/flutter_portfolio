@@ -70,6 +70,7 @@ jobs:
     needs: ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    environment: MY_PAT
     permissions:
       contents: read
 
@@ -84,7 +85,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           # PAT needs repo scope on VK027/VK027.github.io (Settings → Secrets → MY_PAT)
-          personal_access_token: ${{ secrets.MY_PAT }}
+          personal_token: ${{ secrets.MY_PAT }}
           external_repository: VK027/VK027.github.io
           publish_dir: ./build/web
           publish_branch: main

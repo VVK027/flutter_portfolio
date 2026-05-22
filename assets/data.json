@@ -142,6 +142,49 @@
       ]
     },
     {
+      "name": "Metro City Pulse",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Web",
+        "Android",
+        "iOS",
+        "Mobile",
+        "Desktop",
+        "Responsive",
+        "Riverpod",
+        "GoRouter",
+        "Clean Architecture",
+        "Google Maps",
+        "Firebase Auth",
+        "Cross-platform",
+        "Smart City"
+      ],
+      "features": [
+        "Interactive Map Dashboard",
+        "Incident Marker Filtering",
+        "Stats & KPI Overview",
+        "CCTV Alert Playback",
+        "Dark & Light Theme",
+        "English & Spanish Localization",
+        "Responsive Navigation Shell",
+        "Offline Connectivity Handling",
+        "Date Range Filtering",
+        "Firebase Authentication"
+      ],
+      "desc": "Built a cross-platform smart city monitoring app with Google Maps incident tracking, operational dashboards, CCTV-backed alerts, and adaptive layouts for mobile, tablet, and desktop.",
+      "fullDescription": [
+        "Implemented an interactive Google Maps dashboard with incident markers, severity legends, custom info windows, filter controls, zoom tools, and periodic data refresh for live operational views.",
+        "Designed and developed a real-time smart city monitoring dashboard as a cross-platform Flutter app for web, Android, iOS, macOS, Linux, and Windows from a single codebase.",
+        "Built stats and alerts workspaces with KPI summary cards, tabbed case status, confidence scoring, date-range selection, and CCTV video playback for incident review.",
+        "Applied Clean Architecture with Riverpod state management, GoRouter navigation, repository-based data flow, reusable UI components, and responsive shell layouts that switch between side menu and bottom navigation."
+      ],
+      "previewImage": "assets/projects/metro_city_pulse_preview.jpg",
+      "playStoreUrl": [],
+      "appStoreUrl": [],
+      "githubUrl": "https://github.com/VK027/metro_city_pulse"
+    },
+    {
       "name": "The Kidde App",
       "tags": [
         "Flutter",
@@ -577,7 +620,7 @@
   "contact": {
     "note": "Open to Lead/Senior Mobile roles focused on Flutter architecture, IoT integrations, and high-impact product delivery.",
     "email": "vickyvivek2727@gmail.com",
-    "phone": "+91 73300 02527",
+    "phone": "+91 69133 39566",
     "location": "Hyderabad, India",
     "links": [
       "https://linkedin.com/in/connectvivek27",

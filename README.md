@@ -2,6 +2,8 @@
 
 A responsive Flutter portfolio for Vivek Kumar — built with clean architecture, Riverpod, and go_router.
 
+**Live site:** [https://vk027.github.io/](https://vk027.github.io/)
+
 <p align="center">
   <img src="assets/projects/flutter_portfolio_preview.jpg" alt="Flutter Dev Portfolio — responsive web and mobile layouts in light and dark themes" width="100%" />
 </p>
@@ -159,7 +161,7 @@ For a **user or organization site** at `https://<user>.github.io/`, use `--base-
 
 This repository includes [`.github/workflows/main.yml`](.github/workflows/main.yml), which runs `flutter analyze`, tests, `flutter build web --release`, and deploys `build/web` via `peaceiris/actions-gh-pages`. Adjust `publish_dir`, branch, or `external_repository` in that workflow to match your Pages setup.
 
-**Live site:** After deployment, the app is available at your GitHub Pages URL (for example `https://<user>.github.io/<repo>/` for a project site).
+**Live site:** [https://vk027.github.io/](https://vk027.github.io/)
 
 ## Configuration
 

@@ -10,11 +10,13 @@ import 'package:vivekdevfolio/presentation/widgets/projects/project_card_view_da
 class ProjectCard extends StatelessWidget {
   final Project project;
   final double previewHeight;
+  final int? previewCacheWidth;
 
   const ProjectCard({
     super.key,
     required this.project,
     required this.previewHeight,
+    this.previewCacheWidth,
   });
 
   Future<void> _openUrl(BuildContext context, String url) async {
@@ -48,6 +50,8 @@ class ProjectCard extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ProjectPreviewFrame(
                 height: previewHeight,
@@ -56,6 +60,7 @@ class ProjectCard extends StatelessWidget {
                         viewData.previewImage,
                         fallbackTitle: project.name,
                         fit: BoxFit.contain,
+                        cacheWidth: previewCacheWidth,
                       )
                     : projectPreviewPlaceholder(context, project.name),
               ),
@@ -82,36 +87,31 @@ class ProjectCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (project.tags.isNotEmpty) ...[
-                        const SizedBox(height: 6),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            child: Wrap(
-                              spacing: 6,
-                              runSpacing: 6,
-                              children: [
-                                for (final tag in project.tags)
-                                  Chip(
-                                    label: Text(tag),
-                                    visualDensity: VisualDensity.compact,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 4,
-                                      vertical: 2,
-                                    ),
-                                    materialTapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                    labelStyle: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(fontSize: 11.5),
-                                  ),
-                              ],
-                            ),
-                          ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: [
+                            for (final tag in project.tags)
+                              Chip(
+                                label: Text(tag),
+                                visualDensity: VisualDensity.compact,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                  vertical: 2,
+                                ),
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(fontSize: 11.5),
+                              ),
+                          ],
                         ),
-                      ] else
-                        const Spacer(),
-                      const SizedBox(height: 8),
+                      ],
+                      const SizedBox(height: 16),
+                      Spacer(),
                       SizedBox(
                         width: double.infinity,
                         height: 36,

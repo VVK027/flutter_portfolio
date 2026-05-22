@@ -47,6 +47,8 @@ Widget projectPreviewImage(
   String imagePath, {
   required String fallbackTitle,
   BoxFit fit = BoxFit.contain,
+  int? cacheWidth,
+  int? cacheHeight,
 }) {
   final trimmed = imagePath.trim();
   if (trimmed.isEmpty) {
@@ -63,6 +65,9 @@ Widget projectPreviewImage(
           height: double.infinity,
           alignment: Alignment.center,
           filterQuality: FilterQuality.medium,
+          cacheWidth: cacheWidth,
+          cacheHeight: cacheHeight,
+          gaplessPlayback: true,
           errorBuilder: (context, _, _) =>
               projectPreviewPlaceholder(context, fallbackTitle),
         )
@@ -73,6 +78,9 @@ Widget projectPreviewImage(
           height: double.infinity,
           alignment: Alignment.center,
           filterQuality: FilterQuality.medium,
+          cacheWidth: cacheWidth,
+          cacheHeight: cacheHeight,
+          gaplessPlayback: true,
           errorBuilder: (context, _, _) =>
               projectPreviewPlaceholder(context, fallbackTitle),
         );

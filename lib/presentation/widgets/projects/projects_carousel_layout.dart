@@ -45,8 +45,7 @@ class ProjectsCarouselLayout {
       gap: gap,
       slotWidth: slotWidth,
       previewHeight: previewHeight,
-      pageHeight:
-          previewHeight + maxFooterHeight - projectCardPageBottomInset,
+      pageHeight: previewHeight + maxFooterHeight,
     );
   }
 }

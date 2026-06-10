@@ -46,17 +46,14 @@ class ProjectCardViewData {
   }
 }
 
-/// Extra space below the footer content inside the carousel page.
-const projectCardPageBottomInset = 8.0;
-
 /// Base footer height when a project has no tags.
 const projectCardFooterBaseHeight = 32.0 +
-    20.0 +
+    22.0 + // title (w600, single line)
     4.0 +
-    36.0 +
-    8.0 +
-    36.0 +
-    20.0;
+    40.0 + // description (bodySmall, two lines)
+    8.0 + // gap before tags
+    16.0 + // gap before action row
+    36.0; // action row
 
 /// Largest estimated footer height across [tagLists] for a given [cardWidth].
 double maxProjectCardFooterHeight(
@@ -77,8 +74,7 @@ double projectCardFooterHeight({
   required double cardWidth,
 }) {
   const verticalPadding = 32.0;
-  const tagsTopGap = 6.0;
-  const chipHeight = 32.0;
+  const chipHeight = 34.0;
   const runSpacing = 6.0;
   const chipSpacing = 6.0;
 
@@ -90,7 +86,7 @@ double projectCardFooterHeight({
   final tagRows = _countTagWrapRows(tags, maxWidth: tagsWidth, spacing: chipSpacing);
   final tagsHeight = tagRows * chipHeight + (tagRows - 1) * runSpacing;
 
-  return height + tagsTopGap + tagsHeight;
+  return height + tagsHeight;
 }
 
 int _countTagWrapRows(

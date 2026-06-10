@@ -8,6 +8,11 @@ A responsive Flutter portfolio for Vivek Kumar — built with clean architecture
   <img src="assets/projects/flutter_portfolio_preview.jpg" alt="Flutter Dev Portfolio — responsive web and mobile layouts in light and dark themes" width="100%" />
 </p>
 
+## Demo Video
+
+https://github.com/user-attachments/assets/2ec44978-6c86-4c91-b57d-8a08a301af70
+
+
 ## Table of contents
 
 - [Features](#features)

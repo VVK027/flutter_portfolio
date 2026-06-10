@@ -111,7 +111,7 @@ class ProjectCard extends StatelessWidget {
                         ),
                       ],
                       const SizedBox(height: 16),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: double.infinity,
                         height: 36,

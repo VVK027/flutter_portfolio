@@ -81,16 +81,16 @@ jobs:
           name: web-build
           path: build/web
 
-      - name: Deploy to VK027.github.io
+      - name: Deploy to VVK027.github.io
         uses: peaceiris/actions-gh-pages@v4
         with:
-          # PAT needs repo scope on VK027/VK027.github.io (Settings → Secrets → MY_PAT)
+          # PAT needs repo scope on VVK027/VVK027.github.io (Settings → Secrets → MY_PAT)
           personal_token: ${{ secrets.MY_PAT }}
-          external_repository: VK027/VK027.github.io
+          external_repository: VVK027/vvk027.github.io
           publish_dir: ./build/web
           publish_branch: main
 
       - name: Show deployed URL
         run: |
           echo "### Deployed successfully" >> "$GITHUB_STEP_SUMMARY"
-          echo "**Live URL:** https://vk027.github.io/" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Live URL:** https://vvk027.github.io/" >> "$GITHUB_STEP_SUMMARY"

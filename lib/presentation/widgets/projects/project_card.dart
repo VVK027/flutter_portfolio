@@ -222,6 +222,26 @@ class ProjectCard extends StatelessWidget {
       );
     }
 
+    if (viewData.hasPub) {
+      if (widgets.isNotEmpty) widgets.add(const SizedBox(width: 8));
+      widgets.add(
+        OutlinedButton.icon(
+          onPressed: () => _openUrl(context, viewData.pubUrl!),
+          icon: const PortfolioAssetIcon(
+            icon: PortfolioIcon.pub,
+            size: 14,
+          ),
+          label: const Text('pub.dev'),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(0, 34),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            foregroundColor: colors.pubFg,
+            side: BorderSide(color: colors.pubBorder),
+          ),
+        ),
+      );
+    }
+
     return widgets;
   }
 }

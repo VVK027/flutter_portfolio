@@ -6,6 +6,7 @@ import 'package:vivekdevfolio/presentation/widgets/svg_path_parser.dart';
 enum PortfolioIcon {
   linkedin('assets/icons/linkedin.svg'),
   github('assets/icons/github.svg'),
+  pub('assets/icons/pub.svg'),
   facebook('assets/icons/facebook-f.svg'),
   whatsapp('assets/icons/whatsapp.svg');
 

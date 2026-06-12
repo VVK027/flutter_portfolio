@@ -125,8 +125,6 @@ flutter test --coverage
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for branch naming, PR expectations, and contribution ideas.
-
 ## Build
 
 ```bash

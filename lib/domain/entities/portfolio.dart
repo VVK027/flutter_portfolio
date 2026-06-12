@@ -61,6 +61,7 @@ class Project {
   final List<String>? fullDescription;
   final List<String>? features;
   final String? githubUrl;
+  final String? pubUrl;
 
   const Project({
     required this.name,
@@ -72,6 +73,7 @@ class Project {
     this.fullDescription,
     this.features,
     this.githubUrl,
+    this.pubUrl,
   });
 }
 

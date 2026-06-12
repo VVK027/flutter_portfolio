@@ -50,6 +50,8 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color appStoreBorder;
   final Color githubFg;
   final Color githubBorder;
+  final Color pubFg;
+  final Color pubBorder;
   final Color internalLabel;
   final Color success;
   final Color toggleCircle;
@@ -107,6 +109,8 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.appStoreBorder,
     required this.githubFg,
     required this.githubBorder,
+    required this.pubFg,
+    required this.pubBorder,
     required this.internalLabel,
     required this.success,
     required this.toggleCircle,
@@ -165,6 +169,8 @@ class AppColors extends ThemeExtension<AppColors> {
     appStoreBorder: Color(0xFFC7D2FE),
     githubFg: Color(0xFF1E293B),
     githubBorder: Color(0xFFCBD5E1),
+    pubFg: Color(0xFF0175C2),
+    pubBorder: Color(0xFF7EC8E8),
     internalLabel: Color(0xFF64748B),
     success: Color(0xFF16A34A),
     toggleCircle: Color(0xFFFFFFFF),
@@ -223,6 +229,8 @@ class AppColors extends ThemeExtension<AppColors> {
     appStoreBorder: Color(0xFF4E5370),
     githubFg: Color(0xFFE0E0E0),
     githubBorder: Color(0xFF4E5370),
+    pubFg: Color(0xFF64B5F6),
+    pubBorder: Color(0xFF4E5370),
     internalLabel: Color(0xFF94A3B8),
     success: Color(0xFF81C784),
     toggleCircle: Color(0xFFE8EEFF),
@@ -282,6 +290,8 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? appStoreBorder,
     Color? githubFg,
     Color? githubBorder,
+    Color? pubFg,
+    Color? pubBorder,
     Color? internalLabel,
     Color? success,
     Color? toggleCircle,
@@ -342,6 +352,8 @@ class AppColors extends ThemeExtension<AppColors> {
       appStoreBorder: appStoreBorder ?? this.appStoreBorder,
       githubFg: githubFg ?? this.githubFg,
       githubBorder: githubBorder ?? this.githubBorder,
+      pubFg: pubFg ?? this.pubFg,
+      pubBorder: pubBorder ?? this.pubBorder,
       internalLabel: internalLabel ?? this.internalLabel,
       success: success ?? this.success,
       toggleCircle: toggleCircle ?? this.toggleCircle,
@@ -409,6 +421,8 @@ class AppColors extends ThemeExtension<AppColors> {
       appStoreBorder: l(appStoreBorder, other.appStoreBorder),
       githubFg: l(githubFg, other.githubFg),
       githubBorder: l(githubBorder, other.githubBorder),
+      pubFg: l(pubFg, other.pubFg),
+      pubBorder: l(pubBorder, other.pubBorder),
       internalLabel: l(internalLabel, other.internalLabel),
       success: l(success, other.success),
       toggleCircle: l(toggleCircle, other.toggleCircle),

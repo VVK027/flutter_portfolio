@@ -4,22 +4,27 @@ class ProjectCardViewData {
   final List<String> playStoreUrls;
   final List<String> appStoreUrls;
   final String? githubUrl;
+  final String? pubUrl;
   final String previewImage;
   final bool hasPlayStore;
   final bool hasAppStore;
   final bool hasGithub;
+  final bool hasPub;
   final bool hasPreviewImage;
 
-  bool get hasStoreLinks => hasPlayStore || hasAppStore || hasGithub;
+  bool get hasStoreLinks =>
+      hasPlayStore || hasAppStore || hasGithub || hasPub;
 
   const ProjectCardViewData({
     required this.playStoreUrls,
     required this.appStoreUrls,
     required this.githubUrl,
+    required this.pubUrl,
     required this.previewImage,
     required this.hasPlayStore,
     required this.hasAppStore,
     required this.hasGithub,
+    required this.hasPub,
     required this.hasPreviewImage,
   });
 
@@ -27,20 +32,24 @@ class ProjectCardViewData {
     final playStoreUrls = project.playStoreUrl;
     final appStoreUrls = project.appStoreUrl;
     final githubUrl = (project.githubUrl ?? '').trim();
+    final pubUrl = (project.pubUrl ?? '').trim();
     final previewImage = (project.previewImage ?? '').trim();
     final hasPlayStore = playStoreUrls.isNotEmpty;
     final hasAppStore = appStoreUrls.isNotEmpty;
     final hasGithub = githubUrl.isNotEmpty;
+    final hasPub = pubUrl.isNotEmpty;
     final hasPreviewImage = previewImage.isNotEmpty;
 
     return ProjectCardViewData(
       playStoreUrls: playStoreUrls,
       appStoreUrls: appStoreUrls,
       githubUrl: hasGithub ? githubUrl : null,
+      pubUrl: hasPub ? pubUrl : null,
       previewImage: previewImage,
       hasPlayStore: hasPlayStore,
       hasAppStore: hasAppStore,
       hasGithub: hasGithub,
+      hasPub: hasPub,
       hasPreviewImage: hasPreviewImage,
     );
   }

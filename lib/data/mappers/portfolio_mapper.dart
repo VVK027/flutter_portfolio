@@ -46,6 +46,7 @@ class PortfolioMapper {
       fullDescription: model.fullDescription,
       features: model.features,
       githubUrl: model.githubUrl,
+      pubUrl: model.pubUrl,
     );
   }
 

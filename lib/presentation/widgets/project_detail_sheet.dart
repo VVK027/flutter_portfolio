@@ -55,9 +55,11 @@ class _ProjectDetailContent extends StatelessWidget {
     final playStoreUrls = project.playStoreUrl;
     final appStoreUrls = project.appStoreUrl;
     final githubUrl = (project.githubUrl ?? '').trim();
+    final pubUrl = (project.pubUrl ?? '').trim();
     final hasPlayStore = playStoreUrls.isNotEmpty;
     final hasAppStore = appStoreUrls.isNotEmpty;
     final hasGithub = githubUrl.isNotEmpty;
+    final hasPub = pubUrl.isNotEmpty;
     final descriptions = project.fullDescription ?? [project.desc];
     final features = project.features ?? [];
     final hasFeatures = features.isNotEmpty;
@@ -185,7 +187,7 @@ class _ProjectDetailContent extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
-                child: (hasPlayStore || hasAppStore || hasGithub)
+                child: (hasPlayStore || hasAppStore || hasGithub || hasPub)
                     ? SizedBox(
                         height: 48,
                         child: SingleChildScrollView(
@@ -196,6 +198,7 @@ class _ProjectDetailContent extends StatelessWidget {
                               playStoreUrls: playStoreUrls,
                               appStoreUrls: appStoreUrls,
                               githubUrl: hasGithub ? githubUrl : null,
+                              pubUrl: hasPub ? pubUrl : null,
                             ),
                           ),
                         ),
@@ -244,6 +247,7 @@ class _ProjectDetailContent extends StatelessWidget {
     required List<String> playStoreUrls,
     required List<String> appStoreUrls,
     required String? githubUrl,
+    required String? pubUrl,
   }) {
     final colors = context.appColors;
     final widgets = <Widget>[];
@@ -306,6 +310,29 @@ class _ProjectDetailContent extends StatelessWidget {
             foregroundColor: colors.textPrimary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (pubUrl != null) {
+      if (widgets.isNotEmpty) widgets.add(const SizedBox(width: 10));
+      widgets.add(
+        FilledButton.icon(
+          onPressed: () => _openUrl(context, pubUrl),
+          icon: const PortfolioAssetIcon(
+            icon: PortfolioIcon.pub,
+            size: 18,
+          ),
+          label: const Text('pub.dev'),
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(0, 48),
+            backgroundColor: colors.pubFg.withValues(alpha: 0.12),
+            foregroundColor: colors.pubFg,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide(color: colors.pubBorder),
             ),
           ),
         ),

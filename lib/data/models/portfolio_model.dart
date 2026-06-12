@@ -86,6 +86,7 @@ class ProjectModel {
   final List<String>? fullDescription;
   final List<String>? features;
   final String? githubUrl;
+  final String? pubUrl;
 
   ProjectModel(
     this.name,
@@ -97,6 +98,7 @@ class ProjectModel {
     this.fullDescription,
     this.features,
     this.githubUrl,
+    this.pubUrl,
   );
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) =>

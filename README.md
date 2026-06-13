@@ -1,4 +1,4 @@
-# Vivek Kumar — DevPortfolio (Flutter)
+# Viivek K — DevPortfolio (Flutter)
 
 A responsive Flutter portfolio for Vivek Kumar — built with clean architecture, Riverpod, and go_router.
 

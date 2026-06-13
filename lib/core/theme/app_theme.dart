@@ -1,8 +1,25 @@
 import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/core/theme/app_fonts.dart';
+
+/// Semantic colors required to build the shared [buildAppTheme] configuration.
+///
+/// Implement this in your project's `app_colors.dart` and pass the result to
+/// [buildAppTheme] along with the matching [ThemeExtension].
+abstract class AppThemeColors {
+  Color get scaffold;
+  Color get surface;
+  Color get card;
+  Color get sectionBorder;
+  Color get textPrimary;
+  Color get textSecondary;
+  Color get textMuted;
+  Color get chipBackground;
+  Color get chipBorder;
+  Color get chipLabel;
+  Color get accent;
+  Color get accentSecondary;
+}
 
 class Metrics extends ThemeExtension<Metrics> {
   final double sectionHPad;
@@ -19,11 +36,15 @@ class Metrics extends ThemeExtension<Metrics> {
       );
 }
 
-TextTheme _baseTextTheme(Brightness brightness, AppColors colors) {
+TextTheme _baseTextTheme(
+  Brightness brightness,
+  AppThemeColors colors, {
+  required String fontFamily,
+}) {
   final source = brightness == Brightness.dark
       ? ThemeData.dark().textTheme
       : ThemeData.light().textTheme;
-  final themed = source.apply(fontFamily: AppFonts.family);
+  final themed = source.apply(fontFamily: fontFamily);
   return themed.copyWith(
     headlineMedium: themed.headlineMedium?.copyWith(
       fontSize: 32,
@@ -82,9 +103,13 @@ TextTheme _baseTextTheme(Brightness brightness, AppColors colors) {
   );
 }
 
-ThemeData _buildTheme({
+/// Builds a Material 3 theme from project-specific color tokens.
+ThemeData buildAppTheme<C extends ThemeExtension<C>>({
   required Brightness brightness,
-  required AppColors colors,
+  required AppThemeColors colors,
+  required C colorExtension,
+  String fontFamily = 'Poppins',
+  Metrics metrics = const Metrics(sectionHPad: 20),
 }) {
   final scheme = ColorScheme(
     brightness: brightness,
@@ -105,14 +130,15 @@ ThemeData _buildTheme({
     scaffoldBackgroundColor: colors.scaffold,
     cardColor: colors.card,
     dividerColor: colors.sectionBorder,
-    textTheme: _baseTextTheme(brightness, colors),
+    textTheme: _baseTextTheme(brightness, colors, fontFamily: fontFamily),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       foregroundColor: colors.textPrimary,
       elevation: 0,
       scrolledUnderElevation: 0,
       surfaceTintColor: Colors.transparent,
-      titleTextStyle: _baseTextTheme(brightness, colors).titleLarge,
+      titleTextStyle:
+          _baseTextTheme(brightness, colors, fontFamily: fontFamily).titleLarge,
       iconTheme: IconThemeData(color: colors.textPrimary),
     ),
     iconTheme: IconThemeData(color: colors.textPrimary),
@@ -128,16 +154,6 @@ ThemeData _buildTheme({
       textStyle: TextStyle(color: colors.textPrimary),
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(color: colors.accent),
-    extensions: [colors, const Metrics(sectionHPad: 20)],
+    extensions: [colorExtension, metrics],
   );
 }
-
-final ThemeData lightTheme = _buildTheme(
-  brightness: Brightness.light,
-  colors: AppColors.light,
-);
-
-final ThemeData darkTheme = _buildTheme(
-  brightness: Brightness.dark,
-  colors: AppColors.dark,
-);

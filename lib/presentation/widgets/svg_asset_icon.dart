@@ -2,36 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vivekdevfolio/presentation/widgets/svg_path_parser.dart';
 
-/// Brand icons shipped under [assets/icons].
-enum PortfolioIcon {
-  linkedin('assets/icons/linkedin.svg'),
-  github('assets/icons/github.svg'),
-  pub('assets/icons/pub.svg'),
-  facebook('assets/icons/facebook-f.svg'),
-  whatsapp('assets/icons/whatsapp.svg');
-
-  const PortfolioIcon(this.assetPath);
-  final String assetPath;
-}
-
-/// Renders an SVG from [assets/icons] using a lightweight custom painter.
-class PortfolioAssetIcon extends StatefulWidget {
-  const PortfolioAssetIcon({
+/// Renders an SVG asset using a lightweight custom painter.
+class SvgAssetIcon extends StatefulWidget {
+  const SvgAssetIcon({
     super.key,
-    required this.icon,
+    required this.assetPath,
     this.size = 24,
     this.color,
   });
 
-  final PortfolioIcon icon;
+  final String assetPath;
   final double size;
   final Color? color;
 
   @override
-  State<PortfolioAssetIcon> createState() => _PortfolioAssetIconState();
+  State<SvgAssetIcon> createState() => _SvgAssetIconState();
 }
 
-class _PortfolioAssetIconState extends State<PortfolioAssetIcon> {
+class _SvgAssetIconState extends State<SvgAssetIcon> {
   Path? _path;
   Object? _loadToken;
 
@@ -42,9 +30,9 @@ class _PortfolioAssetIconState extends State<PortfolioAssetIcon> {
   }
 
   @override
-  void didUpdateWidget(covariant PortfolioAssetIcon oldWidget) {
+  void didUpdateWidget(covariant SvgAssetIcon oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.icon != widget.icon) {
+    if (oldWidget.assetPath != widget.assetPath) {
       _loadPath();
     }
   }
@@ -53,7 +41,7 @@ class _PortfolioAssetIconState extends State<PortfolioAssetIcon> {
     final token = Object();
     _loadToken = token;
     try {
-      final svg = await rootBundle.loadString(widget.icon.assetPath);
+      final svg = await rootBundle.loadString(widget.assetPath);
       final match = RegExp(r'd="([^"]+)"').firstMatch(svg);
       if (match == null || !mounted || _loadToken != token) return;
       setState(() => _path = parseSvgPathData(match.group(1)!));
@@ -74,13 +62,13 @@ class _PortfolioAssetIconState extends State<PortfolioAssetIcon> {
 
     return CustomPaint(
       size: Size.square(widget.size),
-      painter: _PortfolioIconPainter(path: path, color: color),
+      painter: _SvgAssetIconPainter(path: path, color: color),
     );
   }
 }
 
-class _PortfolioIconPainter extends CustomPainter {
-  const _PortfolioIconPainter({required this.path, required this.color});
+class _SvgAssetIconPainter extends CustomPainter {
+  const _SvgAssetIconPainter({required this.path, required this.color});
 
   final Path path;
   final Color color;
@@ -100,7 +88,7 @@ class _PortfolioIconPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _PortfolioIconPainter oldDelegate) {
+  bool shouldRepaint(covariant _SvgAssetIconPainter oldDelegate) {
     return oldDelegate.path != path || oldDelegate.color != color;
   }
 }

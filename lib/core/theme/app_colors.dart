@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:vivekdevfolio/core/theme/app_fonts.dart';
+import 'package:vivekdevfolio/core/theme/app_theme.dart';
 
 /// Semantic portfolio colors — use via [Theme.of(context).extension<AppColors>()].
 @immutable
-class AppColors extends ThemeExtension<AppColors> {
+class AppColors extends ThemeExtension<AppColors> implements AppThemeColors {
+  @override
   final Color scaffold;
+  @override
   final Color surface;
+  @override
   final Color card;
   final Color cardBorder;
+  @override
   final Color sectionBorder;
+  @override
   final Color textPrimary;
+  @override
   final Color textSecondary;
+  @override
   final Color textMuted;
   final Color appBarGradientStart;
   final Color appBarGradientEnd;
@@ -31,12 +40,17 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color carouselIndicatorInactive;
   final Color carouselIcon;
   final Color carouselIconDisabled;
+  @override
   final Color chipBackground;
+  @override
   final Color chipBorder;
+  @override
   final Color chipLabel;
   final Color filterChipSelected;
   final Color filterChipUnselected;
+  @override
   final Color accent;
+  @override
   final Color accentSecondary;
   final Color accentGradientStart;
   final Color accentGradientEnd;
@@ -443,3 +457,17 @@ extension AppColorsContext on BuildContext {
           ? AppColors.dark
           : AppColors.light);
 }
+
+final ThemeData lightTheme = buildAppTheme(
+  brightness: Brightness.light,
+  colors: AppColors.light,
+  colorExtension: AppColors.light,
+  fontFamily: AppFonts.family,
+);
+
+final ThemeData darkTheme = buildAppTheme(
+  brightness: Brightness.dark,
+  colors: AppColors.dark,
+  colorExtension: AppColors.dark,
+  fontFamily: AppFonts.family,
+);

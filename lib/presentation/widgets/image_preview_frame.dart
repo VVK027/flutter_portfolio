@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
 
-/// Fixed 16:9 frame for project screenshots.
-class ProjectPreviewFrame extends StatelessWidget {
+/// Fixed 16:9 frame for image previews.
+class ImagePreviewFrame extends StatelessWidget {
   static const double aspectRatio = 16 / 9;
 
   final Widget child;
   final double? height;
+  final Color backgroundColor;
+  final Color borderColor;
 
-  const ProjectPreviewFrame({
+  const ImagePreviewFrame({
     super.key,
     required this.child,
     this.height,
+    this.backgroundColor = const Color(0xFFEEF2F8),
+    this.borderColor = const Color(0xFFD5DEEA),
   });
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.appColors;
     final frame = Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: colors.previewBackground,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: colors.previewBorder),
+        border: Border.all(color: borderColor),
       ),
       clipBehavior: Clip.antiAlias,
       child: child,
@@ -43,17 +45,28 @@ class ProjectPreviewFrame extends StatelessWidget {
   }
 }
 
-Widget projectPreviewImage(
+Widget imagePreviewImage(
   String imagePath, {
   required String fallbackTitle,
   BoxFit fit = BoxFit.contain,
   int? cacheWidth,
   int? cacheHeight,
+  Color gradientStart = const Color(0xFFE8EDF5),
+  Color gradientEnd = const Color(0xFFDCE4F0),
+  Color accentColor = const Color(0xFF4F5D9A),
+  Color iconColor = const Color(0xFF94A3B8),
 }) {
   final trimmed = imagePath.trim();
   if (trimmed.isEmpty) {
     return Builder(
-      builder: (context) => projectPreviewPlaceholder(context, fallbackTitle),
+      builder: (context) => imagePreviewPlaceholder(
+        context,
+        fallbackTitle,
+        gradientStart: gradientStart,
+        gradientEnd: gradientEnd,
+        accentColor: accentColor,
+        iconColor: iconColor,
+      ),
     );
   }
 
@@ -68,8 +81,14 @@ Widget projectPreviewImage(
           cacheWidth: cacheWidth,
           cacheHeight: cacheHeight,
           gaplessPlayback: true,
-          errorBuilder: (context, _, _) =>
-              projectPreviewPlaceholder(context, fallbackTitle),
+          errorBuilder: (context, _, _) => imagePreviewPlaceholder(
+            context,
+            fallbackTitle,
+            gradientStart: gradientStart,
+            gradientEnd: gradientEnd,
+            accentColor: accentColor,
+            iconColor: iconColor,
+          ),
         )
       : Image.asset(
           trimmed,
@@ -81,15 +100,27 @@ Widget projectPreviewImage(
           cacheWidth: cacheWidth,
           cacheHeight: cacheHeight,
           gaplessPlayback: true,
-          errorBuilder: (context, _, _) =>
-              projectPreviewPlaceholder(context, fallbackTitle),
+          errorBuilder: (context, _, _) => imagePreviewPlaceholder(
+            context,
+            fallbackTitle,
+            gradientStart: gradientStart,
+            gradientEnd: gradientEnd,
+            accentColor: accentColor,
+            iconColor: iconColor,
+          ),
         );
 
   return image;
 }
 
-Widget projectPreviewPlaceholder(BuildContext context, String projectName) {
-  final colors = context.appColors;
+Widget imagePreviewPlaceholder(
+  BuildContext context,
+  String projectName, {
+  Color gradientStart = const Color(0xFFE8EDF5),
+  Color gradientEnd = const Color(0xFFDCE4F0),
+  Color accentColor = const Color(0xFF4F5D9A),
+  Color iconColor = const Color(0xFF94A3B8),
+}) {
   final initials = projectName
       .split(RegExp(r'\s+'))
       .where((w) => w.isNotEmpty && w[0] == w[0].toUpperCase())
@@ -102,7 +133,7 @@ Widget projectPreviewPlaceholder(BuildContext context, String projectName) {
     height: double.infinity,
     decoration: BoxDecoration(
       gradient: LinearGradient(
-        colors: [colors.previewGradientStart, colors.previewGradientEnd],
+        colors: [gradientStart, gradientEnd],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
@@ -116,14 +147,14 @@ Widget projectPreviewPlaceholder(BuildContext context, String projectName) {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.w700,
-            color: colors.previewAccent,
+            color: accentColor,
             letterSpacing: 2,
           ),
         ),
         const SizedBox(height: 4),
         Icon(
           Icons.code_rounded,
-          color: colors.previewIcon,
+          color: iconColor,
           size: 20,
         ),
       ],

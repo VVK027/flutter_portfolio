@@ -15,6 +15,7 @@ class PortfolioMapper {
       projects: model.projects.map(_projectToEntity).toList(),
       reviews: model.reviews?.map(_reviewToEntity).toList(),
       awards: model.awards,
+      achievements: model.achievements,
       education: model.education,
       certifications: model.certifications,
       contact: _contactToEntity(model.contact),

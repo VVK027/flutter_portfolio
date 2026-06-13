@@ -1,6 +1,6 @@
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 import 'package:vivekdevfolio/presentation/widgets/carousel/carousel_layout.dart';
-import 'package:vivekdevfolio/presentation/widgets/project_preview.dart';
+import 'package:vivekdevfolio/presentation/widgets/image_preview_frame.dart';
 import 'package:vivekdevfolio/presentation/widgets/projects/project_card_view_data.dart';
 
 /// Precomputed carousel dimensions for the projects section.
@@ -33,7 +33,7 @@ class ProjectsCarouselLayout {
     );
     final gap = width < 600 ? 0.0 : 12.0;
     final slotWidth = (width - 4 - gap * (perPage - 1)) / perPage;
-    final previewHeight = slotWidth / ProjectPreviewFrame.aspectRatio;
+    final previewHeight = slotWidth / ImagePreviewFrame.aspectRatio;
     final maxFooterHeight = maxProjectCardFooterHeight(
       items.map((p) => p.tags),
       cardWidth: slotWidth,

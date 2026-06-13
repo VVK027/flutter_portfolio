@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/presentation/widgets/portfolio_asset_icon.dart';
+import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
+import 'package:vivekdevfolio/presentation/widgets/svg_asset_icon.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/widgets/project_preview.dart';
+import 'package:vivekdevfolio/presentation/widgets/image_preview_frame.dart';
 
 void showProjectDetail(BuildContext context, Project project) {
   final isMobile = MediaQuery.sizeOf(context).width < 600;
@@ -79,7 +80,14 @@ class _ProjectDetailContent extends StatelessWidget {
             children: [
               hasPreview
                   ? _buildPreviewImage(context, previewImage)
-                  : projectPreviewPlaceholder(context, project.name),
+                  : imagePreviewPlaceholder(
+                      context,
+                      project.name,
+                      gradientStart: colors.previewGradientStart,
+                      gradientEnd: colors.previewGradientEnd,
+                      accentColor: colors.previewAccent,
+                      iconColor: colors.previewIcon,
+                    ),
               Flexible(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
@@ -299,8 +307,8 @@ class _ProjectDetailContent extends StatelessWidget {
       widgets.add(
         FilledButton.icon(
           onPressed: () => _openUrl(context, githubUrl),
-          icon: const PortfolioAssetIcon(
-            icon: PortfolioIcon.github,
+          icon: SvgAssetIcon(
+            assetPath: PortfolioIcons.github.assetPath,
             size: 18,
           ),
           label: const Text('GitHub'),
@@ -321,8 +329,8 @@ class _ProjectDetailContent extends StatelessWidget {
       widgets.add(
         FilledButton.icon(
           onPressed: () => _openUrl(context, pubUrl),
-          icon: const PortfolioAssetIcon(
-            icon: PortfolioIcon.pub,
+          icon: SvgAssetIcon(
+            assetPath: PortfolioIcons.pub.assetPath,
             size: 18,
           ),
           label: const Text('pub.dev'),
@@ -343,11 +351,18 @@ class _ProjectDetailContent extends StatelessWidget {
   }
 
   Widget _buildPreviewImage(BuildContext context, String imagePath) {
-    return ProjectPreviewFrame(
-      child: projectPreviewImage(
+    final colors = context.appColors;
+    return ImagePreviewFrame(
+      backgroundColor: colors.previewBackground,
+      borderColor: colors.previewBorder,
+      child: imagePreviewImage(
         imagePath,
         fallbackTitle: project.name,
         fit: BoxFit.contain,
+        gradientStart: colors.previewGradientStart,
+        gradientEnd: colors.previewGradientEnd,
+        accentColor: colors.previewAccent,
+        iconColor: colors.previewIcon,
       ),
     );
   }

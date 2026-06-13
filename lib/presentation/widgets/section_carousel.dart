@@ -14,6 +14,8 @@ class SectionCarousel extends StatefulWidget {
   final bool autoPlay;
   final Duration autoPlayInterval;
 
+  final CarouselControlsColors? controlsColors;
+
   const SectionCarousel({
     super.key,
     required this.pageCount,
@@ -22,6 +24,7 @@ class SectionCarousel extends StatefulWidget {
     this.padding,
     this.autoPlay = false,
     this.autoPlayInterval = const Duration(seconds: 1),
+    this.controlsColors = const CarouselControlsColors(),
   });
 
   @override
@@ -107,6 +110,7 @@ class _SectionCarouselState extends State<SectionCarousel> {
           pageCount: widget.pageCount,
           currentPage: _currentPage,
           loop: widget.autoPlay,
+          colors: widget.controlsColors,
           onPrevious: () {
             final prev = _currentPage == 0
                 ? widget.pageCount - 1

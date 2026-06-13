@@ -5,6 +5,7 @@ enum PortfolioSectionEnum {
   projects('Projects', 'Projects'),
   reviews('Reviews', 'Reviews'),
   awards('Awards', 'Awards'),
+  achievements('Achievements', 'Achievements'),
   education('Education', 'Education'),
   certifications('Certifications', 'Certifications'),
   contact('Contact', 'Contact Me');

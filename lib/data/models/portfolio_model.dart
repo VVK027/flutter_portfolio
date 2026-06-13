@@ -13,6 +13,7 @@ class PortfolioModel {
   final List<ProjectModel> projects;
   final List<ReviewModel>? reviews;
   final List<String> awards;
+  final List<String> achievements;
   final List<String> education;
   final List<String> certifications;
   final ContactModel contact;
@@ -27,6 +28,7 @@ class PortfolioModel {
     this.projects,
     this.reviews,
     this.awards,
+    this.achievements,
     this.education,
     this.certifications,
     this.contact,

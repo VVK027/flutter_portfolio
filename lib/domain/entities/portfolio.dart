@@ -8,6 +8,7 @@ class Portfolio {
   final List<Project> projects;
   final List<Review>? reviews;
   final List<String> awards;
+  final List<String> achievements;
   final List<String> education;
   final List<String> certifications;
   final Contact contact;
@@ -22,6 +23,7 @@ class Portfolio {
     required this.projects,
     required this.reviews,
     required this.awards,
+    required this.achievements,
     required this.education,
     required this.certifications,
     required this.contact,

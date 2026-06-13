@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/contact_info.dart';
-import 'package:vivekdevfolio/presentation/widgets/portfolio_asset_icon.dart';
 import 'package:vivekdevfolio/presentation/widgets/sections/contact/contact_launchers.dart';
 import 'package:vivekdevfolio/presentation/widgets/sections/contact/social_connect_tile.dart';
 
@@ -98,7 +98,7 @@ class ContactInfoCard extends StatelessWidget {
 
     void addTile({
       required String? url,
-      required PortfolioIcon icon,
+      required String assetPath,
       required String label,
       required String subtitle,
     }) {
@@ -106,7 +106,7 @@ class ContactInfoCard extends StatelessWidget {
       if (tiles.isNotEmpty) tiles.add(const SizedBox(height: 8));
       tiles.add(
         SocialConnectTile(
-          icon: icon,
+          assetPath: assetPath,
           platformLabel: label,
           subtitle: subtitle,
           onTap: () => openContactUrl(context, url),
@@ -116,25 +116,25 @@ class ContactInfoCard extends StatelessWidget {
 
     addTile(
       url: links.linkedin,
-      icon: PortfolioIcon.linkedin,
+      assetPath: PortfolioIcons.linkedin.assetPath,
       label: 'LINKEDIN',
       subtitle: 'Connect with me',
     );
     addTile(
       url: links.github,
-      icon: PortfolioIcon.github,
+      assetPath: PortfolioIcons.github.assetPath,
       label: 'GITHUB',
       subtitle: 'View my repositories',
     );
     addTile(
       url: links.facebook,
-      icon: PortfolioIcon.facebook,
+      assetPath: PortfolioIcons.facebook.assetPath,
       label: 'FACEBOOK',
       subtitle: 'Follow my updates',
     );
     addTile(
       url: links.whatsapp,
-      icon: PortfolioIcon.whatsapp,
+      assetPath: PortfolioIcons.whatsapp.assetPath,
       label: 'WHATSAPP',
       subtitle: 'Message me directly',
     );

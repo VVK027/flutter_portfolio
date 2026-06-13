@@ -41,6 +41,8 @@ Widget buildSection(
       return ReviewsSection(reviews: portfolio.reviews ?? []);
     case PortfolioSectionEnum.awards:
       return SimpleBulletsSection(items: portfolio.awards);
+    case PortfolioSectionEnum.achievements:
+      return SimpleBulletsSection(items: portfolio.achievements);
     case PortfolioSectionEnum.education:
       return SimpleBulletsSection(items: portfolio.education);
     case PortfolioSectionEnum.certifications:

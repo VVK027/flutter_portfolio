@@ -26,7 +26,8 @@ class PortfolioDesktopNav extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               for (final entry in sections.asMap().entries)
-                if (!(entry.value == PortfolioSectionEnum.education ||
+                if (!(entry.value == PortfolioSectionEnum.achievements ||
+                    entry.value == PortfolioSectionEnum.education ||
                     entry.value == PortfolioSectionEnum.certifications))
                   TextButton(
                     onPressed: () => onSectionSelected(entry.key),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/presentation/widgets/portfolio_asset_icon.dart';
+import 'package:vivekdevfolio/presentation/widgets/svg_asset_icon.dart';
 
 class SocialConnectTile extends StatelessWidget {
-  final PortfolioIcon icon;
+  final String assetPath;
   final String platformLabel;
   final String subtitle;
   final VoidCallback onTap;
 
   const SocialConnectTile({
     super.key,
-    required this.icon,
+    required this.assetPath,
     required this.platformLabel,
     required this.subtitle,
     required this.onTap,
@@ -43,8 +43,8 @@ class SocialConnectTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   color: colors.accent.withValues(alpha: 0.18),
                 ),
-                child: PortfolioAssetIcon(
-                  icon: icon,
+                child: SvgAssetIcon(
+                  assetPath: assetPath,
                   size: 18,
                   color: colors.textPrimary,
                 ),

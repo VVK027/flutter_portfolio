@@ -201,7 +201,12 @@ class _PortfolioScaffold extends StatelessWidget {
                   onSectionSelected: onSectionIndexSelected,
                 ),
               const SizedBox(width: 6),
-              const ThemeToggleButton(size: 32),
+              ThemeToggleButton(
+                size: 32,
+                backgroundColor: colors.chipBackground,
+                foregroundColor: colors.textPrimary,
+                borderColor: colors.cardBorder,
+              ),
               if (!isDesktop) ...[
                 const SizedBox(width: 4),
                 PortfolioMobileNavMenu(
@@ -235,6 +240,10 @@ class _PortfolioScaffold extends StatelessWidget {
                       subtitle: section == PortfolioSectionEnum.reviews
                           ? 'Recommendations from people I have worked with.'
                           : null,
+                      sectionBorderColor: colors.sectionBorder,
+                      accentGradientStart: colors.accentGradientStart,
+                      accentGradientEnd: colors.accentGradientEnd,
+                      subtitleColor: colors.textMuted,
                       child: buildSection(section),
                     );
                   },

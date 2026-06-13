@@ -5,7 +5,6 @@ import 'package:vivekdevfolio/core/provider/app_theme_provider.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 
 import 'routing/app_router.dart';
-import 'theme/app_theme.dart';
 
 class PortfolioApp extends ConsumerWidget {
   const PortfolioApp({super.key});

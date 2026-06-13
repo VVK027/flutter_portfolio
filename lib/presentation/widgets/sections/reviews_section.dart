@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 import 'package:vivekdevfolio/presentation/extensions/review_extensions.dart';
+import 'package:vivekdevfolio/presentation/widgets/carousel/carousel_controls.dart';
 import 'package:vivekdevfolio/presentation/widgets/section_carousel.dart';
 
 class ReviewsSection extends StatelessWidget {
@@ -36,6 +37,16 @@ class ReviewsSection extends StatelessWidget {
               itemBuilder: (_, review) => _ReviewCard(review: review),
             );
           },
+          controlsColors: CarouselControlsColors(
+            navBackground: context.appColors.carouselNavBg,
+            navBorder: context.appColors.carouselNavBorder,
+            navBorderActive: context.appColors.carouselNavBorderActive,
+            navIcon: context.appColors.carouselIcon,
+            navIconDisabled: context.appColors.carouselIconDisabled,
+            indicatorActive: context.appColors.carouselIndicatorActive,
+            indicatorInactive: context.appColors.carouselIndicatorInactive,
+            accent: context.appColors.accent,
+          ),
         );
       },
     );

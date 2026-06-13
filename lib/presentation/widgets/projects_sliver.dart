@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:vivekdevfolio/presentation/widgets/carousel/carousel_controls.dart';
 import 'package:vivekdevfolio/presentation/widgets/projects/project_card.dart';
 import 'package:vivekdevfolio/presentation/widgets/projects/projects_carousel_layout.dart';
 import 'package:vivekdevfolio/presentation/widgets/section_carousel.dart';
@@ -63,6 +65,16 @@ class _ProjectsSliverState extends State<ProjectsSliver> {
               ),
             );
           },
+          controlsColors: CarouselControlsColors(
+            navBackground: context.appColors.carouselNavBg,
+            navBorder: context.appColors.carouselNavBorder,
+            navBorderActive: context.appColors.carouselNavBorderActive,
+            navIcon: context.appColors.carouselIcon,
+            navIconDisabled: context.appColors.carouselIconDisabled,
+            indicatorActive: context.appColors.carouselIndicatorActive,
+            indicatorInactive: context.appColors.carouselIndicatorInactive,
+            accent: context.appColors.accent,
+          ),
         );
       },
     );

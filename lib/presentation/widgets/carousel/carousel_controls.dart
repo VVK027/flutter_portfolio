@@ -1,5 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
+
+@immutable
+class CarouselControlsColors {
+  final Color navBackground;
+  final Color navBorder;
+  final Color navBorderActive;
+  final Color navIcon;
+  final Color navIconDisabled;
+  final Color indicatorActive;
+  final Color indicatorInactive;
+  final Color accent;
+
+  const CarouselControlsColors({
+    this.navBackground = const Color(0xFFFFFFFF),
+    this.navBorder = const Color(0xFFCBD5E1),
+    this.navBorderActive = const Color(0xFF6366F1),
+    this.navIcon = const Color(0xFF334155),
+    this.navIconDisabled = const Color(0xFF94A3B8),
+    this.indicatorActive = const Color(0xFF6366F1),
+    this.indicatorInactive = const Color(0xFFCBD5E1),
+    this.accent = const Color(0xFF4F46E5),
+  });
+}
 
 class CarouselControls extends StatelessWidget {
   final int pageCount;
@@ -8,6 +30,7 @@ class CarouselControls extends StatelessWidget {
   final VoidCallback onPrevious;
   final VoidCallback onNext;
   final ValueChanged<int> onPageSelected;
+  final CarouselControlsColors? colors;
 
   const CarouselControls({
     super.key,
@@ -17,6 +40,7 @@ class CarouselControls extends StatelessWidget {
     required this.onPrevious,
     required this.onNext,
     required this.onPageSelected,
+    this.colors = const CarouselControlsColors(),
   });
 
   @override
@@ -32,12 +56,14 @@ class CarouselControls extends StatelessWidget {
           enabled: canGoBack,
           highlighted: canGoBack,
           onPressed: canGoBack ? onPrevious : null,
+          colors: colors,
         ),
         const SizedBox(width: 16),
         CarouselPageIndicators(
           pageCount: pageCount,
           currentPage: currentPage,
           onPageSelected: onPageSelected,
+          colors: colors,
         ),
         const SizedBox(width: 16),
         CarouselNavButton(
@@ -45,6 +71,7 @@ class CarouselControls extends StatelessWidget {
           enabled: canGoForward,
           highlighted: canGoForward,
           onPressed: canGoForward ? onNext : null,
+          colors: colors,
         ),
       ],
     );
@@ -56,6 +83,7 @@ class CarouselNavButton extends StatelessWidget {
   final bool enabled;
   final bool highlighted;
   final VoidCallback? onPressed;
+  final CarouselControlsColors? colors;
 
   const CarouselNavButton({
     super.key,
@@ -63,11 +91,13 @@ class CarouselNavButton extends StatelessWidget {
     required this.enabled,
     required this.highlighted,
     required this.onPressed,
+    this.colors = const CarouselControlsColors(),
   });
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.appColors;
+    final palette = colors ?? const CarouselControlsColors();
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -78,17 +108,15 @@ class CarouselNavButton extends StatelessWidget {
           height: 44,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: colors.carouselNavBg,
+            color: palette.navBackground,
             border: Border.all(
-              color: highlighted
-                  ? colors.carouselNavBorderActive
-                  : colors.carouselNavBorder,
+              color: highlighted ? palette.navBorderActive : palette.navBorder,
               width: 1.2,
             ),
             boxShadow: highlighted
                 ? [
                     BoxShadow(
-                      color: colors.accent.withValues(alpha: 0.25),
+                      color: palette.accent.withValues(alpha: 0.25),
                       blurRadius: 12,
                     ),
                   ]
@@ -96,7 +124,7 @@ class CarouselNavButton extends StatelessWidget {
           ),
           child: Icon(
             icon,
-            color: enabled ? colors.carouselIcon : colors.carouselIconDisabled,
+            color: enabled ? palette.navIcon : palette.navIconDisabled,
             size: 22,
           ),
         ),
@@ -109,17 +137,20 @@ class CarouselPageIndicators extends StatelessWidget {
   final int pageCount;
   final int currentPage;
   final ValueChanged<int> onPageSelected;
+  final CarouselControlsColors? colors;
 
   const CarouselPageIndicators({
     super.key,
     required this.pageCount,
     required this.currentPage,
     required this.onPageSelected,
+    this.colors = const CarouselControlsColors(),
   });
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.appColors;
+    final palette = colors ?? const CarouselControlsColors();
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(pageCount, (index) {
@@ -136,8 +167,8 @@ class CarouselPageIndicators extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: isActive
-                    ? colors.carouselIndicatorActive
-                    : colors.carouselIndicatorInactive,
+                    ? palette.indicatorActive
+                    : palette.indicatorInactive,
               ),
             ),
           ),

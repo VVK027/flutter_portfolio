@@ -64,6 +64,7 @@ class Project {
   final List<String>? features;
   final String? githubUrl;
   final String? pubUrl;
+  final bool isOpenSource;
 
   const Project({
     required this.name,
@@ -76,6 +77,7 @@ class Project {
     this.features,
     this.githubUrl,
     this.pubUrl,
+    this.isOpenSource = false,
   });
 }
 

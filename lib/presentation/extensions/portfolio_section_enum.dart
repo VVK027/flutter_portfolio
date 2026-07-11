@@ -3,6 +3,7 @@ enum PortfolioSectionEnum {
   skills('Skills', 'Skills and Expertise'),
   experience('Experience', 'Experience'),
   projects('Projects', 'Projects'),
+  openSource('OpenSource', 'Open Source'),
   reviews('Reviews', 'Reviews'),
   awards('Awards', 'Awards'),
   achievements('Achievements', 'Achievements'),

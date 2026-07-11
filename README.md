@@ -25,17 +25,19 @@ https://github.com/user-attachments/assets/2ec44978-6c86-4c91-b57d-8a08a301af70
 - [Deploy to GitHub Pages](#deploy-to-github-pages)
 - [Configuration](#configuration)
 - [Assets](#assets)
+- [Support](#support)
 - [License](#license)
 
 ## Features
 
 - **Responsive layout** — Adaptive toolbar, spacing, and section layout for mobile, tablet, and desktop breakpoints.
-- **Portfolio sections** — About, skills, experience, projects, reviews, awards, education, certifications, and contact, driven from `assets/data.json`.
+- **Portfolio sections** — About, skills, experience, projects, open source, reviews, awards, achievements, education, certifications, and contact, driven from `assets/data.json`.
 - **Section navigation** — Sticky nav with scroll-synced active section via `ScrollablePositionedList`.
 - **Deep links** — Shareable URLs for each section (`/section/:id`) with `go_router`.
-- **Light and dark theme** — Material 3 themes with a semantic color system; toggle in the app bar (defaults to dark).
-- **Projects gallery** — Tag filters, project cards with previews, and a detail bottom sheet.
-- **Section carousels** — Paged carousels with controls and optional auto-play for multi-card content.
+- **Light and dark theme** — Material 3 themes with a semantic color system; toggle in the app bar (defaults to light).
+- **Projects gallery** — Tag filters, project cards with previews, and a detail dialog / bottom sheet.
+- **Section carousels** — Paged carousels with controls and optional auto-play for multi-card content (from `vvk_ui_kit`).
+- **Loading state** — Shimmer placeholder while `data.json` is parsed on a background isolate.
 - **Contact and social** — Email, phone, location, and social links (GitHub, LinkedIn, WhatsApp, etc.) via `url_launcher`.
 - **JSON-driven content** — Edit copy, metrics, experience, and projects without changing UI code.
 - **CI pipeline** — Analyze, test, build web, and deploy on pushes to `main` (see [Deploy to GitHub Pages](#deploy-to-github-pages)).
@@ -45,6 +47,7 @@ https://github.com/user-attachments/assets/2ec44978-6c86-4c91-b57d-8a08a301af70
 - Flutter & Dart
 - Riverpod — state management
 - go_router — URL navigation and section deep links
+- vvk_ui_kit — shared UI kit (Material 3 theme builder, carousel, shimmer, image preview frame, SVG icons, theme toggle)
 - json_serializable — typed JSON models
 - ScrollablePositionedList — anchored section scrolling
 - Poppins — bundled custom font family
@@ -69,18 +72,17 @@ The app ships with **light** and **dark** Material 3 themes. Both share the same
 
 | Piece | Role |
 | --- | --- |
-| `lib/core/theme/app_theme.dart` | Builds `lightTheme` and `darkTheme` (`ThemeData`, `ColorScheme`, component themes) |
-| `lib/core/theme/app_colors.dart` | Semantic palette as a `ThemeExtension<AppColors>` (`AppColors.light` / `AppColors.dark`) |
-| `lib/core/theme/app_fonts.dart` | Poppins family applied across the text theme |
-| `lib/core/provider/app_theme_provider.dart` | Riverpod `themeModeProvider` — defaults to `ThemeMode.dark` |
-| `lib/presentation/widgets/theme_toggle_button.dart` | Sun / moon control in the profile header |
+| `lib/core/theme/app_colors.dart` | Semantic palette as a `ThemeExtension<AppColors>` (`AppColors.light` / `AppColors.dark`), plus `lightTheme` / `darkTheme` built via `UIAppTheme.custom` from `vvk_ui_kit` |
+| `lib/core/theme/app_fonts.dart` | Poppins family (`AppFonts.family`) fed into the theme builder |
+| `lib/core/provider/app_theme_provider.dart` | Riverpod `themeModeProvider` — defaults to `ThemeMode.light` |
+| `UIThemeToggleButton` (`vvk_ui_kit`) | Sun / moon control wired up in the app bar (`portfolio_page.dart`) |
 
-`PortfolioApp` wires themes into `MaterialApp.router`:
+`PortfolioApp` (`lib/core/app.dart`) wires themes into `MaterialApp.router`:
 
 ```dart
-theme: lightTheme,
-darkTheme: darkTheme,
-themeMode: themeMode, // from themeModeProvider
+theme: lightTheme,      // from app_colors.dart
+darkTheme: darkTheme,   // from app_colors.dart
+themeMode: themeMode,   // from themeModeProvider
 ```
 
 The toggle switches between `ThemeMode.light` and `ThemeMode.dark` for the current session. Preference is **not** written to local storage yet.
@@ -101,7 +103,7 @@ final colors = context.appColors; // ThemeExtension helper
 ### Customizing themes
 
 1. **Palette** — Edit `AppColors.light` and `AppColors.dark` in `lib/core/theme/app_colors.dart`.
-2. **Typography** — Adjust sizes and weights in `_baseTextTheme` inside `lib/core/theme/app_theme.dart`.
+2. **Typography** — Adjust the theme built by `UIAppTheme.custom` in `_portfolioTheme` (`lib/core/theme/app_colors.dart`), or override the returned `ThemeData` there.
 3. **Default mode** — Change the initial value in `themeModeProvider` (`app_theme_provider.dart`).
 4. **Fonts** — Replace files under `assets/fonts/` and update `pubspec.yaml` + `AppFonts.family`.
 
@@ -192,6 +194,16 @@ assets/
 ├── icons/              # SVG social icons (GitHub, LinkedIn, WhatsApp, …)
 └── projects/           # Project preview images (*_preview.jpg)
 ```
+
+## Support
+
+If this project is helpful to you, consider supporting the work:
+
+<a href="https://buymeacoffee.com/vvk27" target="_blank">
+  <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-vvk27-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee" />
+</a>
+
+☕ [buymeacoffee.com/vvk27](https://buymeacoffee.com/vvk27)
 
 ## License
 

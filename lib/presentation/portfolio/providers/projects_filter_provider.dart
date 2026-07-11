@@ -22,3 +22,9 @@ final filteredProjectsProvider = Provider<List<Project>>((ref) {
     allTag: allProjectsFilter,
   );
 });
+
+final openSourceProjectsProvider = Provider<List<Project>>((ref) {
+  final portfolio = ref.watch(portfolioFutureProvider).valueOrNull;
+  final useCase = ref.read(projectsFilterUseCaseProvider);
+  return useCase.getOpenSourceProjects(portfolio);
+});

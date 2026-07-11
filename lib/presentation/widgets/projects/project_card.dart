@@ -3,9 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
-import 'package:vivekdevfolio/presentation/widgets/svg_asset_icon.dart';
+import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 import 'package:vivekdevfolio/presentation/widgets/project_detail_sheet.dart';
-import 'package:vivekdevfolio/presentation/widgets/image_preview_frame.dart';
 import 'package:vivekdevfolio/presentation/widgets/projects/project_card_view_data.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -54,29 +53,74 @@ class ProjectCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ImagePreviewFrame(
-                height: previewHeight,
-                backgroundColor: colors.previewBackground,
-                borderColor: colors.previewBorder,
-                child: viewData.hasPreviewImage
-                    ? imagePreviewImage(
-                        viewData.previewImage,
-                        fallbackTitle: project.name,
-                        fit: BoxFit.contain,
-                        cacheWidth: previewCacheWidth,
-                        gradientStart: colors.previewGradientStart,
-                        gradientEnd: colors.previewGradientEnd,
-                        accentColor: colors.previewAccent,
-                        iconColor: colors.previewIcon,
-                      )
-                    : imagePreviewPlaceholder(
-                        context,
-                        project.name,
-                        gradientStart: colors.previewGradientStart,
-                        gradientEnd: colors.previewGradientEnd,
-                        accentColor: colors.previewAccent,
-                        iconColor: colors.previewIcon,
+              Stack(
+                children: [
+                  UIImagePreviewFrame(
+                    height: previewHeight,
+                    backgroundColor: colors.previewBackground,
+                    borderColor: colors.previewBorder,
+                    child: viewData.hasPreviewImage
+                        ? imagePreviewImage(
+                            viewData.previewImage,
+                            fallbackTitle: project.name,
+                            fit: BoxFit.contain,
+                            cacheWidth: previewCacheWidth,
+                            gradientStart: colors.previewGradientStart,
+                            gradientEnd: colors.previewGradientEnd,
+                            accentColor: colors.previewAccent,
+                            iconColor: colors.previewIcon,
+                          )
+                        : imagePreviewPlaceholder(
+                            context,
+                            project.name,
+                            gradientStart: colors.previewGradientStart,
+                            gradientEnd: colors.previewGradientEnd,
+                            accentColor: colors.previewAccent,
+                            iconColor: colors.previewIcon,
+                          ),
+                  ),
+                  if (project.isOpenSource)
+                    Positioned(
+                      top: 12,
+                      right: 12,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: colors.accent.withValues(alpha: 0.9),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.2),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.code,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              'Open Source',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                    ),
+                ],
               ),
               Expanded(
                 child: Padding(
@@ -221,7 +265,7 @@ class ProjectCard extends StatelessWidget {
       widgets.add(
         OutlinedButton.icon(
           onPressed: () => _openUrl(context, viewData.githubUrl!),
-          icon: SvgAssetIcon(
+          icon: UISvgAssetIcon(
             assetPath: PortfolioIcons.github.assetPath,
             size: 14,
           ),
@@ -241,7 +285,7 @@ class ProjectCard extends StatelessWidget {
       widgets.add(
         OutlinedButton.icon(
           onPressed: () => _openUrl(context, viewData.pubUrl!),
-          icon: SvgAssetIcon(
+          icon: UISvgAssetIcon(
             assetPath: PortfolioIcons.pub.assetPath,
             size: 14,
           ),

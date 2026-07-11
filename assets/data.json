@@ -143,47 +143,6 @@
       ]
     },
     {
-      "name": "Metro City Pulse",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "Riverpod",
-        "GoRouter",
-        "Clean Architecture",
-        "Google Maps",
-        "Web",
-        "Android",
-        "iOS",
-        "Mobile",
-        "Desktop",
-        "Cross-platform",
-        "Responsive"
-      ],
-      "features": [
-        "Interactive Map Dashboard",
-        "Incident Marker Filtering",
-        "Stats & KPI Overview",
-        "CCTV Alert Playback",
-        "Dark & Light Theme",
-        "English & Spanish Localization",
-        "Responsive Navigation Shell",
-        "Offline Connectivity Handling",
-        "Date Range Filtering",
-        "Firebase Authentication"
-      ],
-      "desc": "Built a cross-platform smart city monitoring app with Google Maps incident tracking, operational dashboards, CCTV-backed alerts, and adaptive layouts for mobile, tablet, and desktop.",
-      "fullDescription": [
-        "Implemented an interactive Google Maps dashboard with incident markers, severity legends, custom info windows, filter controls, zoom tools, and periodic data refresh for live operational views.",
-        "Designed and developed a real-time smart city monitoring dashboard as a cross-platform Flutter app for web, Android, iOS, macOS, Linux, and Windows from a single codebase.",
-        "Built stats and alerts workspaces with KPI summary cards, tabbed case status, confidence scoring, date-range selection, and CCTV video playback for incident review.",
-        "Applied Clean Architecture with Riverpod state management, GoRouter navigation, repository-based data flow, reusable UI components, and responsive shell layouts that switch between side menu and bottom navigation."
-      ],
-      "previewImage": "assets/projects/metro_city_pulse_preview.jpg",
-      "playStoreUrl": [],
-      "appStoreUrl": [],
-      "githubUrl": "https://github.com/VVK027/metro_city_pulse"
-    },
-    {
       "name": "The Kidde App",
       "tags": [
         "Flutter",
@@ -235,82 +194,6 @@
       "appStoreUrl": [
         "https://apps.apple.com/us/app/kidde/id942334464"
       ]
-    },
-    {
-      "name": "Flutter Dev Portfolio",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "Riverpod",
-        "GoRouter",
-        "Clean Architecture",
-        "Web",
-        "Android",
-        "iOS",
-        "Mobile",
-        "Tablet",
-        "Cross-platform",
-        "Responsive"
-      ],
-      "features": [
-        "Responsive Layout",
-        "Dark & Light Theme",
-        "Section Navigation",
-        "Project Carousel",
-        "Skills & Experience",
-        "Client Reviews",
-        "Contact Section",
-        "GitHub Integration"
-      ],
-      "desc": "Built a responsive Flutter web and mobile portfolio with JSON-driven content, Riverpod state management, and adaptive section layouts.",
-      "fullDescription": [
-        "Designed and developed a personal developer portfolio as a cross-platform Flutter app deployable to web, Android, and iOS from a single codebase.",
-        "Structured the UI with scroll-synced section navigation, responsive carousels, and theme-aware components that adapt across mobile, tablet, and desktop breakpoints.",
-        "Loaded portfolio content from JSON assets so projects, experience, skills, and reviews can be updated without code changes.",
-        "Applied Clean Architecture with Riverpod providers, domain use cases, and reusable presentation widgets for maintainable, testable code."
-      ],
-      "previewImage": "assets/projects/flutter_portfolio_preview.jpg",
-      "playStoreUrl": [],
-      "appStoreUrl": [],
-      "githubUrl": "https://github.com/VVK027/flutter_portfolio"
-    },
-    {
-      "name": "Flutter Band Fit (Plugin)",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "Plugin",
-        "Java",
-        "Swift",
-        "BLE",
-        "Android",
-        "iOS",
-        "Mobile",
-        "Tablet",
-        "Cross-platform"
-      ],
-      "features": [
-        "Smart Band Integration",
-        "Device Management",
-        "BLE Communication",
-        "Health Vitals Sync",
-        "Activity Monitoring",
-        "Alarms & Reminders",
-        "Firmware Updates",
-        "Watch Faces",
-        "Custom Watch Faces"
-      ],
-      "desc": "Created a cross-platform Flutter plugin with GloryFit/UTE SDK for health vitals sync, reminders, watch faces, and device management.",
-      "fullDescription": [
-        "Created a cross-platform Flutter plugin integrating GloryFit and UTE SDK for health-monitoring smart bands via BLE communication.",
-        "Supported real-time syncing of health vitals including SpO₂, blood pressure, heart rate, temperature, sleep tracking, and activity monitoring.",
-        "Implemented watch face customization, alarm and reminder management, sedentary alerts, and device firmware updates."
-      ],
-      "previewImage": "assets/projects/flutter_band_fit_preview.jpg",
-      "playStoreUrl": [],
-      "appStoreUrl": [],
-      "githubUrl": "https://github.com/VVK027/flutter_band_fit",
-      "pubUrl": "https://pub.dev/packages/flutter_band_fit"
     },
     {
       "name": "Docty Digital Health for All",
@@ -594,6 +477,126 @@
       "previewImage": "assets/projects/yng_logo.png",
       "playStoreUrl": [],
       "appStoreUrl": []
+    },
+    {
+      "name": "Flutter Band Fit (Plugin)",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Plugin",
+        "Java",
+        "Swift",
+        "BLE",
+        "Android",
+        "iOS",
+        "Mobile",
+        "Tablet",
+        "Cross-platform"
+      ],
+      "features": [
+        "Smart Band Integration",
+        "Device Management",
+        "BLE Communication",
+        "Health Vitals Sync",
+        "Activity Monitoring",
+        "Alarms & Reminders",
+        "Firmware Updates",
+        "Watch Faces",
+        "Custom Watch Faces"
+      ],
+      "desc": "Created a cross-platform Flutter plugin with GloryFit/UTE SDK for health vitals sync, reminders, watch faces, and device management.",
+      "fullDescription": [
+        "Created a cross-platform Flutter plugin integrating GloryFit and UTE SDK for health-monitoring smart bands via BLE communication.",
+        "Supported real-time syncing of health vitals including SpO₂, blood pressure, heart rate, temperature, sleep tracking, and activity monitoring.",
+        "Implemented watch face customization, alarm and reminder management, sedentary alerts, and device firmware updates."
+      ],
+      "previewImage": "assets/projects/flutter_band_fit_preview.jpg",
+      "playStoreUrl": [],
+      "appStoreUrl": [],
+      "githubUrl": "https://github.com/VVK027/flutter_band_fit",
+      "pubUrl": "https://pub.dev/packages/flutter_band_fit",
+      "isOpenSource": true
+    },
+    {
+      "name": "Metro City Pulse",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "GoRouter",
+        "Clean Architecture",
+        "Google Maps",
+        "Web",
+        "Android",
+        "iOS",
+        "Mobile",
+        "Desktop",
+        "Cross-platform",
+        "Responsive"
+      ],
+      "features": [
+        "Interactive Map Dashboard",
+        "Incident Marker Filtering",
+        "Stats & KPI Overview",
+        "CCTV Alert Playback",
+        "Dark & Light Theme",
+        "English & Spanish Localization",
+        "Responsive Navigation Shell",
+        "Offline Connectivity Handling",
+        "Date Range Filtering",
+        "Firebase Authentication"
+      ],
+      "desc": "Built a cross-platform smart city monitoring app with Google Maps incident tracking, operational dashboards, CCTV-backed alerts, and adaptive layouts for mobile, tablet, and desktop.",
+      "fullDescription": [
+        "Implemented an interactive Google Maps dashboard with incident markers, severity legends, custom info windows, filter controls, zoom tools, and periodic data refresh for live operational views.",
+        "Designed and developed a real-time smart city monitoring dashboard as a cross-platform Flutter app for web, Android, iOS, macOS, Linux, and Windows from a single codebase.",
+        "Built stats and alerts workspaces with KPI summary cards, tabbed case status, confidence scoring, date-range selection, and CCTV video playback for incident review.",
+        "Applied Clean Architecture with Riverpod state management, GoRouter navigation, repository-based data flow, reusable UI components, and responsive shell layouts that switch between side menu and bottom navigation."
+      ],
+      "previewImage": "assets/projects/metro_city_pulse_preview.jpg",
+      "playStoreUrl": [],
+      "appStoreUrl": [],
+      "githubUrl": "https://github.com/VVK027/metro_city_pulse",
+      "isOpenSource": true
+    },
+    {
+      "name": "Flutter Dev Portfolio",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "GoRouter",
+        "Clean Architecture",
+        "Web",
+        "Android",
+        "iOS",
+        "Mobile",
+        "Tablet",
+        "Cross-platform",
+        "Responsive"
+      ],
+      "features": [
+        "Responsive Layout",
+        "Dark & Light Theme",
+        "Section Navigation",
+        "Project Carousel",
+        "Skills & Experience",
+        "Client Reviews",
+        "Contact Section",
+        "GitHub Integration"
+      ],
+      "desc": "Built a responsive Flutter web and mobile portfolio with JSON-driven content, Riverpod state management, and adaptive section layouts.",
+      "fullDescription": [
+        "Designed and developed a personal developer portfolio as a cross-platform Flutter app deployable to web, Android, and iOS from a single codebase.",
+        "Structured the UI with scroll-synced section navigation, responsive carousels, and theme-aware components that adapt across mobile, tablet, and desktop breakpoints.",
+        "Loaded portfolio content from JSON assets so projects, experience, skills, and reviews can be updated without code changes.",
+        "Applied Clean Architecture with Riverpod providers, domain use cases, and reusable presentation widgets for maintainable, testable code."
+      ],
+      "previewImage": "assets/projects/flutter_portfolio_preview.jpg",
+      "playStoreUrl": [],
+      "appStoreUrl": [],
+      "githubUrl": "https://github.com/VVK027/flutter_portfolio",
+      "isOpenSource": true
     }
   ],
   "reviews": [

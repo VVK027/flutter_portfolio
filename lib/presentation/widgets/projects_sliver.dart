@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/widgets/carousel/carousel_controls.dart';
+import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 import 'package:vivekdevfolio/presentation/widgets/projects/project_card.dart';
 import 'package:vivekdevfolio/presentation/widgets/projects/projects_carousel_layout.dart';
-import 'package:vivekdevfolio/presentation/widgets/section_carousel.dart';
 
 class ProjectsSliver extends StatefulWidget {
   final List<Project> items;
@@ -46,13 +45,13 @@ class _ProjectsSliverState extends State<ProjectsSliver> {
                 MediaQuery.devicePixelRatioOf(context))
             .round();
 
-        return SectionCarousel(
+        return UISectionCarousel(
           pageCount: layout.pageCount,
           pageHeight: layout.pageHeight,
           pageBuilder: (context, pageIndex) {
             final slice =
                 carouselPageSlice(widget.items, pageIndex, layout.perPage);
-            return CarouselRowPage<Project>(
+            return UICarouselRowPage<Project>(
               items: slice,
               itemsPerPage: layout.perPage,
               gap: layout.gap,
@@ -65,7 +64,7 @@ class _ProjectsSliverState extends State<ProjectsSliver> {
               ),
             );
           },
-          controlsColors: CarouselControlsColors(
+          controlsColors: UICarouselControlsColors(
             navBackground: context.appColors.carouselNavBg,
             navBorder: context.appColors.carouselNavBorder,
             navBorderActive: context.appColors.carouselNavBorderActive,

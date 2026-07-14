@@ -5,7 +5,11 @@ class ProjectsFilterUseCase {
 
   List<String> collectTags(Portfolio? portfolio, {required String allTag}) {
     if (portfolio == null) return [allTag];
-    final tags = <String>{allTag, ...portfolio.projects.expand((project) => project.tags)};
+    final tags = <String>{
+      allTag,
+      'Open Source',
+      ...portfolio.projects.expand((project) => project.tags)
+    };
     return tags.toList(growable: false);
   }
 
@@ -15,9 +19,22 @@ class ProjectsFilterUseCase {
     required String allTag,
   }) {
     if (portfolio == null) return const [];
-    if (filter == allTag) return portfolio.projects;
-    return portfolio.projects
+    final allProjects = portfolio.projects;
+    if (filter == allTag) return allProjects;
+    if (filter == 'Open Source') {
+      return allProjects
+          .where((project) => project.isOpenSource)
+          .toList(growable: false);
+    }
+    return allProjects
         .where((project) => project.tags.contains(filter))
+        .toList(growable: false);
+  }
+
+  List<Project> getOpenSourceProjects(Portfolio? portfolio) {
+    if (portfolio == null) return const [];
+    return portfolio.projects
+        .where((project) => project.isOpenSource)
         .toList(growable: false);
   }
 }

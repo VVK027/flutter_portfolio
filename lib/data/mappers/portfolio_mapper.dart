@@ -48,6 +48,7 @@ class PortfolioMapper {
       features: model.features,
       githubUrl: model.githubUrl,
       pubUrl: model.pubUrl,
+      isOpenSource: model.isOpenSource ?? false,
     );
   }
 

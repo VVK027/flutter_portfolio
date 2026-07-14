@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -11,7 +12,10 @@ import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_profile_h
 import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_section_nav.dart';
 import 'package:vivekdevfolio/presentation/widgets/github_profile_view_counter.dart';
 import 'package:vivekdevfolio/presentation/widgets/sections.dart';
-import 'package:vivekdevfolio/presentation/widgets/theme_toggle_button.dart';
+import 'package:vvk_ui_kit/vvk_ui_kit.dart';
+import 'package:vivekdevfolio/core/provider/app_theme_provider.dart';
+
+import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_shimmer_view.dart';
 
 class PortfolioPage extends ConsumerStatefulWidget {
   final String? initialSection;
@@ -25,17 +29,28 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
   final itemController = ItemScrollController();
   final positions = ItemPositionsListener.create();
   static const sections = PortfolioSectionEnum.values;
-  int _activeSectionIndex = 0;
+
+  /// Active section is exposed as a [ValueListenable] so scroll updates only
+  /// rebuild the nav, not the whole scaffold (app bar blur + section list).
+  final ValueNotifier<int> _activeSectionIndex = ValueNotifier<int>(0);
 
   @override
   void initState() {
     super.initState();
     positions.itemPositions.addListener(_syncActiveSectionFromScroll);
+    _precacheAssets();
+  }
+
+  void _precacheAssets() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      precacheImage(const AssetImage('assets/profile.jpeg'), context);
+    });
   }
 
   @override
   void dispose() {
     positions.itemPositions.removeListener(_syncActiveSectionFromScroll);
+    _activeSectionIndex.dispose();
     super.dispose();
   }
 
@@ -45,10 +60,8 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
         .toList();
     if (visible.isEmpty) return;
     visible.sort((a, b) => a.index.compareTo(b.index));
-    final nextIndex = visible.first.index;
-    if (nextIndex != _activeSectionIndex && mounted) {
-      setState(() => _activeSectionIndex = nextIndex);
-    }
+    // ValueNotifier only notifies listeners when the value actually changes.
+    _activeSectionIndex.value = visible.first.index;
   }
 
   bool _isDesktop(double width) => width > 900;
@@ -97,16 +110,17 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
   @override
   Widget build(BuildContext context) {
     final portfolioAsync = ref.watch(portfolioFutureProvider);
+    final width = MediaQuery.sizeOf(context).width;
+    final isDesktop = _isDesktop(width);
 
     return portfolioAsync.when(
-      loading: () =>
-          const Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () => const PortfolioShimmerView(),
       error: (e, _) => Scaffold(body: Center(child: Text('Error: $e'))),
       data: (portfolio) => _PortfolioScaffold(
         portfolio: portfolio,
-        isDesktop: _isDesktop(MediaQuery.sizeOf(context).width),
-        toolbarHeight: _toolbarHeight(_isDesktop(MediaQuery.sizeOf(context).width)),
-        titleSpacing: _titleSpacing(_isDesktop(MediaQuery.sizeOf(context).width)),
+        isDesktop: isDesktop,
+        toolbarHeight: _toolbarHeight(isDesktop),
+        titleSpacing: _titleSpacing(isDesktop),
         contentPaddingForWidth: _contentPaddingForWidth,
         activeSectionIndex: _activeSectionIndex,
         itemController: itemController,
@@ -125,7 +139,7 @@ class _PortfolioScaffold extends StatelessWidget {
   final double toolbarHeight;
   final double titleSpacing;
   final double Function(double width) contentPaddingForWidth;
-  final int activeSectionIndex;
+  final ValueListenable<int> activeSectionIndex;
   final ItemScrollController itemController;
   final ItemPositionsListener positions;
   final ValueChanged<int> onSectionIndexSelected;
@@ -195,18 +209,16 @@ class _PortfolioScaffold extends StatelessWidget {
                 isDesktop: isDesktop,
               ),
               if (isDesktop)
-                PortfolioDesktopNav(
-                  sections: PortfolioSectionEnum.values,
-                  activeSectionIndex: activeSectionIndex,
-                  onSectionSelected: onSectionIndexSelected,
+                ValueListenableBuilder<int>(
+                  valueListenable: activeSectionIndex,
+                  builder: (context, index, _) => PortfolioDesktopNav(
+                    sections: PortfolioSectionEnum.values,
+                    activeSectionIndex: index,
+                    onSectionSelected: onSectionIndexSelected,
+                  ),
                 ),
               const SizedBox(width: 6),
-              ThemeToggleButton(
-                size: 32,
-                backgroundColor: colors.chipBackground,
-                foregroundColor: colors.textPrimary,
-                borderColor: colors.cardBorder,
-              ),
+              const _PortfolioThemeToggle(),
               if (!isDesktop) ...[
                 const SizedBox(width: 4),
                 PortfolioMobileNavMenu(
@@ -235,16 +247,18 @@ class _PortfolioScaffold extends StatelessWidget {
                   itemPositionsListener: positions,
                   itemBuilder: (context, index) {
                     final section = PortfolioSectionEnum.values[index];
-                    return SectionShell(
-                      title: section.title,
-                      subtitle: section == PortfolioSectionEnum.reviews
-                          ? 'Recommendations from people I have worked with.'
-                          : null,
-                      sectionBorderColor: colors.sectionBorder,
-                      accentGradientStart: colors.accentGradientStart,
-                      accentGradientEnd: colors.accentGradientEnd,
-                      subtitleColor: colors.textMuted,
-                      child: buildSection(section),
+                    return RepaintBoundary(
+                      child: SectionShell(
+                        title: section.title,
+                        subtitle: section == PortfolioSectionEnum.reviews
+                            ? 'Recommendations from people I have worked with.'
+                            : null,
+                        sectionBorderColor: colors.sectionBorder,
+                        accentGradientStart: colors.accentGradientStart,
+                        accentGradientEnd: colors.accentGradientEnd,
+                        subtitleColor: colors.textMuted,
+                        child: buildSection(section),
+                      ),
                     );
                   },
                 ),
@@ -258,6 +272,28 @@ class _PortfolioScaffold extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Theme toggle isolated in its own [ConsumerWidget] so that watching
+/// [themeModeProvider] rebuilds only the button, not the whole app bar.
+class _PortfolioThemeToggle extends ConsumerWidget {
+  const _PortfolioThemeToggle();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colors = context.appColors;
+    return UIThemeToggleButton(
+      themeMode: ref.watch(themeModeProvider),
+      onThemeModeChanged: (mode) =>
+          ref.read(themeModeProvider.notifier).state = mode,
+      tooltipLightMode: 'Switch to light mode',
+      tooltipDarkMode: 'Switch to dark mode',
+      size: 32,
+      backgroundColor: colors.chipBackground,
+      foregroundColor: colors.textPrimary,
+      borderColor: colors.cardBorder,
     );
   }
 }

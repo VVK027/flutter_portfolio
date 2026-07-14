@@ -20,8 +20,17 @@ class AssetPortfolioRepository implements PortfolioRepository {
 
   @override
   Future<Portfolio> load() async {
-    final raw = await dataSource.loadRawJson();
-    final model = await compute(_parsePortfolioModel, raw);
-    return PortfolioMapper.toEntity(model);
+    try {
+      final raw = await dataSource.loadRawJson();
+      if (raw.isEmpty) {
+        throw Exception('Portfolio data is empty');
+      }
+      final model = await compute(_parsePortfolioModel, raw);
+      return PortfolioMapper.toEntity(model);
+    } catch (e, stackTrace) {
+      debugPrint('Error loading portfolio: $e');
+      debugPrint(stackTrace.toString());
+      rethrow;
+    }
   }
 }

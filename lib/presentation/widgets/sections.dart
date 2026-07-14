@@ -17,21 +17,18 @@ Widget buildSection(
   Portfolio portfolio,
   WidgetRef ref,
 ) {
-  final aboutMetricsUseCase = ref.read(aboutMetricsUseCaseProvider);
-  final skillCategoriesUseCase = ref.read(skillCategoriesUseCaseProvider);
-  final contactInfoUseCase = ref.read(contactInfoUseCaseProvider);
+  // Use cases are read lazily inside each branch so building one section does
+  // not resolve providers that section never uses.
   switch (section) {
     case PortfolioSectionEnum.about:
       return AboutSection(
-          summary: portfolio.summary,
-          metrics: aboutMetricsUseCase.build(portfolio),
-          strengths: portfolio.strengths ?? []
+        summary: portfolio.summary,
+        metrics: ref.read(aboutMetricsUseCaseProvider).build(portfolio),
+        strengths: portfolio.strengths ?? [],
       );
-    // case PortfolioSection.strengths:
-    //   return StrengthsSection(strengths: portfolio.strengths ?? []);
     case PortfolioSectionEnum.skills:
       return SkillsSection(
-        categories: skillCategoriesUseCase.build(),
+        categories: ref.read(skillCategoriesUseCaseProvider).build(),
       );
     case PortfolioSectionEnum.experience:
       return ExperienceSection(experience: portfolio.experience);
@@ -49,10 +46,10 @@ Widget buildSection(
       return SimpleBulletsSection(items: portfolio.certifications);
     case PortfolioSectionEnum.contact:
       return ContactSection(
-        viewData: contactInfoUseCase.build(
-          portfolio.contact,
-          portfolio.location,
-        ),
+        viewData: ref.read(contactInfoUseCaseProvider).build(
+              portfolio.contact,
+              portfolio.location,
+            ),
       );
   }
 }

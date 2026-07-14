@@ -89,6 +89,7 @@ class ProjectModel {
   final List<String>? features;
   final String? githubUrl;
   final String? pubUrl;
+  final bool? isOpenSource;
 
   ProjectModel(
     this.name,
@@ -101,6 +102,7 @@ class ProjectModel {
     this.features,
     this.githubUrl,
     this.pubUrl,
+    this.isOpenSource,
   );
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/presentation/widgets/svg_asset_icon.dart';
+import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 
 class SocialConnectTile extends StatelessWidget {
   final String assetPath;
@@ -43,7 +43,7 @@ class SocialConnectTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   color: colors.accent.withValues(alpha: 0.18),
                 ),
-                child: SvgAssetIcon(
+                child: UISvgAssetIcon(
                   assetPath: assetPath,
                   size: 18,
                   color: colors.textPrimary,

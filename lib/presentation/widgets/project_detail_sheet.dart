@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
-import 'package:vivekdevfolio/presentation/widgets/svg_asset_icon.dart';
+import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/widgets/image_preview_frame.dart';
 
 void showProjectDetail(BuildContext context, Project project) {
   final isMobile = MediaQuery.sizeOf(context).width < 600;
@@ -307,7 +306,7 @@ class _ProjectDetailContent extends StatelessWidget {
       widgets.add(
         FilledButton.icon(
           onPressed: () => _openUrl(context, githubUrl),
-          icon: SvgAssetIcon(
+          icon: UISvgAssetIcon(
             assetPath: PortfolioIcons.github.assetPath,
             size: 18,
           ),
@@ -329,7 +328,7 @@ class _ProjectDetailContent extends StatelessWidget {
       widgets.add(
         FilledButton.icon(
           onPressed: () => _openUrl(context, pubUrl),
-          icon: SvgAssetIcon(
+          icon: UISvgAssetIcon(
             assetPath: PortfolioIcons.pub.assetPath,
             size: 18,
           ),
@@ -352,7 +351,7 @@ class _ProjectDetailContent extends StatelessWidget {
 
   Widget _buildPreviewImage(BuildContext context, String imagePath) {
     final colors = context.appColors;
-    return ImagePreviewFrame(
+    return UIImagePreviewFrame(
       backgroundColor: colors.previewBackground,
       borderColor: colors.previewBorder,
       child: imagePreviewImage(

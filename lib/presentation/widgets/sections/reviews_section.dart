@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vivekdevfolio/core/theme/app_colors.dart';
 import 'package:vivekdevfolio/domain/entities/portfolio.dart';
 import 'package:vivekdevfolio/presentation/extensions/review_extensions.dart';
-import 'package:vivekdevfolio/presentation/widgets/carousel/carousel_controls.dart';
-import 'package:vivekdevfolio/presentation/widgets/section_carousel.dart';
+import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 
 class ReviewsSection extends StatelessWidget {
   final List<Review> reviews;
@@ -23,21 +22,21 @@ class ReviewsSection extends StatelessWidget {
         final cardHeight = width < 600 ? 260.0 : 240.0;
         final gap = width < 600 ? 0.0 : 16.0;
 
-        return SectionCarousel(
+        return UISectionCarousel(
           pageCount: pages,
           pageHeight: cardHeight,
           autoPlay: pages > 1,
           autoPlayInterval: const Duration(seconds: 2),
           pageBuilder: (context, pageIndex) {
             final slice = carouselPageSlice(reviews, pageIndex, perPage);
-            return CarouselRowPage<Review>(
+            return UICarouselRowPage<Review>(
               items: slice,
               itemsPerPage: perPage,
               gap: gap,
               itemBuilder: (_, review) => _ReviewCard(review: review),
             );
           },
-          controlsColors: CarouselControlsColors(
+          controlsColors: UICarouselControlsColors(
             navBackground: context.appColors.carouselNavBg,
             navBorder: context.appColors.carouselNavBorder,
             navBorderActive: context.appColors.carouselNavBorderActive,

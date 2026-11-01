@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
 
 class PortfolioShimmerView extends StatelessWidget {
   const PortfolioShimmerView({super.key});

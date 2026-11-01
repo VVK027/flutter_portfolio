@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/presentation/widgets/section_header.dart';
+import 'package:viivekportfolio/presentation/widgets/section_header.dart';
 
 class SectionShell extends StatelessWidget {
   final String title;

@@ -1,4 +1,4 @@
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 extension ReviewPresentation on Review {
   String get initials {

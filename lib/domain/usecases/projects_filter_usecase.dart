@@ -1,4 +1,4 @@
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 class ProjectsFilterUseCase {
   const ProjectsFilterUseCase();
@@ -7,7 +7,6 @@ class ProjectsFilterUseCase {
     if (portfolio == null) return [allTag];
     final tags = <String>{
       allTag,
-      'Open Source',
       ...portfolio.projects.expand((project) => project.tags)
     };
     return tags.toList(growable: false);
@@ -21,11 +20,6 @@ class ProjectsFilterUseCase {
     if (portfolio == null) return const [];
     final allProjects = portfolio.projects;
     if (filter == allTag) return allProjects;
-    if (filter == 'Open Source') {
-      return allProjects
-          .where((project) => project.isOpenSource)
-          .toList(growable: false);
-    }
     return allProjects
         .where((project) => project.tags.contains(filter))
         .toList(growable: false);

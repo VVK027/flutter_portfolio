@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 class PortfolioProfileHeader extends StatelessWidget {
   final Portfolio portfolio;
@@ -15,7 +15,7 @@ class PortfolioProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.appColors;
-    return Expanded(
+    return Flexible(
       child: Row(
         children: [
           Container(

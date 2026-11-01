@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
 
 class OpportunityCard extends StatelessWidget {
   final IconData icon;

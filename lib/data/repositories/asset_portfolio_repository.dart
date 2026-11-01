@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:vivekdevfolio/data/datasources/asset_portfolio_datasource.dart';
-import 'package:vivekdevfolio/data/mappers/portfolio_mapper.dart';
-import 'package:vivekdevfolio/data/models/portfolio_model.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/domain/repositories/portfolio_repository.dart';
+import 'package:viivekportfolio/data/datasources/asset_portfolio_datasource.dart';
+import 'package:viivekportfolio/data/mappers/portfolio_mapper.dart';
+import 'package:viivekportfolio/data/models/portfolio_model.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/repositories/portfolio_repository.dart';
 
 PortfolioModel _parsePortfolioModel(String raw) {
   return PortfolioModel.fromJson(jsonDecode(raw) as Map<String, dynamic>);

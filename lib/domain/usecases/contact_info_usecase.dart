@@ -1,5 +1,5 @@
-import 'package:vivekdevfolio/domain/entities/contact_info.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/entities/contact_info.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 class ContactInfoUseCase {
   const ContactInfoUseCase();

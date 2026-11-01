@@ -1,5 +1,5 @@
-import 'package:vivekdevfolio/domain/entities/about_metrics.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/entities/about_metrics.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 class AboutMetricsUseCase {
   const AboutMetricsUseCase();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 class StrengthsSection extends StatelessWidget {
   final List<Strength> strengths;

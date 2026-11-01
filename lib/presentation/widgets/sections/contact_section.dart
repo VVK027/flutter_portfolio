@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/contact_info.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/contact/contact_info_card.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/contact/contact_launchers.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/contact/opportunity_card.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/contact_info.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/contact/contact_info_card.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/contact/contact_launchers.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/contact/opportunity_card.dart';
 
 class ContactSection extends StatelessWidget {
   final ContactInfo viewData;
@@ -37,7 +37,7 @@ class ContactSection extends StatelessWidget {
             viewData.email,
             subject: 'Full-Time Flutter Opportunity',
             body:
-                'Hi Vivek,\n\nI would like to discuss a full-time Flutter role with you.\n\nThanks.',
+                'Hi Viivek,\n\nI would like to discuss a full-time Flutter role with you.\n\nThanks.',
           ),
           expandVertically: !compact,
         );
@@ -57,7 +57,7 @@ class ContactSection extends StatelessWidget {
             viewData.email,
             subject: 'Freelance Mobile Project Discussion',
             body:
-                'Hi Vivek,\n\nI would like to discuss a freelance mobile project with you.\n\nThanks.',
+                'Hi Viivek,\n\nI would like to discuss a freelance mobile project with you.\n\nThanks.',
           ),
           expandVertically: !compact,
         );

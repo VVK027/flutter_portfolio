@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/presentation/extensions/portfolio_section_enum.dart';
 
 class PortfolioDesktopNav extends StatelessWidget {
   final List<PortfolioSectionEnum> sections;

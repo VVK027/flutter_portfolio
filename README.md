@@ -1,6 +1,6 @@
-# Viivek K — DevPortfolio (Flutter)
+# Viivek — Portfolio (Flutter)
 
-A responsive Flutter portfolio for Vivek Kumar — built with clean architecture, Riverpod, and go_router.
+A responsive Flutter portfolio for Viivek — built with clean architecture, Riverpod, and go_router.
 
 **Live site:** [https://vvk027.github.io/](https://vvk027.github.io/)
 
@@ -92,7 +92,7 @@ The toggle switches between `ThemeMode.light` and `ThemeMode.dark` for the curre
 Prefer semantic tokens over hard-coded `Color` values:
 
 ```dart
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
 
 final colors = context.appColors; // ThemeExtension helper
 // colors.accent, colors.card, colors.textPrimary, …

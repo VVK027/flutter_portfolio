@@ -1,11 +1,11 @@
 {
-    "name": "vivekdevfolio",
-    "short_name": "vivekdevfolio",
+    "name": "viivekportfolio",
+    "short_name": "viivekport",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#F3F5FA",
     "theme_color": "#F3F5FA",
-    "description": "Vivek Devfolio — Flutter portfolio",
+    "description": "Viivek Portfolio — Flutter portfolio",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

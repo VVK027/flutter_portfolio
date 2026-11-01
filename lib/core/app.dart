@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vivekdevfolio/core/provider/app_theme_provider.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/core/provider/app_theme_provider.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
 
 import 'routing/app_router.dart';
 
@@ -14,7 +14,7 @@ class PortfolioApp extends ConsumerWidget {
     final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp.router(
-      title: 'vivek-devfolio',
+      title: 'Viivek-Portfolio',
       // Avoid using accent purple for the browser/PWA chrome on web.
       color: themeMode == ThemeMode.light
           ? AppColors.light.scaffold

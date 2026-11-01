@@ -4,18 +4,18 @@ import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
-import 'package:vivekdevfolio/presentation/portfolio/providers/portfolio_providers.dart';
-import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_profile_header.dart';
-import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_section_nav.dart';
-import 'package:vivekdevfolio/presentation/widgets/github_profile_view_counter.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:viivekportfolio/presentation/portfolio/providers/portfolio_providers.dart';
+import 'package:viivekportfolio/presentation/portfolio/widgets/portfolio_profile_header.dart';
+import 'package:viivekportfolio/presentation/portfolio/widgets/portfolio_section_nav.dart';
+import 'package:viivekportfolio/presentation/widgets/github_profile_view_counter.dart';
+import 'package:viivekportfolio/presentation/widgets/sections.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
-import 'package:vivekdevfolio/core/provider/app_theme_provider.dart';
+import 'package:viivekportfolio/core/provider/app_theme_provider.dart';
 
-import 'package:vivekdevfolio/presentation/portfolio/widgets/portfolio_shimmer_view.dart';
+import 'package:viivekportfolio/presentation/portfolio/widgets/portfolio_shimmer_view.dart';
 
 class PortfolioPage extends ConsumerStatefulWidget {
   final String? initialSection;

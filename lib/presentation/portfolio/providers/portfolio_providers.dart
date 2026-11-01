@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vivekdevfolio/data/repositories/asset_portfolio_repository.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/domain/repositories/portfolio_repository.dart';
-import 'package:vivekdevfolio/domain/usecases/about_metrics_usecase.dart';
-import 'package:vivekdevfolio/domain/usecases/contact_info_usecase.dart';
-import 'package:vivekdevfolio/domain/usecases/projects_filter_usecase.dart';
-import 'package:vivekdevfolio/domain/usecases/skill_categories_usecase.dart';
+import 'package:viivekportfolio/data/repositories/asset_portfolio_repository.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/repositories/portfolio_repository.dart';
+import 'package:viivekportfolio/domain/usecases/about_metrics_usecase.dart';
+import 'package:viivekportfolio/domain/usecases/contact_info_usecase.dart';
+import 'package:viivekportfolio/domain/usecases/projects_filter_usecase.dart';
+import 'package:viivekportfolio/domain/usecases/skill_categories_usecase.dart';
 
 final portfolioRepositoryProvider = Provider<PortfolioRepository>(
   (ref) => const AssetPortfolioRepository(),

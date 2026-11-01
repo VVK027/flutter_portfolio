@@ -1,4 +1,4 @@
-import 'package:vivekdevfolio/domain/entities/skill_category.dart';
+import 'package:viivekportfolio/domain/entities/skill_category.dart';
 
 class SkillCategoriesUseCase {
   const SkillCategoriesUseCase();

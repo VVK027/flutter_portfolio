@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vivekdevfolio/presentation/portfolio/providers/projects_filter_provider.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/presentation/widgets/projects_sliver.dart';
+import 'package:viivekportfolio/presentation/portfolio/providers/projects_filter_provider.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/presentation/widgets/projects_sliver.dart';
 
 class ProjectsSection extends ConsumerWidget {
   const ProjectsSection({super.key});
@@ -17,6 +17,31 @@ class ProjectsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Search bar for projects
+        TextField(
+          decoration: InputDecoration(
+            hintText: 'Search projects by title, tech stack, or keyword...',
+            prefixIcon: Icon(Icons.search, color: colors.accent),
+            filled: true,
+            fillColor: colors.card,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: colors.chipBorder),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: colors.chipBorder),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: colors.accent, width: 2),
+            ),
+          ),
+          onChanged: (value) =>
+              ref.read(projectSearchQueryProvider.notifier).state = value,
+        ),
+        const SizedBox(height: 16),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -40,7 +65,7 @@ class ProjectsSection extends ConsumerWidget {
               )
               .toList(),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         ProjectsSliver(items: items),
       ],
     );

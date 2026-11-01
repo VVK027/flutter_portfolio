@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
-import 'package:vivekdevfolio/presentation/portfolio/screen/portfolio_page.dart';
+import 'package:viivekportfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:viivekportfolio/presentation/portfolio/screen/portfolio_page.dart';
 
 final appRouter = GoRouter(
   routes: [

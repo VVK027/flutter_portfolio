@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/core/constants/portfolio_icons.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 void showProjectDetail(BuildContext context, Project project) {
   final isMobile = MediaQuery.sizeOf(context).width < 600;

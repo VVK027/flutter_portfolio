@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_fonts.dart';
+import 'package:viivekportfolio/core/theme/app_fonts.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 
 /// Semantic portfolio colors — use via [Theme.of(context).extension<AppColors>()].

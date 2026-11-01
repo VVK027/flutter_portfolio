@@ -1,6 +1,6 @@
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
-import 'package:vivekdevfolio/presentation/widgets/projects/project_card_view_data.dart';
+import 'package:viivekportfolio/presentation/widgets/projects/project_card_view_data.dart';
 
 /// Precomputed carousel dimensions for the projects section.
 class ProjectsCarouselLayout {

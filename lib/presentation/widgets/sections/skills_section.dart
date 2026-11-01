@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/domain/entities/skill_category.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/skill_category.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
 
 class SkillsSection extends StatelessWidget {
   final List<SkillCategory> categories;

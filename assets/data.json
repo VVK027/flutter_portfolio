@@ -1,5 +1,5 @@
 {
-  "name": "Viivek K",
+  "name": "Viivek",
   "location": "Hyderabad, India",
   "title": "Lead Mobile Developer · Sr. Mobile Developer · Flutter · React Native · Ionic · Android · iOS",
   "summary": [
@@ -601,29 +601,58 @@
   ],
   "reviews": [
     {
-      "quote": "Vivek is one of the best employee/colleague I ever meet. He is very passionate about his work and fully focused towards it. He strongly believes E2E development for each task. As an Android/React Native developer he handles all modules from coding to deployment. I am very glad that he was my colleague.",
-      "name": "Prakash Pradhan",
-      "role": "Associate Consultant, Engineering",
-      "company": "GlobalLogic",
+      "quote": "I highly recommend Viivek for his strong expertise in mobile application development, hardware integration, and his ability to think beyond the technical solution.\n\nWhat sets Viivek apart is his 360-degree perspective. He considers everything from design and user experience to technical architecture, integration, and real-world usability. He understands that building great technology is not just about making it work, but making it valuable to the people using it.\n\nViivek is also a true innovator. He doesn't simply execute instructions; he challenges assumptions, proposes new ideas, and isn't afraid to speak up when he sees opportunities for improvement. That kind of proactive thinking is incredibly valuable to any organization.\n\nHe is self-driven, dependable, and equally effective working independently or collaborating with a team. He takes ownership, requires little supervision, and consistently brings both creativity and practical thinking to the table.\n\nViivek is a well-rounded professional and a pleasure to work with. I would highly recommend him to any organization looking for someone who can not only build technology but also help shape what comes next.",
+      "name": "Opo Herrera",
+      "role": "AI Executive & Solutions Architect",
+      "company": "Applied AI & Connected Hardware",
       "rating": 5
     },
+
     {
-      "quote": "He is a great performer and very confident to handle the whole project single-handedly. Great experience working with Vivek. All the best.",
-      "name": "Padmabhushan Singh",
-      "role": "CSM® · CSPO® · MCPD",
-      "rating": 5
-    },
-    {
-      "quote": "'Genuine expert' is the phrase that comes to mind when I think about Vivek Kumar. His ability to handle multiple projects was unlike any I've seen before and made a dramatic increase in the productivity level of our company. No matter how tense a meeting, Vivek made sure everyone left with a smile. As a team member or a leader, Vivek earns my highest recommendation.",
+      "quote": "'Genuine expert' is the phrase that comes to mind when I think about Viivek. His ability to handle multiple projects was unlike any I've seen before and made a dramatic increase in the productivity level of our company. No matter how tense a meeting, Viivek made sure everyone left with a smile. As a team member or a leader, Viivek earns my highest recommendation.",
       "name": "Sowjanya Pothireddi",
       "role": "Agile Delivery · Scrum Master · Project Management",
       "rating": 5
     },
     {
-      "quote": "Vivek has good insights and is a highly motivated person. He has a keen eye for detail. It was wonderful collaborating with him in designing multi-tenant apps when we worked together at CallHealth. He would surely be an asset to any company.",
+      "quote": "Viivek is a phenomenal Flutter/Mobile developer. We worked closely together on a major project migrating our apps from native to Flutter, and his contributions were vital to a seamless launch. Viivek brings a perfect blend of rapid development skills, architectural knowledge, and a great team attitude. If you need someone who can hit the ground running and elevate your mobile application ecosystem, Viivek is the person for the job!",
+      "name": "Siddharth Jain",
+      "role": "Lead Mobile Developer",
+      "company": "Thoughtworks",
+      "rating": 5
+    },
+    {
+      "quote": "He is a great performer and very confident to handle the whole project single-handedly. Great experience working with Viivek. All the best.",
+      "name": "Padmabhushan Singh",
+      "role": "CSM® · CSPO® · MCPD",
+      "rating": 5
+    },
+    {
+      "quote": "Viivek has good insights and is a highly motivated person. He has a keen eye for detail. It was wonderful collaborating with him in designing multi-tenant apps when we worked together at CallHealth. He would surely be an asset to any company.",
       "name": "Pallav Ghose",
       "role": "Technical Team Lead",
       "company": "Zemoso Technologies",
+      "rating": 5
+    },
+    {
+      "quote": "I had the pleasure of working with him on the transition of the Kidde app from native development to Flutter. His exceptional knowledge of Flutter and Android, combined with his strong technical expertise, played a valuable role in this transition. He consistently demonstrated excellent problem-solving skills, a deep understanding of mobile app development, and a commitment to delivering high-quality solutions. He was also a great colleague to collaborate with, and I truly appreciated his technical insights and professionalism. I would highly recommend him for any Senior Flutter Developer role and wish him continued success in his career.",
+      "name": "Nihar Raju Chennamadhavuni",
+      "role": "Sr. Lead Engineer",
+      "company": "KGS",
+      "rating": 5
+    },
+    {
+      "quote": "I had the pleasure of working with Viivek at CallHealth, and I truly appreciated his guidance, support, and collaborative approach. He was always approachable and available to help whenever I needed assistance, especially during API development and project implementation.\n\nViivek has a strong team-oriented mindset and is always willing to share his knowledge, provide helpful suggestions, and guide others in the right direction. His ability to offer timely guidance, identify solutions, and work collaboratively made a significant difference in building and delivering our project successfully.\n\nI especially valued his willingness to support team members, provide valuable insights, and ensure we worked together effectively toward our common goals. His technical knowledge, problem-solving skills, and supportive attitude make him a valuable asset to any team.\n\nIt was a great experience working with Viivek, and I would highly recommend him for his technical expertise, teamwork, and dedication.",
+      "name": "Gaddam Susmitha",
+      "role": "Sr. Software Engineer",
+      "company": "Ideyalabs",
+      "rating": 5
+    },
+    {
+      "quote": "Viivek is one of the best employee/colleague I ever meet. He is very passionate about his work and fully focused towards it. He strongly believes E2E development for each task. As an Android/React Native developer he handles all modules from coding to deployment. I am very glad that he was my colleague.",
+      "name": "Prakash Pradhan",
+      "role": "Associate Consultant, Engineering",
+      "company": "GlobalLogic",
       "rating": 5
     }
   ],
@@ -649,13 +678,13 @@
   ],
   "contact": {
     "note": "Open to Lead/Senior Mobile roles focused on Flutter architecture, IoT integrations, and high-impact product delivery.",
-    "email": "vickyvivek2727@gmail.com",
-    "phone": "+91 69133 39566",
+    "email": "viivek027@gmail.com",
+    "phone": "+91 95053 31319",
     "location": "Hyderabad, India",
     "links": [
       "https://linkedin.com/in/connectvivek27",
       "https://github.com/VVK027",
-      "https://wa.me/917330002527"
+      "https://wa.me/919505331319"
     ]
   }
 }

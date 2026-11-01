@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/extensions/portfolio_section_enum.dart';
-import 'package:vivekdevfolio/presentation/portfolio/providers/portfolio_providers.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/about_section.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/contact_section.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/experience_section.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/projects_section.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/reviews_section.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/skills_section.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/presentation/extensions/portfolio_section_enum.dart';
+import 'package:viivekportfolio/presentation/portfolio/providers/portfolio_providers.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/about_section.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/contact_section.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/experience_section.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/open_source_section.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/projects_section.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/reviews_section.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/skills_section.dart';
 
-export 'package:vivekdevfolio/presentation/widgets/sections/section_shell.dart';
+export 'package:viivekportfolio/presentation/widgets/sections/section_shell.dart';
 
 Widget buildSection(
   PortfolioSectionEnum section,
@@ -34,6 +35,8 @@ Widget buildSection(
       return ExperienceSection(experience: portfolio.experience);
     case PortfolioSectionEnum.projects:
       return const ProjectsSection();
+    case PortfolioSectionEnum.openSource:
+      return const OpenSourceSection();
     case PortfolioSectionEnum.reviews:
       return ReviewsSection(reviews: portfolio.reviews ?? []);
     case PortfolioSectionEnum.awards:

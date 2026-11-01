@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/presentation/extensions/review_extensions.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/presentation/extensions/review_extensions.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
 
 class ReviewsSection extends StatelessWidget {

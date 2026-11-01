@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
-import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/core/constants/portfolio_icons.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
-import 'package:vivekdevfolio/presentation/widgets/project_detail_sheet.dart';
-import 'package:vivekdevfolio/presentation/widgets/projects/project_card_view_data.dart';
+import 'package:viivekportfolio/presentation/widgets/project_detail_sheet.dart';
+import 'package:viivekportfolio/presentation/widgets/projects/project_card_view_data.dart';
 
 class ProjectCard extends StatelessWidget {
   final Project project;
@@ -64,7 +64,7 @@ class ProjectCard extends StatelessWidget {
                             viewData.previewImage,
                             fallbackTitle: project.name,
                             fit: BoxFit.contain,
-                            cacheWidth: previewCacheWidth,
+                            //cacheWidth: previewCacheWidth,
                             gradientStart: colors.previewGradientStart,
                             gradientEnd: colors.previewGradientEnd,
                             accentColor: colors.previewAccent,

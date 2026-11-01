@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/constants/portfolio_icons.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/contact_info.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/contact/contact_launchers.dart';
-import 'package:vivekdevfolio/presentation/widgets/sections/contact/social_connect_tile.dart';
+import 'package:viivekportfolio/core/constants/portfolio_icons.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/contact_info.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/contact/contact_launchers.dart';
+import 'package:viivekportfolio/presentation/widgets/sections/contact/social_connect_tile.dart';
 
 class ContactInfoCard extends StatelessWidget {
   final ContactInfo viewData;

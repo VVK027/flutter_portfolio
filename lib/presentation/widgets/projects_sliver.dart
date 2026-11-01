@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vivekdevfolio/core/theme/app_colors.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/core/theme/app_colors.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 import 'package:vvk_ui_kit/vvk_ui_kit.dart';
-import 'package:vivekdevfolio/presentation/widgets/projects/project_card.dart';
-import 'package:vivekdevfolio/presentation/widgets/projects/projects_carousel_layout.dart';
+import 'package:viivekportfolio/presentation/widgets/projects/project_card.dart';
+import 'package:viivekportfolio/presentation/widgets/projects/projects_carousel_layout.dart';
 
 class ProjectsSliver extends StatefulWidget {
   final List<Project> items;

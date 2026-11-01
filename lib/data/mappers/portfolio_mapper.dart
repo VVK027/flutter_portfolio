@@ -1,5 +1,5 @@
-import 'package:vivekdevfolio/data/models/portfolio_model.dart';
-import 'package:vivekdevfolio/domain/entities/portfolio.dart';
+import 'package:viivekportfolio/data/models/portfolio_model.dart';
+import 'package:viivekportfolio/domain/entities/portfolio.dart';
 
 class PortfolioMapper {
   const PortfolioMapper._();
